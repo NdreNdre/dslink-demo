@@ -52,9 +52,14 @@ export default function FooterLanding() {
                     {/* <a className="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-indigo-600 transition">
                         <Facebook size={18} />
                     </a> */}
-                    <button className="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-indigo-600 transition">
-                        <Instagram size={18} onClick={handleToInstagram}/>
-                    </button>
+                    <a
+                    href="https://www.instagram.com/dslink.id/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-indigo-600 transition"
+                    >
+                    <Instagram size={18} />
+                    </a>
                     {/* <a className="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-indigo-600 transition">
                         <Linkedin size={18} />
                     </a> */}
