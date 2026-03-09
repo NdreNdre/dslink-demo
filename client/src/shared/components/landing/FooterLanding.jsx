@@ -9,7 +9,28 @@ import {
     Mail,
 } from "lucide-react";
 
+import { useNavigate} from "react-router-dom"
+
 export default function FooterLanding() {
+
+    const navigate = useNavigate();
+
+    const handleToInstagram = () => {
+        navigate('https://www.instagram.com/dslink.id/')
+    }
+
+    const handleHome = () => {
+        navigate('/')
+    }
+
+    const handlePaket = () => {
+        navigate('/package')
+    }
+
+    const handleAbout = () => {
+        navigate('/about-us')
+    }
+
     return (
         <footer className="bg-slate-950 text-slate-300 border-t border-slate-800">
             <div className="max-w-7xl mx-auto px-6 py-20">
@@ -28,18 +49,18 @@ export default function FooterLanding() {
                     </p>
 
                     <div className="flex gap-4">
-                    <a className="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-indigo-600 transition">
+                    {/* <a className="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-indigo-600 transition">
                         <Facebook size={18} />
-                    </a>
+                    </a> */}
                     <a className="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-indigo-600 transition">
-                        <Instagram size={18} />
+                        <Instagram size={18} onClick={handleToInstagram}/>
                     </a>
-                    <a className="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-indigo-600 transition">
+                    {/* <a className="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-indigo-600 transition">
                         <Linkedin size={18} />
-                    </a>
-                    <a className="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-indigo-600 transition">
+                    </a> */}
+                    {/* <a className="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-indigo-600 transition">
                         <Youtube size={18} />
-                    </a>
+                    </a> */}
                     </div>
                 </div>
 
@@ -48,19 +69,19 @@ export default function FooterLanding() {
                     <h4 className="text-white font-semibold mb-4">Menu</h4>
                     <ul className="space-y-3 text-sm">
                     <li>
-                        <a href="#" className="hover:text-white transition">
+                        <button onClick={handleHome} className="hover:text-white transition">
                         Home
-                        </a>
+                        </button>
                     </li>
                     <li>
-                        <a href="#" className="hover:text-white transition">
-                        Paket Produk
-                        </a>
+                        <button onClick={handlePaket} className="hover:text-white transition">
+                        Paket Upgrade
+                        </button>
                     </li>
                     <li>
-                        <a href="#" className="hover:text-white transition">
+                        <button onClick={handleAbout} className="hover:text-white transition">
                         Tentang Kami
-                        </a>
+                        </button>
                     </li>
                     </ul>
                 </div>
@@ -73,19 +94,18 @@ export default function FooterLanding() {
                     <div className="flex gap-3 items-start">
                         <MapPin size={16} className="mt-1 text-indigo-400" />
                         <span>
-                        Jl. Raya Industri No. 123  
-                        Jakarta Selatan 12345
+                        Jl. Buntu-Kroya, Sawah, Buntu, Kec. Kroya, Kabupaten Cilacap, Jawa Tengah
                         </span>
                     </div>
 
                     <div className="flex gap-3 items-center">
                         <Phone size={16} className="text-indigo-400" />
-                        <span>0800-123-4567</span>
+                        <span> +62 813-9120-388</span>
                     </div>
 
                     <div className="flex gap-3 items-center">
                         <Mail size={16} className="text-indigo-400" />
-                        <span>info@dslink.co.id</span>
+                        <span>inquiry@dslinkgroup.id</span>
                     </div>
                     </div>
                 </div>
