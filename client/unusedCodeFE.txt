@@ -1,0 +1,2417 @@
+import { useState } from "react";
+
+import PaketRumah from "../../../assets/paket_rumah.jpg"
+import PaketDapur from "../../../assets/paket_dapur.jpg"
+import PaketKamarTidur from "../../../assets/paket_kamar.jpg"
+import PaketKamarMandi from "../../../assets/paket_kamar_mandi.jpg"
+import PaketRuangTamu from "../../../assets/paket_ruang_tamu.jpg"
+
+
+const dummyData = [
+    {
+        id: 1,
+        title: "Paket Kamar Mandi Modern",
+        desc: "Toilet, wastafel, keran, shower set, dan keramik premium",
+        price: "8 - 12 Juta",
+        tag: "Pas",
+        image: "https://source.unsplash.com/600x400/?bathroom",
+    },
+    {
+        id: 2,
+        title: "Upgrade Dapur Minimalis",
+        desc: "Kitchen set, countertop, sink, keran, dan backsplash lengkap",
+        price: "15 - 25 Juta",
+        tag: "Komplit",
+        image: "https://source.unsplash.com/600x400/?kitchen",
+    },
+    {
+        id: 3,
+        title: "Paket Kamar Mandi Budget",
+        desc: "Paket standar berkualitas dengan harga terjangkau",
+        price: "4 - 6 Juta",
+        tag: "Hemat",
+        image: "https://source.unsplash.com/600x400/?sink",
+    },
+    {
+        id: 4,
+        title: "Set Pintu Premium",
+        desc: "Pintu solid + handle + engsel + instalasi",
+        price: "5 - 8 Juta",
+        tag: "Komplit",
+        image: "https://source.unsplash.com/600x400/?door",
+    },
+    {
+        id: 5,
+        title: "Upgrade Fixtures Kamar Mandi",
+        desc: "Keran modern, shower set, dan accessories lengkap",
+        price: "3 - 5 Juta",
+        tag: "Pas",
+        image: "https://source.unsplash.com/600x400/?faucet",
+    },
+    {
+        id: 6,
+        title: "Countertop Dapur Granit",
+        desc: "Meja dapur granit berkualitas dengan instalasi rapi",
+        price: "6 - 10 Juta",
+        tag: "Pas",
+        image: "https://source.unsplash.com/600x400/?granite",
+    },
+    // Tambahan dummy untuk simulasi load more
+    ...Array.from({ length: 12 }, (_, i) => ({
+        id: i + 7,
+        title: `Paket Renovasi ${i + 1}`,
+        desc: "Deskripsi singkat paket renovasi rumah",
+        price: `${5 + i} - ${8 + i} Juta`,
+        tag: "Promo",
+        image: "https://source.unsplash.com/600x400/?interior",
+    })),
+];
+
+const categories = [
+    "Semua Produk",
+    "Kamar Mandi",
+    "Dapur",
+    "Pintu & Jendela",
+    "Lantai",
+];
+
+const ListPackage = () => {
+    const [visible, setVisible] = useState(6);
+    const [activeCategory, setActiveCategory] = useState("Semua Produk");
+
+    const handleLoadMore = () => {
+        setVisible((prev) => prev + 6);
+    };
+
+    return (
+        <div className="min-h-screen bg-gray-100 p-8 py-32">
+
+            <img src={PaketDapur} alt="" />
+
+            <h1 className="text-3xl font-bold mb-2">Paket Upgrade Rumah</h1>
+            <p className="text-gray-600 mb-8">
+                Pilih paket sesuai kebutuhan renovasi rumah Anda
+            </p>
+
+            <div className="flex gap-8">
+                {/* Sidebar */}
+                <div className="w-64 bg-white rounded-xl shadow p-6 h-fit">
+                <h2 className="font-semibold mb-4">Kategori</h2>
+                <div className="flex flex-col gap-3">
+                    {categories.map((cat) => (
+                    <button
+                        key={cat}
+                        onClick={() => setActiveCategory(cat)}
+                        className={`text-left px-4 py-2 rounded-lg ${
+                        activeCategory === cat
+                            ? "bg-blue-600 text-white"
+                            : "hover:bg-gray-100"
+                        }`}
+                    >
+                        {cat}
+                    </button>
+                    ))}
+                </div>
+
+                <div className="mt-8 bg-blue-50 p-4 rounded-lg">
+                    <p className="text-sm text-gray-600">
+                    Butuh bantuan memilih paket?
+                    </p>
+                    <button className="mt-3 w-full bg-blue-600 text-white py-2 rounded-lg">
+                    Hubungi Kami
+                    </button>
+                </div>
+                </div>
+
+                {/* Product Grid */}
+                <div className="flex-1">
+                <div className="grid md:grid-cols-3 gap-6">
+                    {dummyData.slice(0, visible).map((item) => (
+                    <div
+                        key={item.id}
+                        className="bg-white rounded-xl shadow hover:shadow-lg transition"
+                    >
+                        <div className="relative">
+                        <img
+                            src={item.image}
+                            alt={item.title}
+                            className="h-48 w-full object-cover rounded-t-xl"
+                        />
+                        <span className="absolute top-3 right-3 bg-yellow-200 text-xs px-3 py-1 rounded-full">
+                            {item.tag}
+                        </span>
+                        </div>
+
+                        <div className="p-5">
+                        <h3 className="font-semibold text-lg mb-2">
+                            {item.title}
+                        </h3>
+                        <p className="text-gray-600 text-sm mb-3">
+                            {item.desc}
+                        </p>
+
+                        <p className="text-sm text-gray-500">Harga Paket</p>
+                        <p className="text-blue-600 font-bold text-lg mb-4">
+                            {item.price}
+                        </p>
+
+                        <button className="w-full bg-orange-500 hover:bg-orange-600 text-white py-2 rounded-lg">
+                            Lihat Detail →
+                        </button>
+                        </div>
+                    </div>
+                    ))}
+                </div>
+
+                {/* Load More */}
+                {visible < dummyData.length && (
+                    <div className="text-center mt-8">
+                    <button
+                        onClick={handleLoadMore}
+                        className="bg-gray-800 text-white px-6 py-3 rounded-lg hover:bg-gray-900"
+                    >
+                        Load More
+                    </button>
+                    </div>
+                )}
+                </div>
+            </div>
+        </div>
+    );
+}
+
+export default ListPackage;
+
+{/* ================= PACKAGE SECTION ================= */}
+      <section className="bg-slate-100 py-16">
+  <div className="max-w-7xl mx-auto px-6">
+
+    <div className="grid lg:grid-cols-4 gap-8">
+
+      {/* ================= SIDEBAR CATEGORY ================= */}
+      <div className="bg-white rounded-2xl shadow-md p-6 h-fit">
+        <h3 className="font-semibold text-slate-900 mb-4">
+          Kategori Paket
+        </h3>
+
+        <div className="space-y-3">
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setActiveCategory(cat)}
+              className={`w-full text-left px-4 py-3 rounded-xl transition font-medium
+              ${
+                activeCategory === cat
+                  ? "bg-indigo-600 text-white shadow"
+                  : "bg-slate-50 text-slate-700 hover:bg-slate-100"
+              }`}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* ================= PACKAGE LIST ================= */}
+      <div className="lg:col-span-3 space-y-6">
+
+        {packages.map((pkg, index) => (
+          <div
+            key={index}
+            className="bg-white rounded-2xl shadow-md hover:shadow-xl transition overflow-hidden"
+          >
+            <div className="grid md:grid-cols-3">
+
+              {/* IMAGE */}
+              <div className="relative">
+                <img
+                  src={PaketDapur}
+                  alt={pkg.name}
+                  className="w-full h-full object-cover"
+                />
+
+                {pkg.highlight && (
+                  <div className="absolute top-4 left-4 bg-amber-400 text-white text-xs font-semibold px-3 py-1 rounded-full shadow">
+                    PALING LARIS
+                  </div>
+                )}
+              </div>
+
+              {/* DETAILS */}
+              <div className="md:col-span-2 p-6 flex flex-col justify-between">
+
+                <div>
+                  <h3 className="text-xl font-bold text-slate-900">
+                    Paket {pkg.name}
+                  </h3>
+
+                  <p className="text-slate-500 mt-1 mb-4">
+                    {pkg.subtitle}
+                  </p>
+
+                  <ul className="grid sm:grid-cols-2 gap-2 text-sm text-slate-700">
+                    {pkg.features.map((feature, i) => (
+                      <li key={i} className="flex items-start gap-2">
+                        <span className="text-emerald-500 mt-1">✓</span>
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* CTA */}
+                <div className="flex justify-end mt-6">
+                  <button className="px-6 py-3 rounded-xl bg-indigo-600 text-white font-medium hover:bg-indigo-700 transition">
+                    Lihat Detail Solusi
+                  </button>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+        ))}
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+import React, { useEffect, useState } from "react";
+
+import PaketRumah from "../../../assets/paket_rumah.jpg"
+import PaketDapur from "../../../assets/paket_dapur.jpg"
+import PaketKamarTidur from "../../../assets/paket_kamar.jpg"
+import PaketKamarMandi from "../../../assets/paket_kamar_mandi.jpg"
+import PaketRuangTamu from "../../../assets/paket_ruang_tamu.jpg"
+
+const categories = [
+  "Kamar Mandi",
+  "Dapur",
+  "Ruang Keluarga",
+  "Kamar Tidur",
+  "Renovasi Ringan",
+];
+
+const packages = [
+  {
+    name: "HEMAT",
+    subtitle: "Essential Items",
+    highlight: false,
+    color: "blue",
+    badges: ["Bisa DP & Cicil", "Item Essential", "Cocok Budget Terbatas"],
+    features: [
+      "Shower Set Basic",
+      "Kloset Duduk Standard",
+      "Wastafel + Cermin",
+      "Keran Air",
+    ],
+  },
+  {
+    name: "PAS",
+    subtitle: "Best Seller",
+    highlight: true,
+    color: "amber",
+    badges: ["Termasuk Pasang", "Best Seller", "Standard Installation"],
+    features: [
+      "Shower Set + Keran Mixer",
+      "Kloset Duduk Premium",
+      "Wastafel + Kabinet",
+      "Cermin + Lampu",
+      "Instalasi Lengkap",
+    ],
+  },
+  {
+    name: "KOMPLIT",
+    subtitle: "Premium Solution",
+    highlight: false,
+    color: "indigo",
+    badges: ["Full Installation", "Garansi Jasa", "Foto Before-After"],
+    features: [
+      "Rain Shower + Water Heater",
+      "Kloset Duduk Premium + Bidet",
+      "Wastafel Double + Kabinet Premium",
+      "Cermin Premium + Lampu LED",
+      "Exhaust Fan",
+      "Complete Piping + Safety Valve",
+      "Instalasi Premium + Finishing",
+    ],
+  },
+];
+
+const PackageListSection = () => {
+  const [activeCategory, setActiveCategory] = useState("Kamar Tidur");
+
+  const [srcImage, setSrcImage] = useState(PaketDapur);
+
+  const handleChangeImg = (category) => {
+   
+    if(category == "Kamar Tidur"){
+        setSrcImage(PaketKamarTidur)
+    } else if(category == "Dapur") {
+        setSrcImage(PaketDapur)
+    } else if(category == "Ruang Keluarga") {
+        setSrcImage(PaketRuangTamu)
+    } else if(category == "Kamar Mandi") {
+        setSrcImage(PaketKamarMandi)
+    } else {
+        setSrcImage(PaketRumah)
+    }
+  }
+
+  useEffect(() => {
+    handleChangeImg(activeCategory);
+  },[activeCategory])
+
+  return (
+    <>
+      {/* ================= HERO TITLE SECTION ================= */}
+      <section className="relative h-[420px] flex items-center justify-center text-center">
+
+        {/* Background Image */}
+        <img
+          src={srcImage} // ganti sesuai gambar kamu
+          alt="Kamar Tidur"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+
+        {/* Dark Overlay */}
+        <div className="absolute inset-0 bg-black/60"></div>
+
+        {/* Content */}
+        <div className="relative z-10 px-6">
+          <h1 className="text-4xl md:text-5xl font-bold text-white">
+            Paket Solusi Kamar Tidur
+          </h1>
+
+          <p className="text-slate-200 mt-4 text-lg">
+            Desain kamar tidur yang nyaman dan fungsional
+          </p>
+
+          <p className="text-amber-400 mt-6 font-medium">
+            Solusi Kebutuhan Rumah Jadi Mudah
+          </p>
+        </div>
+      </section>
+
+      
+
+<section className="bg-slate-100 py-20">
+  <div className="max-w-7xl mx-auto px-6">
+
+    <div className="grid lg:grid-cols-4 gap-10">
+
+      {/* ================= SIDEBAR ================= */}
+      <div className="bg-white rounded-3xl shadow-sm border border-slate-200 p-6 h-fit">
+        <h3 className="text-slate-900 font-semibold mb-6">
+          Kategori Solusi
+        </h3>
+
+        <div className="space-y-2">
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setActiveCategory(cat)}
+              className={`w-full text-left px-4 py-3 rounded-xl transition-all duration-200 font-medium
+              ${
+                activeCategory === cat
+                  ? "bg-indigo-600 text-white shadow-md"
+                  : "hover:bg-slate-100 text-slate-700"
+              }`}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* ================= PACKAGE LIST ================= */}
+      <div className="lg:col-span-3 space-y-8">
+
+        {packages.map((pkg, index) => (
+          <div
+            key={index}
+            className="group bg-white rounded-3xl border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden"
+          >
+            <div className="grid md:grid-cols-3">
+
+              {/* ===== IMAGE ===== */}
+              <div className="relative overflow-hidden">
+                <img
+                  src={PaketDapur}
+                  alt={pkg.name}
+                  className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                />
+
+                {/* Gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+
+                {/* Badge */}
+                {pkg.highlight && (
+                  <div className="absolute top-4 left-4 bg-amber-400 text-white text-xs font-semibold px-4 py-1 rounded-full shadow">
+                    Paling Laris
+                  </div>
+                )}
+
+                {/* Category small label */}
+                <div className="absolute bottom-4 left-4 text-white text-xs bg-black/50 px-3 py-1 rounded-full">
+                  {activeCategory}
+                </div>
+              </div>
+
+              {/* ===== CONTENT ===== */}
+              <div className="md:col-span-2 p-8 flex flex-col justify-between">
+
+                <div>
+                  <div className="flex items-start justify-between">
+                    <div>
+                      <h3 className="text-2xl font-bold text-slate-900">
+                        Paket {pkg.name}
+                      </h3>
+                      <p className="text-slate-500 mt-1">
+                        {pkg.subtitle}
+                      </p>
+                    </div>
+
+                    {/* Small Tag */}
+                    <span className="text-xs bg-indigo-50 text-indigo-600 px-3 py-1 rounded-full font-medium">
+                      Solusi Terpercaya
+                    </span>
+                  </div>
+
+                  {/* Divider */}
+                  <div className="h-px bg-slate-200 my-6"></div>
+
+                  {/* Features */}
+                  <ul className="grid sm:grid-cols-2 gap-3 text-sm text-slate-700">
+                    {pkg.features.map((feature, i) => (
+                      <li key={i} className="flex items-start gap-2">
+                        <span className="text-emerald-500 mt-1">✓</span>
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* CTA AREA */}
+                <div className="flex items-center justify-between mt-8">
+
+                  {/* Meta Info */}
+                  <div className="text-sm text-slate-500">
+                    Instalasi Profesional • Garansi Jasa
+                  </div>
+
+                  <button className="px-6 py-3 rounded-xl bg-indigo-600 text-white font-semibold hover:bg-indigo-700 transition shadow-md hover:shadow-lg">
+                    Lihat Detail →
+                  </button>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        ))}
+
+      </div>
+
+    </div>
+  </div>
+</section>
+    </>
+  );
+};
+
+export default PackageListSection;
+
+import { useState } from "react";
+
+import PaketKamarTidur from "../../../assets/paket_kamar.jpg";
+import PaketKamarMandi from "../../../assets/paket_kamar_mandi.jpg";
+import PaketRuangTamu from "../../../assets/paket_ruang_tamu.jpg";
+import PompaBooster from "../../../assets/pompa_1.jpg";
+import TandonAir from "../../../assets/tandon_1.jpg"; 
+
+const DetailPackage = () => {
+    const [position, setPosition] = useState(50);
+
+    const handleMove = (e) => {
+        const rect = e.currentTarget.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const percent = (x / rect.width) * 100;
+        setPosition(Math.max(0, Math.min(100, percent)));
+    };
+
+    return (
+        <div>
+
+            <section className=" bg-slate-800">
+
+                {/* ================= HERO ================= */}
+                <div className="relative h-[520px] flex items-center justify-center text-center overflow-hidden">
+
+                    {/* Background Image */}
+                    <img
+                    src={PaketRuangTamu}
+                    alt="Upgrade Kamar Mandi"
+                    className="absolute inset-0 w-full h-full object-cover scale-105"
+                    />
+
+                    {/* Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/70 to-slate-800"></div>
+
+                    {/* Content */}
+                    <div className="relative z-10 px-6 max-w-3xl">
+
+                    {/* Badge */}
+                    <span className="inline-block bg-orange-500 text-white px-4 py-1 rounded-full text-sm font-semibold shadow-lg">
+                        ⭐ Paket Best Seller
+                    </span>
+
+                    {/* Title */}
+                    <h1 className="text-4xl md:text-5xl font-bold text-white mt-6 leading-tight">
+                        Solusi Terpopuler
+                        <span className="block text-orange-400">
+                        Upgrade Kamar Mandi Modern
+                        </span>
+                    </h1>
+
+                    {/* Subtitle */}
+                    <p className="text-slate-300 mt-5 text-lg">
+                        Instalasi profesional dengan hasil elegan & tahan lama
+                    </p>
+
+                    {/* Social Proof */}
+                    <div className="flex justify-center gap-6 mt-6 text-sm text-slate-300">
+                        <span>✔ 120+ Rumah Ditangani</span>
+                        <span>✔ 4.9/5 Rating Pelanggan</span>
+                        <span>✔ Garansi Instalasi</span>
+                    </div>
+
+                    {/* CTA */}
+                    <div className="flex justify-center gap-4 mt-8">
+                        <button className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-xl font-semibold shadow-lg transition">
+                        Pesan Paket Ini
+                        </button>
+
+                        <button className="border border-white/30 text-white px-6 py-3 rounded-xl hover:bg-white/10 transition">
+                        Lihat Detail
+                        </button>
+                    </div>
+
+                    </div>
+                </div>
+
+
+                {/* ================= CONTENT ================= */}
+                <div className="max-w-6xl mx-auto px-6 mt-10">
+
+                    <div className="bg-white rounded-3xl shadow-2xl p-6 md:p-12 grid md:grid-cols-2 gap-12 select-none">
+
+                    {/* ================= BEFORE AFTER ================= */}
+                    <div
+                        className="relative w-full h-[420px] overflow-hidden rounded-2xl shadow-md cursor-ew-resize"
+                        onMouseMove={(e) => e.buttons === 1 && handleMove(e)}
+                        onClick={handleMove}
+                    >
+
+                        <img
+                        src={PaketKamarMandi}
+                        className="absolute inset-0 w-full h-full object-cover"
+                        />
+
+                        <div
+                        className="absolute inset-0 overflow-hidden"
+                        style={{ width: `${position}%` }}
+                        >
+                        <img
+                            src={PaketKamarTidur}
+                            className="w-full h-full object-cover"
+                        />
+                        </div>
+
+                        <div
+                        className="absolute top-0 bottom-0 w-[2px] bg-white"
+                        style={{ left: `${position}%` }}
+                        />
+
+                        <div
+                        className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 bg-white shadow-xl rounded-full w-11 h-11 flex items-center justify-center font-bold"
+                        style={{ left: `${position}%` }}
+                        >
+                        ↔
+                        </div>
+
+                        <span className="absolute top-4 left-4 bg-orange-500 text-white text-xs px-3 py-1 rounded-full shadow">
+                        Sebelum
+                        </span>
+
+                        <span className="absolute top-4 right-4 bg-green-600 text-white text-xs px-3 py-1 rounded-full shadow">
+                        Sesudah
+                        </span>
+
+                        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white text-xs bg-black/60 backdrop-blur px-3 py-1 rounded-full">
+                        Geser untuk melihat perubahan
+                        </div>
+
+                    </div>
+
+
+                    {/* ================= BENEFITS ================= */}
+                    <div>
+
+                        <h3 className="text-3xl font-bold text-gray-800">
+                        Yang Anda Dapatkan
+                        </h3>
+
+                        <p className="text-gray-500 mt-2 mb-8">
+                        Semua sudah termasuk instalasi profesional
+                        </p>
+
+                        <div className="space-y-4">
+
+                        {[
+                            {
+                            icon: "🚿",
+                            title: "Shower Set Upgrade",
+                            desc: "Shower lebih kuat dan elegan seperti hotel",
+                            color: "green"
+                            },
+                            {
+                            icon: "🔥",
+                            title: "Water Heater Menengah",
+                            desc: "Air hangat nyaman untuk penggunaan keluarga",
+                            color: "orange"
+                            },
+                            {
+                            icon: "🔧",
+                            title: "Pipa & Fitting Standar",
+                            desc: "Instalasi sesuai kebutuhan 1 titik kamar mandi",
+                            color: "blue"
+                            },
+                            {
+                            icon: "✔",
+                            title: "Instalasi Standar",
+                            desc: "Termasuk pemasangan kondisi normal",
+                            color: "emerald"
+                            }
+                        ].map((item, i) => (
+                            <div
+                            key={i}
+                            className="bg-gray-50 border border-gray-100 rounded-xl p-4 flex gap-4 items-start hover:shadow-md hover:-translate-y-1 transition duration-300"
+                            >
+                            <div className={`bg-${item.color}-100 text-${item.color}-600 w-11 h-11 flex items-center justify-center rounded-lg text-lg`}>
+                                {item.icon}
+                            </div>
+
+                            <div>
+                                <h4 className="font-semibold text-gray-800">
+                                {item.title}
+                                </h4>
+                                <p className="text-sm text-gray-500">
+                                {item.desc}
+                                </p>
+                            </div>
+                            </div>
+                        ))}
+
+                        </div>
+
+                        {/* CTA bawah */}
+                        <button className="mt-8 w-full bg-slate-900 hover:bg-slate-800 text-white py-3 rounded-xl font-semibold transition shadow-md">
+                        Konsultasi Gratis Sekarang
+                        </button>
+
+                    </div>
+
+                    </div>
+                </div>
+
+            </section>
+
+            <section className="bg-gray-50 py-16">
+
+                {/* ===== LAYANAN END TO END ===== */}
+
+                <div className="max-w-6xl mx-auto px-6 text-center">
+
+                    <h2 className="text-2xl font-bold text-blue-700">
+                        Layanan End-to-End
+                    </h2>
+
+                    <p className="text-gray-500 text-sm mt-2">
+                        Dari konsultasi hingga after-sales, kami dampingi Anda
+                    </p>
+
+                    <div className="grid md:grid-cols-4 gap-6 mt-10">
+
+                        <div className="bg-white border rounded-xl p-6 hover:shadow-md transition">
+                            <div className="text-3xl mb-3">📋</div>
+                            <h3 className="font-semibold text-orange-500">
+                                Konsultasi
+                            </h3>
+                            <p className="text-sm text-gray-500">
+                                Diskusi kebutuhan dan survey lokasi gratis
+                            </p>
+                        </div>
+
+                        <div className="bg-white border rounded-xl p-6 hover:shadow-md transition">
+                            <div className="text-3xl mb-3">🚚</div>
+                            <h3 className="font-semibold text-orange-500">
+                                Delivery
+                            </h3>
+                            <p className="text-sm text-gray-500">
+                                Pengiriman material tepat waktu ke lokasi
+                            </p>
+                        </div>
+
+                        <div className="bg-white border rounded-xl p-6 hover:shadow-md transition">
+                            <div className="text-3xl mb-3">🔧</div>
+                            <h3 className="font-semibold text-orange-500">
+                                Neat Installation
+                            </h3>
+                            <p className="text-sm text-gray-500">
+                                Pemasangan rapi oleh tukang berlisensi
+                            </p>
+                        </div>
+
+                        <div className="bg-white border rounded-xl p-6 hover:shadow-md transition">
+                            <div className="text-3xl mb-3">✅</div>
+                            <h3 className="font-semibold text-orange-500">
+                                After-Sales
+                            </h3>
+                            <p className="text-sm text-gray-500">
+                                Garansi kerja dan dukungan purna jual
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    {/* ===== HIGHLIGHT BENEFITS ===== */}
+
+                    <div className="grid md:grid-cols-3 gap-6 mt-10">
+
+                        <div className="bg-blue-50 border rounded-xl p-4 flex gap-3 items-center">
+                            <div className="text-xl">🛡️</div>
+                            <div className="text-left">
+                                <h4 className="font-semibold text-blue-700">
+                                    Tukang Lokal Berlisensi
+                                </h4>
+                                <p className="text-sm text-gray-500">
+                                    Tim profesional terlatih
+                                </p>
+                            </div>
+                        </div>
+
+                        <div className="bg-orange-50 border rounded-xl p-4 flex gap-3 items-center">
+                            <div className="text-xl">🔗</div>
+                            <div className="text-left">
+                                <h4 className="font-semibold text-orange-600">
+                                    Garansi Kerja
+                                </h4>
+                                <p className="text-sm text-gray-500">
+                                    Jaminan kualitas instalasi
+                                </p>
+                            </div>
+                        </div>
+
+                        <div className="bg-green-50 border rounded-xl p-4 flex gap-3 items-center">
+                            <div className="text-xl">📷</div>
+                            <div className="text-left">
+                                <h4 className="font-semibold text-green-600">
+                                    Foto Before-After
+                                </h4>
+                                <p className="text-sm text-gray-500">
+                                    Dokumentasi lengkap
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    {/* ===== SIMULASI CICILAN ===== */}
+
+                    <div className="mt-14 border-2 border-orange-400 rounded-xl p-8 bg-orange-50">
+
+                        <div className="text-left mb-6">
+                            <h3 className="text-xl font-semibold text-orange-600">
+                                Simulasi Cicilan
+                            </h3>
+                            <p className="text-sm text-gray-600">
+                                Cicilan ringan, proses cepat dibantu tim DS Link
+                            </p>
+                        </div>
+
+
+                        {/* PARTNER */}
+
+                        <div className="flex flex-wrap gap-3 mb-6">
+
+                            <div className="border rounded-lg px-4 py-2 bg-white text-sm">
+                                BRI
+                            </div>
+
+                            <div className="border rounded-lg px-4 py-2 bg-white text-sm">
+                                BCA
+                            </div>
+
+                            <div className="border rounded-lg px-4 py-2 bg-white text-sm">
+                                Mandiri
+                            </div>
+
+                            <div className="border rounded-lg px-4 py-2 bg-white text-sm">
+                                Home Credit
+                            </div>
+
+                            <div className="border rounded-lg px-4 py-2 bg-white text-sm">
+                                Kredivo
+                            </div>
+
+                        </div>
+
+
+                        {/* BENEFITS */}
+
+                        <div className="grid md:grid-cols-2 gap-4 mb-6">
+
+                            <div className="bg-white border rounded-lg p-4">
+                                ✔ DP Rendah
+                                <p className="text-sm text-gray-500">
+                                    Mulai dari 10% saja
+                                </p>
+                            </div>
+
+                            <div className="bg-white border rounded-lg p-4">
+                                ✔ Tenor Fleksibel
+                                <p className="text-sm text-gray-500">
+                                    6, 12, atau 24 bulan
+                                </p>
+                            </div>
+
+                            <div className="bg-white border rounded-lg p-4">
+                                ✔ Proses Cepat
+                                <p className="text-sm text-gray-500">
+                                    Approval 1-2 hari kerja
+                                </p>
+                            </div>
+
+                            <div className="bg-white border rounded-lg p-4">
+                                ✔ Dibantu Tim Kami
+                                <p className="text-sm text-gray-500">
+                                    Pengajuan sampai approval
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        {/* CTA */}
+
+                        <button className="w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white py-3 rounded-lg font-semibold hover:opacity-90 transition">
+                            Cek Kelayakan Cicilan Sekarang
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <section className="bg-gray-50 py-16">
+
+                <div className="max-w-6xl mx-auto px-6">
+
+                    <h2 className="text-xl font-semibold text-gray-800 mb-6">
+                    Lengkapi dengan Produk Pilihan
+                    </h2>
+
+                    <div className="grid md:grid-cols-2 gap-6">
+
+                    {/* Booster Pump */}
+
+                    <div className="bg-white rounded-xl overflow-hidden border hover:shadow-lg transition">
+
+                        <img
+                        src={PompaBooster}
+                        className="w-full h-56 object-cover"
+                        />
+
+                        <div className="p-5">
+
+                        <h3 className="font-semibold text-lg">
+                            Pompa Booster
+                        </h3>
+
+                        <p className="text-sm text-gray-500 mt-1">
+                            Tingkatkan tekanan air hingga 2x lipat
+                        </p>
+
+                        <p className="text-green-600 text-sm mt-3">
+                            ✓ Shower makin deras & nyaman
+                        </p>
+
+                        </div>
+
+                    </div>
+
+
+                    {/* Water Tank */}
+
+                    <div className="bg-white rounded-xl overflow-hidden border hover:shadow-lg transition">
+
+                        <img
+                        src={TandonAir}
+                        className="w-full h-56 object-cover"
+                        />
+
+                        <div className="p-5">
+
+                        <h3 className="font-semibold text-lg">
+                            Tandon Air
+                        </h3>
+
+                        <p className="text-sm text-gray-500 mt-1">
+                            Cadangan air bersih 500-1000 liter
+                        </p>
+
+                        <p className="text-green-600 text-sm mt-3">
+                            ✓ Tak perlu khawatir air mati
+                        </p>
+
+                        </div>
+
+                    </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <section className="bg-white py-20">
+
+            <div className="max-w-6xl mx-auto px-6 text-center">
+
+                <h2 className="text-2xl font-bold mb-10">
+                Apa Kata Pelanggan Kami
+                </h2>
+
+                <div className="grid md:grid-cols-3 gap-8">
+
+                <div className="border rounded-xl p-6">
+                    <p className="text-gray-600 text-sm">
+                    Awalnya kamar mandi kami biasa saja,
+                    sekarang jadi seperti hotel.
+                    Pengerjaan cepat dan rapi.
+                    </p>
+
+                    <div className="mt-4 font-semibold">
+                    ⭐⭐⭐⭐⭐
+                    </div>
+
+                    <p className="text-sm mt-2 text-gray-500">
+                    Ibu Rina – Bekasi
+                    </p>
+                </div>
+
+                <div className="border rounded-xl p-6">
+                    <p className="text-gray-600 text-sm">
+                    Tim DS Link sangat profesional.
+                    Instalasi rapi dan selesai tepat waktu.
+                    </p>
+
+                    <div className="mt-4 font-semibold">
+                    ⭐⭐⭐⭐⭐
+                    </div>
+
+                    <p className="text-sm mt-2 text-gray-500">
+                    Pak Arif – Tangerang
+                    </p>
+                </div>
+
+                <div className="border rounded-xl p-6">
+                    <p className="text-gray-600 text-sm">
+                    Sekarang mandi jadi jauh lebih nyaman.
+                    Air panas stabil dan shower kuat.
+                    </p>
+
+                    <div className="mt-4 font-semibold">
+                    ⭐⭐⭐⭐⭐
+                    </div>
+
+                    <p className="text-sm mt-2 text-gray-500">
+                    Ibu Santi – Depok
+                    </p>
+                </div>
+
+                </div>
+
+            </div>
+
+            </section>
+
+            <section className="py-24 bg-gradient-to-r from-slate-800 to-slate-900 text-white">
+
+            <div className="max-w-5xl mx-auto px-6 text-center">
+
+                <h2 className="text-3xl font-bold mb-4">
+                Siap Upgrade Kamar Mandi Anda?
+                </h2>
+
+                <p className="text-white/90 mb-10 max-w-xl mx-auto">
+                Tim DS Link siap membantu dari konsultasi hingga pemasangan.
+                Jadwalkan survey gratis sekarang dan wujudkan kamar mandi
+                impian Anda.
+                </p>
+
+
+                {/* CTA BUTTONS */}
+
+                <div className="flex flex-col md:flex-row justify-center gap-4">
+
+                <a
+                    href="https://wa.me/628123456789"
+                    className="bg-green-500 text-white px-8 py-4 rounded-xl font-semibold hover:scale-105 transition shadow-lg"
+                >
+                    Konsultasi via WhatsApp
+                </a>
+
+                <button className="border-2 border-white px-8 py-4 rounded-xl font-semibold hover:bg-white hover:text-orange-600 transition">
+                    Jadwalkan Survey Gratis
+                </button>
+
+                </div>
+
+
+                {/* TRUST INDICATOR */}
+
+                <div className="mt-12 flex flex-wrap justify-center gap-6 text-sm text-white/90">
+
+                <span>✓ Survey Gratis</span>
+                <span>✓ Tukang Berpengalaman</span>
+                <span>✓ Garansi Instalasi</span>
+                <span>✓ Proses Cepat</span>
+
+                </div>
+
+            </div>
+
+            </section>
+        </div>
+        
+    );
+};
+
+export default DetailPackage;
+
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+import { FaWhatsapp } from "react-icons/fa";
+
+import PaketRumah from "../../../assets/paket_rumah.jpg"
+import PaketDapur from "../../../assets/paket_dapur.jpg"
+import PaketKamarTidur from "../../../assets/paket_kamar.jpg"
+import PaketKamarMandi from "../../../assets/paket_kamar_mandi.jpg"
+import PaketRuangTamu from "../../../assets/paket_ruang_tamu.jpg"
+
+import { FaCheck } from "react-icons/fa6";
+import { LiaStarSolid } from "react-icons/lia";
+import { BsStars } from "react-icons/bs";
+import { LuCrown } from "react-icons/lu";
+
+const categories = [
+  "Kamar Mandi",
+  "Dapur",
+  "Ruang Keluarga",
+  "Kamar Tidur",
+  "Renovasi Ringan",
+];
+
+const packages = [
+  {
+    name: "Hemat",
+    subtitle: "Solusi Essential untuk kebutuhan dasar",
+    highlight: false,
+    images: [
+        PaketKamarMandi,
+        PaketDapur,
+        PaketRuangTamu,
+    ],
+    features: [
+      "Shower Set Basic",
+      "Kloset Duduk Standard",
+      "Wastafel + Cermin",
+      "Keran Air",
+    ],
+  },
+  {
+    name: "Pas",
+    subtitle: "Pilihan paling populer dan seimbang",
+    highlight: true,
+    images: [
+        PaketKamarMandi,
+        PaketDapur,
+        PaketRuangTamu,
+    ],
+    features: [
+      "Shower Set + Keran Mixer",
+      "Kloset Duduk Premium",
+      "Wastafel + Kabinet",
+      "Cermin + Lampu",
+      "Instalasi Lengkap",
+    ],
+  },
+  {
+    name: "Komplit",
+    subtitle: "Solusi premium dengan fitur lengkap",
+    highlight: false,
+    images: [
+        PaketKamarMandi,
+        PaketDapur,
+        PaketRuangTamu,
+    ],
+    features: [
+      "Rain Shower + Water Heater",
+      "Kloset Duduk Premium + Bidet",
+      "Wastafel Double + Kabinet Premium",
+      "Cermin Premium + Lampu LED",
+      "Instalasi Premium + Finishing",
+    ],
+  },
+];
+
+const PackageListSection = () => {
+  const [activeCategory, setActiveCategory] = useState("Kamar Mandi");
+
+  const [srcImage, setSrcImage] = useState(PaketDapur);
+
+  const navigate = useNavigate();
+
+  const handleChangeImg = (category) => {
+    
+    if(category == "Kamar Tidur"){
+        setSrcImage(PaketKamarTidur)
+    } else if(category == "Dapur") {
+        setSrcImage(PaketDapur)
+    } else if(category == "Ruang Keluarga") {
+        setSrcImage(PaketRuangTamu)
+    } else if(category == "Kamar Mandi") {
+        setSrcImage(PaketKamarMandi)
+    } else {
+        setSrcImage(PaketRumah)
+    }
+  }
+
+  useEffect(() => {
+    handleChangeImg(activeCategory);
+  },[activeCategory])
+
+  const [currentImage, setCurrentImage] = useState({})
+
+  const nextImage = (index) => {
+    setCurrentImage((prev) => ({
+      ...prev,
+      [index]:
+        ((prev[index] || 0) + 1) %
+        packages[index].images.length,
+    }))
+  }
+
+  const prevImage = (index) => {
+    setCurrentImage((prev) => ({
+      ...prev,
+      [index]:
+        (prev[index] - 1 + packages[index].images.length) %
+        packages[index].images.length,
+    }))
+  }
+
+  const handleNavigateDetail = () => {
+    navigate('/package-detail')
+  }
+
+  const handleWhatsapp = () => {
+    const phone = "6282119466523";
+    const message = `Halo, Saya tertarik, fak yu`;
+    window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, "_blank");
+  };
+
+  return (
+    <div>
+      <section className="relative h-[420px] flex items-center justify-center text-center">
+
+        {/* Background Image */}
+        <img
+          src={srcImage} // ganti sesuai gambar kamu
+          alt="Kamar Tidur"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+
+        {/* Dark Overlay */}
+        <div className="absolute inset-0 bg-black/60"></div>
+
+        {/* Content */}
+        <div className="relative z-10 px-6">
+          <h1 className="text-4xl md:text-5xl font-bold text-white">
+            Paket Solusi Kamar Tidur
+          </h1>
+
+          <p className="text-slate-200 mt-4 text-lg">
+            Desain kamar tidur yang nyaman dan fungsional
+          </p>
+
+          <p className="text-amber-400 mt-6 font-medium">
+            Solusi Kebutuhan Rumah Jadi Mudah
+          </p>
+        </div>
+      </section>
+
+      <section className="bg-slate-100 py-20">
+        <div className="max-w-7xl mx-auto px-6 flex space-x-10">
+
+          <div className="flex flex-col w-1/4">
+
+            {/* ================= SIDEBAR ================= */}
+            <div className="bg-white rounded-3xl shadow-sm border border-slate-200 w-full p-6 h-fit">
+              <h3 className="text-slate-900 font-semibold mb-6">
+                Kategori Solusi
+              </h3>
+
+              <div className="space-y-2">
+                {categories.map((cat) => (
+                  <button
+                    key={cat}
+                    onClick={() => setActiveCategory(cat)}
+                    className={`w-full text-left px-4 py-3 rounded-xl transition-all duration-200 font-medium
+                    ${
+                      activeCategory === cat
+                        ? "bg-indigo-600 text-white shadow-md"
+                        : "hover:bg-slate-100 text-slate-700"
+                    }`}
+                  >
+                    {cat}
+                  </button>
+                ))}
+              </div>
+
+              
+
+
+            </div>
+            
+            <div className="relative mt-5 overflow-hidden rounded-2xl bg-gradient-to-br from-slate-800 to-blue-900 p-6 text-white shadow-lg">
+
+                {/* Glow effect */}
+                <div className="absolute -top-10 -right-10 w-32 h-32 bg-blue-400/20 blur-3xl rounded-full"></div>
+
+                <h3 className="text-lg font-semibold text-blue-100">
+                  Butuh Bantuan?
+                </h3>
+
+                <p className="text-sm text-blue-200 mt-1">
+                  Tim kami siap membantu Anda memilih paket yang paling tepat
+                </p>
+
+                <button
+                  onClick={handleWhatsapp}
+                  className="mt-4 flex items-center justify-center gap-2 w-full rounded-lg border border-white/20 bg-white/10 backdrop-blur px-4 py-2 text-white hover:bg-white/20 transition"
+                >
+                  <FaWhatsapp className="text-lg" />
+                  Hubungi Kami
+                </button>
+
+              </div>
+          
+
+            {/* ================= PACKAGE LIST ================= */}
+
+          </div>
+
+          <div className="lg:col-span-3 space-y-8 w-3/4">
+
+        {packages.map((pkg, index) => {
+
+          const isHighlight = pkg.highlight
+          const isPremium = pkg.name === "Komplit"
+
+          return (
+            <div
+              key={index}
+              className={`group transition-all duration-500 ${
+                isHighlight ? "scale-[1.015]" : ""
+              }`}
+            >
+
+              <div className={isHighlight ? "animated-border" : ""}>
+                <div
+                  className={`
+                    ${isHighlight ? "animated-border-inner" : ""}
+                    rounded-3xl overflow-hidden
+                    border
+                    ${
+                      isHighlight
+                        ? "border-transparent shadow-2xl"
+                        : isPremium
+                        ? "border-indigo-200 shadow-md"
+                        : "border-slate-200 shadow-sm"
+                    }
+                    bg-white
+                    transition-all duration-500
+                    hover:shadow-xl
+                  `}
+                >
+
+                  <div className="grid md:grid-cols-3">
+
+                    {/* ================= IMAGE ================= */}
+                    <div className="relative overflow-hidden group/image">
+
+        {/* IMAGE */}
+        <img
+          src={pkg.images[currentImage[index] || 0]}
+          alt={pkg.name}
+          className="w-full h-full object-cover transition duration-700 group-hover:scale-105"
+        />
+
+        {/* Subtle gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-black/10 to-transparent pointer-events-none"></div>
+
+        {/* ===== ARROWS (SHOW ON HOVER) ===== */}
+        <button
+          onClick={() => prevImage(index)}
+          className="
+            absolute left-4 top-1/2 -translate-y-1/2
+            opacity-0 group-hover/image:opacity-100
+            transition duration-300
+            bg-white/70 backdrop-blur-md
+            p-2.5 rounded-full shadow-md
+            hover:scale-110 hover:bg-white
+          "
+        >
+          ‹
+        </button>
+
+        <button
+          onClick={() => nextImage(index)}
+          className="
+            absolute right-4 top-1/2 -translate-y-1/2
+            opacity-0 group-hover/image:opacity-100
+            transition duration-300
+            bg-white/70 backdrop-blur-md
+            p-2.5 rounded-full shadow-md
+            hover:scale-110 hover:bg-white
+          "
+        >
+          ›
+        </button>
+
+        {/* ===== DOT INDICATORS ===== */}
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+
+          {pkg.images.map((_, imgIndex) => {
+            const isActive = (currentImage[index] || 0) === imgIndex
+
+            return (
+              <button
+                key={imgIndex}
+                onClick={() =>
+                  setCurrentImage((prev) => ({
+                    ...prev,
+                    [index]: imgIndex,
+                  }))
+                }
+                className={`
+                  h-2.5 rounded-full transition-all duration-300
+                  ${
+                    isActive
+                      ? "w-6 bg-white shadow-md"
+                      : "w-2.5 bg-white/50 hover:bg-white/80"
+                  }
+                `}
+              />
+            )
+          })}
+
+        </div>
+
+        {/* ===== Highlight ribbon ===== */}
+        {isHighlight && (
+          <div className="absolute top-5 left-5 bg-amber-400 text-white text-xs font-semibold px-4 py-1.5 rounded-full shadow-lg tracking-wide">
+            REKOMENDASI UTAMA
+          </div>
+        )}
+
+      </div>
+
+                    {/* ================= CONTENT ================= */}
+                    <div
+                      className={`
+                        md:col-span-2 p-10 flex flex-col justify-between
+                        ${
+                          isHighlight
+                            ? "bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-900"
+                            : "bg-white"
+                        }
+                      `}
+                    >
+
+                      <div>
+
+                        {/* Title */}
+                        <div className="flex items-start justify-between mb-4">
+                          <h3
+                            className={`text-2xl font-bold tracking-tight flex items-center space-x-2 ${
+                              isHighlight ? "text-white" : "text-slate-900"
+                            }`}
+                          >
+                            {pkg.name == 'Hemat' && <FaCheck className="w-8 h-8 p-2 rounded-xl bg-blue-100 text-blue-500"></FaCheck>}
+                            {pkg.name == 'Pas' && <BsStars className="w-8 h-8 p-2 rounded-xl bg-white/10 text-white"></BsStars>}
+                            {pkg.name == 'Komplit' && <LuCrown className="w-8 h-8 p-2 rounded-xl bg-orange-100 text-orange-500"></LuCrown>}
+                            <span>Paket {pkg.name}</span>
+                          </h3>
+
+                          <span
+                            className={`
+                              text-xs font-semibold px-3 py-1 rounded-full
+                              ${
+                                isHighlight
+                                  ? "bg-white/10 text-white border border-white/20"
+                                  : isPremium
+                                  ? "bg-indigo-50 text-indigo-600"
+                                  : "bg-slate-100 text-slate-600"
+                              }
+                            `}
+                          >
+                            {isHighlight
+                              ? "Best Value"
+                              : isPremium
+                              ? "Ultimate"
+                              : "Essential"}
+                          </span>
+                        </div>
+
+                        {/* Subtitle */}
+                        <p
+                          className={`mb-8 text-sm leading-relaxed ${
+                            isHighlight ? "text-slate-300" : "text-slate-500"
+                          }`}
+                        >
+                          {pkg.subtitle}
+                        </p>
+
+                        {/* Features */}
+                        <ul
+                          className={`grid sm:grid-cols-2 gap-4 text-sm ${
+                            isHighlight ? "text-slate-200" : "text-slate-700"
+                          }`}
+                        >
+                          {pkg.features.map((feature, i) => (
+                            <li key={i} className="flex items-start gap-3">
+                              <div
+                                className={`
+                                  w-6 h-6 flex items-center justify-center
+                                  rounded-md text-xs font-bold
+                                  ${
+                                    isHighlight
+                                      ? "bg-white/10 text-white"
+                                      : "bg-indigo-600 text-white"
+                                  }
+                                `}
+                              >
+                                ✓
+                              </div>
+                              <span>{feature}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      {/* CTA AREA */}
+                      <div className="flex items-center justify-between mt-10">
+
+                        <div
+                          className={`text-xs leading-relaxed ${
+                            isHighlight ? "text-slate-300" : "text-slate-500"
+                          }`}
+                        >
+                          🔒 Instalasi Profesional <br />
+                          🛠️ Garansi Resmi
+                        </div>
+
+                        <button
+                          className={`
+                            px-7 py-3 rounded-xl font-semibold text-sm
+                            transition-all duration-300
+                            ${
+                              isHighlight
+                                ? "bg-amber-400 hover:bg-amber-500 text-white shadow-lg hover:shadow-xl"
+                                : "bg-indigo-600 hover:bg-indigo-700 text-white shadow-md hover:shadow-lg"
+                            }
+                          `}
+
+                            onClick={handleNavigateDetail}
+                        >
+                          Lihat Paket
+                        </button>
+                      </div>
+
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+          )
+        })}
+      </div>
+        </div>
+      </section>
+
+    </div>
+  );
+};
+
+export default PackageListSection;
+
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useListPackageStore } from "../../stores/listPackage.store";
+
+import PaketRumah from "../../../../../../assets/paket_rumah.jpg";
+import PaketDapur from "../../../../../../assets/paket_dapur.jpg";
+import PaketKamarTidur from "../../../../../../assets/paket_kamar.jpg";
+import PaketKamarMandi from "../../../../../../assets/paket_kamar_mandi.jpg";
+import PaketRuangTamu from "../../../../../../assets/paket_ruang_tamu.jpg";
+
+import { FaCheck } from "react-icons/fa6";
+import { LiaStarSolid } from "react-icons/lia";
+import { BsStars } from "react-icons/bs";
+import { LuCrown } from "react-icons/lu";
+import { FaWhatsapp } from "react-icons/fa";
+
+const categories = [
+    { name:'Dapur', heading:'Paket Solusi Dapur', subHeading:'Desain dapur yang rapi & siap masak'},
+    { name:'Ruang Keluarga', heading:'Paket Solusi Ruang Keluarga', subHeading:'Desain ruang keluarga yang nyaman buat kumpul'},
+    { name:'Kamar Mandi', heading:'Paket Solusi Kamar Mandi', subHeading:'Upgrade kamar mandi berasa hotel'},
+    { name:'Kamar Tidur', heading:'Paket Solusi Kamar Tidur', subHeading:'Desain kamar tidur yang membuat tidur menjadi pules'},
+    { name:'Renovasi Ringan', heading:'Paket Solusi Renovasi Ringan', subHeading:'Upgrade Rumah Cepat'},
+]
+
+const packages = [
+    {
+        category : 'Kamar Mandi',
+        detail : [
+        {
+            name: "Hemat",
+            subtitle: "Si Paling Nyaman — Solusi essential kamar mandi bersih & fungsional",
+            highlight: false,
+            images: [PaketKamarMandi, PaketDapur, PaketRuangTamu],
+            features: [
+                "Shower set basic (hand shower + holder)",
+                "Kran / mixer basic",
+                "Floor drain + aksesoris kecil",
+                "Bonus: konsultasi kebutuhan pemasangan (5 menit)",
+            ],
+        },
+        {
+            name: "Pas",
+            subtitle: "Si Paling Hotel — Pilihan paling populer & seimbang",
+            highlight: true,
+            images: [PaketKamarMandi, PaketDapur, PaketRuangTamu],
+            features: [
+                "Shower set upgrade (lebih kuat / lebih elegan)",
+                "Water heater kapasitas menengah",
+                "Pipa & fitting instalasi standar (1 titik)",
+                "Termasuk: instalasi standar (kondisi normal)",
+            ],
+        },
+        {
+            name: "Komplit",
+            subtitle: "Si Paling Sultan — Solusi premium siap pakai",
+            highlight: false,
+            images: [PaketKamarMandi, PaketDapur, PaketRuangTamu],
+            features: [
+                "Shower set premium (rain shower / full set)",
+                "Water heater premium (hemat listrik + safety)",
+                "Pipa & fitting lengkap + stop kran + safety valve",
+                "Instalasi + pengecekan tekanan air + finishing rapi",
+                "Bonus: garansi jasa instalasi 14–30 hari",
+            ],
+        },
+    ]},
+    {
+        category : 'Dapur',
+        detail: [
+        {
+            name: "Hemat",
+            subtitle: "Dapur Praktis — Solusi dapur esensial & rapi",
+            highlight: false,
+            images: [PaketDapur, PaketKamarMandi, PaketRuangTamu],
+            features: [
+                "Rak piring / storage basic",
+                "Small appliance esensial (rice cooker / blender / dispenser basic)",
+                "Organizer dapur (hook / holder / box)",
+            ],
+        },
+        {
+            name: "Pas",
+            subtitle: "Dapur Aesthetic — Pilihan paling populer & fungsional",
+            highlight: true,
+            images: [PaketDapur, PaketKamarMandi, PaketRuangTamu],
+            features: [
+                "Kompor (gas/induksi) + regulator/selang (jika gas)",
+                "Rice cooker / air fryer basic (pilih 1)",
+                "Rak / storage upgrade",
+            ],
+        },
+        {
+            name: "Komplit",
+            subtitle: "Dapur Master Chef — Lengkap & siap masak apa saja",
+            highlight: false,
+            images: [PaketDapur, PaketKamarMandi, PaketRuangTamu],
+            features: [
+                "Microwave / oven listrik (pilih sesuai kebutuhan)",
+                "Air fryer / cooker premium (pilih 1)",
+                "Set storage & organizer premium",
+                "Bonus: free setting layout & rekomendasi penempatan",
+            ],
+        },
+    ]},
+    {
+        category : 'Ruang Keluarga',
+        detail : [
+        {
+            name: "Hemat",
+            subtitle: "Ruang Tamu Rapi — Esensial & nyaman",
+            highlight: false,
+            images: [PaketRuangTamu, PaketDapur, PaketKamarMandi],
+            features: [
+                "Meja tamu + karpet kecil / runner",
+                "Kipas / standing fan",
+                "Lampu / pencahayaan basic (opsional)",
+            ],
+        },
+        {
+            name: "Pas",
+            subtitle: "Nyaman & Fungsional — Pilihan paling populer",
+            highlight: true,
+            images: [PaketRuangTamu, PaketDapur, PaketKamarMandi],
+            features: [
+                "Sofa 2-seater / sofa bed ekonomis",
+                "Meja tamu + karpet",
+                "Rak TV / bracket TV (opsional)",
+            ],
+        },
+        {
+            name: "Komplit",
+            subtitle: "Keluarga Betah — Ruang keluarga lengkap & betah nongkrong",
+            highlight: false,
+            images: [PaketRuangTamu, PaketDapur, PaketKamarMandi],
+            features: [
+                "Sofa lebih besar / L-sofa ekonomis",
+                "Meja tamu + karpet premium",
+                "Smart TV / TV (opsional)",
+                "Termasuk: pengantaran + setting barang",
+            ],
+        },
+    ]},
+    {
+        category : 'Kamar Tidur',
+        detail : [
+        {
+            name: "Hemat",
+            subtitle: "Tidur Enak — Solusi istirahat berkualitas",
+            highlight: false,
+            images: [PaketKamarTidur, PaketKamarMandi, PaketDapur],
+            features: [
+                "Kasur foam / spring ekonomis (size pilihan)",
+                "Bantal + sprei set basic",
+            ],
+        },
+        {
+            name: "Pas",
+            subtitle: "Tidur Mantap — Pilihan paling populer & nyaman",
+            highlight: true,
+            images: [PaketKamarTidur, PaketKamarMandi, PaketDapur],
+            features: [
+                "Kasur upgrade (lebih tebal / lebih nyaman)",
+                "Lemari / storage simple (atau nakas)",
+                "Sprei set upgrade",
+            ],
+        },
+        {
+            name: "Komplit",
+            subtitle: "Kamar Tidur Hotel — Mewah & lengkap seperti kamar hotel",
+            highlight: false,
+            images: [PaketKamarTidur, PaketKamarMandi, PaketDapur],
+            features: [
+                "Kasur premium + topper",
+                "Lemari / wardrobe lebih solid",
+                "Meja rias kecil / nakas + lampu tidur",
+                "Bonus: free ongkir + setting & rapihin packaging",
+            ],
+        },
+    ]},
+    {
+        category : 'Renovasi Ringan',
+        detail : [
+        {
+            name: "Hemat",
+            subtitle: "Listrik Siap — Solusi esensial kelistrikan rumah",
+            highlight: false,
+            images: [PaketRumah, PaketDapur, PaketKamarMandi],
+            features: [
+                "Kabel roll / terminal berkualitas",
+                "Paket lampu LED hemat (beberapa titik)",
+                "Stop kontak set / MCB (opsional)",
+            ],
+        },
+        {
+            name: "Pas",
+            subtitle: "Perlengkapan Alat Lengkap — Pilihan paling populer",
+            highlight: true,
+            images: [PaketRumah, PaketDapur, PaketKamarMandi],
+            features: [
+                "Paket lampu + stop kontak + kabel (lebih lengkap)",
+                "Bor kecil / tool kit basic",
+                "Tangga lipat kecil (opsional)",
+            ],
+        },
+        {
+            name: "Komplit",
+            subtitle: "Renov Ringan Komplet — Semua yang dibutuhkan untuk upgrade rumah",
+            highlight: false,
+            images: [PaketRumah, PaketDapur, PaketKamarMandi],
+            features: [
+                "Tool set upgrade (bor + mata bor + toolbox)",
+                "Paket listrik lengkap (lampu, kabel, stop kontak)",
+                "Cat + kuas/roller (opsional)",
+                "Bonus: pengantaran + konsultasi kebutuhan renov",
+            ],
+        },
+    ]},
+];
+
+const packages2 = [
+    {
+        name: "Hemat",
+        subtitle: "Solusi Essential untuk kebutuhan dasar",
+        highlight: false,
+        images: [
+            PaketKamarMandi,
+            PaketDapur,
+            PaketRuangTamu,
+        ],
+        features: [
+            "Shower Set Basic",
+            "Kloset Duduk Standard",
+            "Wastafel + Cermin",
+            "Keran Air",
+        ],
+    },
+    {
+        name: "Pas",
+        subtitle: "Pilihan paling populer dan seimbang",
+        highlight: true,
+        images: [
+            PaketKamarMandi,
+            PaketDapur,
+            PaketRuangTamu,
+        ],
+        features: [
+            "Shower Set + Keran Mixer",
+            "Kloset Duduk Premium",
+            "Wastafel + Kabinet",
+            "Cermin + Lampu",
+            "Instalasi Lengkap",
+        ],
+    },
+    {
+        name: "Komplit",
+        subtitle: "Solusi premium dengan fitur lengkap",
+        highlight: false,
+        images: [
+            PaketKamarMandi,
+            PaketDapur,
+            PaketRuangTamu,
+        ],
+        features: [
+            "Rain Shower + Water Heater",
+            "Kloset Duduk Premium + Bidet",
+            "Wastafel Double + Kabinet Premium",
+            "Cermin Premium + Lampu LED",
+            "Instalasi Premium + Finishing",
+        ],
+    },
+];
+
+const List = () => {
+
+    const navigate = useNavigate();
+
+    const { activeCategory, setActiveCategory, setActiveHeroHeading, setActiveHeroSubHeading } = useListPackageStore();
+
+    const [currentImage, setCurrentImage] = useState({})
+    
+    const nextImage = (index) => {
+        setCurrentImage((prev) => ({
+            ...prev,
+            [index]:
+            ((prev[index] || 0) + 1) %
+            packages[index].images.length,
+        }))
+    }
+    
+    const prevImage = (index) => {
+    setCurrentImage((prev) => ({
+        ...prev,
+        [index]:
+        (prev[index] - 1 + packages[index].images.length) %
+        packages[index].images.length,
+    }))
+    }
+    
+    const handleNavigateDetail = () => {
+        navigate('/package-detail')
+    }
+    
+    const handleWhatsapp = () => {
+        const phone = "6282119466523";
+        const message = `Halo, Saya tertarik`;
+        window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, "_blank");
+    };
+
+    const handleSelectCategory = (cat) => {
+        setActiveCategory(cat.name);
+        setActiveHeroHeading(cat.heading)
+        setActiveHeroSubHeading(cat.subHeading)
+    }
+
+    return(
+        <section className="bg-slate-100 py-20">
+            <div className="max-w-7xl mx-auto px-6 flex space-x-10">
+    
+                <div className="flex flex-col w-1/4">
+    
+                    <div className="bg-white rounded-3xl shadow-sm border border-slate-200 w-full p-6 h-fit">
+                        <h3 className="text-slate-900 font-semibold mb-6">
+                        Kategori Solusi
+                        </h3>
+        
+                        <div className="space-y-2">
+                        {categories.map((cat) => (
+                            <button
+                            key={cat.name}
+                            onClick={() => handleSelectCategory(cat)}
+                            className={`w-full text-left px-4 py-3 rounded-xl transition-all duration-200 font-medium
+                            ${
+                                activeCategory === cat.name
+                                ? "bg-indigo-600 text-white shadow-md"
+                                : "hover:bg-slate-100 text-slate-700"
+                            }`}
+                            >
+                                {cat.name}
+                            </button>
+                        ))}
+                        </div>
+        
+                        
+        
+        
+                    </div>
+                    
+                    <div className="relative mt-5 overflow-hidden rounded-2xl bg-gradient-to-br from-slate-800 to-blue-900 p-6 text-white shadow-lg">
+        
+                        {/* Glow effect */}
+                        <div className="absolute -top-10 -right-10 w-32 h-32 bg-blue-400/20 blur-3xl rounded-full"></div>
+        
+                        <h3 className="text-lg font-semibold text-blue-100">
+                            Butuh Bantuan?
+                        </h3>
+        
+                        <p className="text-sm text-blue-200 mt-1">
+                            Tim kami siap membantu Anda memilih paket yang paling tepat
+                        </p>
+        
+                        <button
+                            onClick={handleWhatsapp}
+                            className="mt-4 flex items-center justify-center gap-2 w-full rounded-lg border border-white/20 bg-white/10 backdrop-blur px-4 py-2 text-white hover:bg-white/20 transition"
+                        >
+                            <FaWhatsapp className="text-lg" />
+                            Hubungi Kami
+                        </button>
+        
+                    </div>
+
+                </div>
+    
+                <div className="lg:col-span-3 space-y-8 w-3/4">
+    
+                    {packages.map((pkg, index) => {
+            
+                        const isHighlight = pkg.highlight
+                        const isPremium = pkg.name === "Komplit"
+            
+                        return (
+                        <div
+                            key={index}
+                            className={`group transition-all duration-500 ${
+                            isHighlight ? "scale-[1.015]" : ""
+                            }`}
+                        >
+            
+                            <div className={isHighlight ? "animated-border" : ""}>
+                            <div
+                                className={`
+                                ${isHighlight ? "animated-border-inner" : ""}
+                                rounded-3xl overflow-hidden
+                                border
+                                ${
+                                    isHighlight
+                                    ? "border-transparent shadow-2xl"
+                                    : isPremium
+                                    ? "border-indigo-200 shadow-md"
+                                    : "border-slate-200 shadow-sm"
+                                }
+                                bg-white
+                                transition-all duration-500
+                                hover:shadow-xl
+                                `}
+                            >
+            
+                                <div className="grid md:grid-cols-3">
+            
+                                {/* ================= IMAGE ================= */}
+                                <div className="relative overflow-hidden group/image">
+            
+                    {/* IMAGE */}
+                    <img
+                        src={pkg.images[currentImage[index] || 0]}
+                        alt={pkg.name}
+                        className="w-full h-full object-cover transition duration-700 group-hover:scale-105"
+                    />
+            
+                    {/* Subtle gradient overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-black/10 to-transparent pointer-events-none"></div>
+            
+                    {/* ===== ARROWS (SHOW ON HOVER) ===== */}
+                    <button
+                        onClick={() => prevImage(index)}
+                        className="
+                        absolute left-4 top-1/2 -translate-y-1/2
+                        opacity-0 group-hover/image:opacity-100
+                        transition duration-300
+                        bg-white/70 backdrop-blur-md
+                        p-2.5 rounded-full shadow-md
+                        hover:scale-110 hover:bg-white
+                        "
+                    >
+                        ‹
+                    </button>
+            
+                    <button
+                        onClick={() => nextImage(index)}
+                        className="
+                        absolute right-4 top-1/2 -translate-y-1/2
+                        opacity-0 group-hover/image:opacity-100
+                        transition duration-300
+                        bg-white/70 backdrop-blur-md
+                        p-2.5 rounded-full shadow-md
+                        hover:scale-110 hover:bg-white
+                        "
+                    >
+                        ›
+                    </button>
+            
+                    {/* ===== DOT INDICATORS ===== */}
+                    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+            
+                        {pkg.images.map((_, imgIndex) => {
+                        const isActive = (currentImage[index] || 0) === imgIndex
+            
+                        return (
+                            <button
+                            key={imgIndex}
+                            onClick={() =>
+                                setCurrentImage((prev) => ({
+                                ...prev,
+                                [index]: imgIndex,
+                                }))
+                            }
+                            className={`
+                                h-2.5 rounded-full transition-all duration-300
+                                ${
+                                isActive
+                                    ? "w-6 bg-white shadow-md"
+                                    : "w-2.5 bg-white/50 hover:bg-white/80"
+                                }
+                            `}
+                            />
+                        )
+                        })}
+            
+                    </div>
+            
+                    {/* ===== Highlight ribbon ===== */}
+                    {isHighlight && (
+                        <div className="absolute top-5 left-5 bg-amber-400 text-white text-xs font-semibold px-4 py-1.5 rounded-full shadow-lg tracking-wide">
+                        REKOMENDASI UTAMA
+                        </div>
+                    )}
+            
+                    </div>
+            
+                                {/* ================= CONTENT ================= */}
+                                <div
+                                    className={`
+                                    md:col-span-2 p-10 flex flex-col justify-between
+                                    ${
+                                        isHighlight
+                                        ? "bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-900"
+                                        : "bg-white"
+                                    }
+                                    `}
+                                >
+            
+                                    <div>
+            
+                                    {/* Title */}
+                                    <div className="flex items-start justify-between mb-4">
+                                        <h3
+                                        className={`text-2xl font-bold tracking-tight flex items-center space-x-2 ${
+                                            isHighlight ? "text-white" : "text-slate-900"
+                                        }`}
+                                        >
+                                        {pkg.name == 'Hemat' && <FaCheck className="w-8 h-8 p-2 rounded-xl bg-blue-100 text-blue-500"></FaCheck>}
+                                        {pkg.name == 'Pas' && <BsStars className="w-8 h-8 p-2 rounded-xl bg-white/10 text-white"></BsStars>}
+                                        {pkg.name == 'Komplit' && <LuCrown className="w-8 h-8 p-2 rounded-xl bg-orange-100 text-orange-500"></LuCrown>}
+                                        <span>Paket {pkg.name}</span>
+                                        </h3>
+            
+                                        <span
+                                        className={`
+                                            text-xs font-semibold px-3 py-1 rounded-full
+                                            ${
+                                            isHighlight
+                                                ? "bg-white/10 text-white border border-white/20"
+                                                : isPremium
+                                                ? "bg-indigo-50 text-indigo-600"
+                                                : "bg-slate-100 text-slate-600"
+                                            }
+                                        `}
+                                        >
+                                        {isHighlight
+                                            ? "Best Value"
+                                            : isPremium
+                                            ? "Ultimate"
+                                            : "Essential"}
+                                        </span>
+                                    </div>
+            
+                                    {/* Subtitle */}
+                                    <p
+                                        className={`mb-8 text-sm leading-relaxed ${
+                                        isHighlight ? "text-slate-300" : "text-slate-500"
+                                        }`}
+                                    >
+                                        {pkg.subtitle}
+                                    </p>
+            
+                                    {/* Features */}
+                                    <ul
+                                        className={`grid sm:grid-cols-2 gap-4 text-sm ${
+                                        isHighlight ? "text-slate-200" : "text-slate-700"
+                                        }`}
+                                    >
+                                        {pkg.features.map((feature, i) => (
+                                        <li key={i} className="flex items-start gap-3">
+                                            <div
+                                            className={`
+                                                w-6 h-6 flex items-center justify-center
+                                                rounded-md text-xs font-bold
+                                                ${
+                                                isHighlight
+                                                    ? "bg-white/10 text-white"
+                                                    : "bg-indigo-600 text-white"
+                                                }
+                                            `}
+                                            >
+                                            ✓
+                                            </div>
+                                            <span>{feature}</span>
+                                        </li>
+                                        ))}
+                                    </ul>
+                                    </div>
+            
+                                    {/* CTA AREA */}
+                                    <div className="flex items-center justify-between mt-10">
+            
+                                    <div
+                                        className={`text-xs leading-relaxed ${
+                                        isHighlight ? "text-slate-300" : "text-slate-500"
+                                        }`}
+                                    >
+                                        🔒 Instalasi Profesional <br />
+                                        🛠️ Garansi Resmi
+                                    </div>
+            
+                                    <button
+                                        className={`
+                                        px-7 py-3 rounded-xl font-semibold text-sm
+                                        transition-all duration-300
+                                        ${
+                                            isHighlight
+                                            ? "bg-amber-400 hover:bg-amber-500 text-white shadow-lg hover:shadow-xl"
+                                            : "bg-indigo-600 hover:bg-indigo-700 text-white shadow-md hover:shadow-lg"
+                                        }
+                                        `}
+            
+                                        onClick={handleNavigateDetail}
+                                    >
+                                        Lihat Paket
+                                    </button>
+                                    </div>
+            
+                                </div>
+                                </div>
+            
+                            </div>
+                            </div>
+            
+                        </div>
+                        )
+                    })}
+
+                </div>
+
+            </div>
+        </section>
+    )
+}
+
+export default List;
+
+packagesByCategory: [
+        {
+            category : 'Kamar Mandi',
+            detail : [
+            {
+                name: "Hemat",
+                subtitle: "Si Paling Nyaman — Solusi essential kamar mandi bersih & fungsional",
+                highlight: false,
+                images: [PaketKamarMandi, PaketDapur, PaketRuangTamu],
+                features: [
+                    "Shower set basic (hand shower + holder)",
+                    "Kran / mixer basic",
+                    "Floor drain + aksesoris kecil",
+                    "Bonus: konsultasi kebutuhan pemasangan (5 menit)",
+                ],
+            },
+            {
+                name: "Pas",
+                subtitle: "Si Paling Hotel — Pilihan paling populer & seimbang",
+                highlight: true,
+                images: [PaketKamarMandi, PaketDapur, PaketRuangTamu],
+                features: [
+                    "Shower set upgrade (lebih kuat / lebih elegan)",
+                    "Water heater kapasitas menengah",
+                    "Pipa & fitting instalasi standar (1 titik)",
+                    "Termasuk: instalasi standar (kondisi normal)",
+                ],
+            },
+            {
+                name: "Komplit",
+                subtitle: "Si Paling Sultan — Solusi premium siap pakai",
+                highlight: false,
+                images: [PaketKamarMandi, PaketDapur, PaketRuangTamu],
+                features: [
+                    "Shower set premium (rain shower / full set)",
+                    "Water heater premium (hemat listrik + safety)",
+                    "Pipa & fitting lengkap + stop kran + safety valve",
+                    "Instalasi + pengecekan tekanan air + finishing rapi",
+                    "Bonus: garansi jasa instalasi 14–30 hari",
+                ],
+            },
+        ]},
+        {
+            category : 'Dapur',
+            detail: [
+            {
+                name: "Hemat",
+                subtitle: "Dapur Praktis — Solusi dapur esensial & rapi",
+                highlight: false,
+                images: [PaketDapur, PaketKamarMandi, PaketRuangTamu],
+                features: [
+                    "Rak piring / storage basic",
+                    "Small appliance esensial (rice cooker / blender / dispenser basic)",
+                    "Organizer dapur (hook / holder / box)",
+                ],
+            },
+            {
+                name: "Pas",
+                subtitle: "Dapur Aesthetic — Pilihan paling populer & fungsional",
+                highlight: true,
+                images: [PaketDapur, PaketKamarMandi, PaketRuangTamu],
+                features: [
+                    "Kompor (gas/induksi) + regulator/selang (jika gas)",
+                    "Rice cooker / air fryer basic (pilih 1)",
+                    "Rak / storage upgrade",
+                ],
+            },
+            {
+                name: "Komplit",
+                subtitle: "Dapur Master Chef — Lengkap & siap masak apa saja",
+                highlight: false,
+                images: [PaketDapur, PaketKamarMandi, PaketRuangTamu],
+                features: [
+                    "Microwave / oven listrik (pilih sesuai kebutuhan)",
+                    "Air fryer / cooker premium (pilih 1)",
+                    "Set storage & organizer premium",
+                    "Bonus: free setting layout & rekomendasi penempatan",
+                ],
+            },
+        ]},
+        {
+            category : 'Ruang Keluarga',
+            detail : [
+            {
+                name: "Hemat",
+                subtitle: "Ruang Tamu Rapi — Esensial & nyaman",
+                highlight: false,
+                images: [PaketRuangTamu, PaketDapur, PaketKamarMandi],
+                features: [
+                    "Meja tamu + karpet kecil / runner",
+                    "Kipas / standing fan",
+                    "Lampu / pencahayaan basic (opsional)",
+                ],
+            },
+            {
+                name: "Pas",
+                subtitle: "Nyaman & Fungsional — Pilihan paling populer",
+                highlight: true,
+                images: [PaketRuangTamu, PaketDapur, PaketKamarMandi],
+                features: [
+                    "Sofa 2-seater / sofa bed ekonomis",
+                    "Meja tamu + karpet",
+                    "Rak TV / bracket TV (opsional)",
+                ],
+            },
+            {
+                name: "Komplit",
+                subtitle: "Keluarga Betah — Ruang keluarga lengkap & betah nongkrong",
+                highlight: false,
+                images: [PaketRuangTamu, PaketDapur, PaketKamarMandi],
+                features: [
+                    "Sofa lebih besar / L-sofa ekonomis",
+                    "Meja tamu + karpet premium",
+                    "Smart TV / TV (opsional)",
+                    "Termasuk: pengantaran + setting barang",
+                ],
+            },
+        ]},
+        {
+            category : 'Kamar Tidur',
+            detail : [
+            {
+                name: "Hemat",
+                subtitle: "Tidur Enak — Solusi istirahat berkualitas",
+                highlight: false,
+                images: [PaketKamarTidur, PaketKamarMandi, PaketDapur],
+                features: [
+                    "Kasur foam / spring ekonomis (size pilihan)",
+                    "Bantal + sprei set basic",
+                ],
+            },
+            {
+                name: "Pas",
+                subtitle: "Tidur Mantap — Pilihan paling populer & nyaman",
+                highlight: true,
+                images: [PaketKamarTidur, PaketKamarMandi, PaketDapur],
+                features: [
+                    "Kasur upgrade (lebih tebal / lebih nyaman)",
+                    "Lemari / storage simple (atau nakas)",
+                    "Sprei set upgrade",
+                ],
+            },
+            {
+                name: "Komplit",
+                subtitle: "Kamar Tidur Hotel — Mewah & lengkap seperti kamar hotel",
+                highlight: false,
+                images: [PaketKamarTidur, PaketKamarMandi, PaketDapur],
+                features: [
+                    "Kasur premium + topper",
+                    "Lemari / wardrobe lebih solid",
+                    "Meja rias kecil / nakas + lampu tidur",
+                    "Bonus: free ongkir + setting & rapihin packaging",
+                ],
+            },
+        ]},
+        {
+            category : 'Renovasi Ringan',
+            detail : [
+            {
+                name: "Hemat",
+                subtitle: "Listrik Siap — Solusi esensial kelistrikan rumah",
+                highlight: false,
+                images: [PaketRumah, PaketDapur, PaketKamarMandi],
+                features: [
+                    "Kabel roll / terminal berkualitas",
+                    "Paket lampu LED hemat (beberapa titik)",
+                    "Stop kontak set / MCB (opsional)",
+                ],
+            },
+            {
+                name: "Pas",
+                subtitle: "Perlengkapan Alat Lengkap — Pilihan paling populer",
+                highlight: true,
+                images: [PaketRumah, PaketDapur, PaketKamarMandi],
+                features: [
+                    "Paket lampu + stop kontak + kabel (lebih lengkap)",
+                    "Bor kecil / tool kit basic",
+                    "Tangga lipat kecil (opsional)",
+                ],
+            },
+            {
+                name: "Komplit",
+                subtitle: "Renov Ringan Komplet — Semua yang dibutuhkan untuk upgrade rumah",
+                highlight: false,
+                images: [PaketRumah, PaketDapur, PaketKamarMandi],
+                features: [
+                    "Tool set upgrade (bor + mata bor + toolbox)",
+                    "Paket listrik lengkap (lampu, kabel, stop kontak)",
+                    "Cat + kuas/roller (opsional)",
+                    "Bonus: pengantaran + konsultasi kebutuhan renov",
+                ],
+            },
+        ]},
+    ],
+
+    {/* <div className="mt-3  w-3/4 grid grid-cols-1 md:grid-cols-3 ">
+                        <div>
+                            <h3 className="text-3xl font-bold bg-gradient-to-r from-blue-400 via-blue-100 to-blue-700 bg-clip-text text-transparent">500+</h3>
+                            <p className="text-white mt-2">Proyek Selesai</p>
+                        </div>
+
+                        <div>
+                            <h3 className="text-3xl font-bold bg-gradient-to-r from-blue-400 via-blue-100 to-blue-700 bg-clip-text text-transparent">50+</h3>
+                            <p className="text-white mt-2">Mitra Aktif</p>
+                        </div>
+
+                        <div>
+                            <h3 className="text-3xl font-bold bg-gradient-to-r from-blue-400 via-blue-100 to-blue-700 bg-clip-text text-transparent">98%</h3>
+                            <p className="text-white mt-2">Kepuasan Pelanggan</p>
+                        </div>
+                    </div> */}
+
+                    
+const items = [
+  { icon: '🚿', bg: 'bg-teal-50',   title: 'Shower Set Upgrade',       desc: 'Shower lebih kuat dan elegan seperti hotel bintang lima' },
+  { icon: '🔥', bg: 'bg-amber-50',  title: 'Water Heater Menengah',    desc: 'Air hangat nyaman untuk seluruh keluarga sepanjang hari' },
+  { icon: '🔧', bg: 'bg-blue-50',   title: 'Pipa & Fitting Standar',   desc: 'Instalasi sesuai kebutuhan 1 titik kamar mandi' },
+  { icon: '🏠', bg: 'bg-green-50',  title: 'Instalasi Standar',        desc: 'Dikerjakan tukang berlisensi, rapi dan tepat waktu' },
+  { icon: '🛡️', bg: 'bg-purple-50', title: 'Garansi Pekerjaan 1 Tahun', desc: 'Jika ada masalah instalasi, kami tangani tanpa biaya tambahan' },
+]
