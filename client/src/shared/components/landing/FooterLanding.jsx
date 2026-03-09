@@ -134,14 +134,14 @@ export default function FooterLanding() {
                 <div className="border-t border-slate-800 mt-16 pt-6 flex flex-col md:flex-row justify-between items-center text-sm text-slate-500">
                 <p>© 2026 DS LINK. All rights reserved.</p>
 
-                <div className="flex gap-6 mt-4 md:mt-0">
+                {/* <div className="flex gap-6 mt-4 md:mt-0">
                     <a href="#" className="hover:text-white transition">
                     Kebijakan Privasi
                     </a>
                     <a href="#" className="hover:text-white transition">
                     Syarat & Ketentuan
                     </a>
-                </div>
+                </div> */}
                 </div>
 
             </div>

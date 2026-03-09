@@ -27,7 +27,7 @@ const LayoutLanding = () => {
                 </main>
 
                 
-                <FaWhatsapp onClick={handleWhatsapp} className="rounded-full z-50 p-4 w-16 h-16 absolute bottom-10 right-10 bg-[#25D366] hover:bg-[#1aa854] text-white cursor-pointer shadow-lg shadow-black/50"></FaWhatsapp>
+                <FaWhatsapp onClick={handleWhatsapp} className="rounded-full z-50 p-4 w-16 h-16 absolute bottom-16 right-10 bg-[#25D366] hover:bg-[#1aa854] text-white cursor-pointer shadow-lg shadow-black/50"></FaWhatsapp>
                 
             </div>
             
