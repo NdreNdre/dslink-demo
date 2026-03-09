@@ -1,7 +1,8 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";  // tambah useState
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import HeroVideo from "../../../../../assets/Example_Hero_Video.mp4";
+import HeroThumbnail from "../../../../../assets/interior_1.jpg"; // 👈 tambah ini
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -23,22 +24,48 @@ const HeroSection = () => {
     const subtextRef = useRef(null);
     const buttonsRef = useRef(null);
     const badgeRef = useRef(null);
+    const placeholderRef = useRef(null); // 👈 tambah ini
+    const [videoReady, setVideoReady] = useState(false); // 👈 tambah ini
+
+    useEffect(() => {
+        const video = videoRef.current;
+        const placeholder = placeholderRef.current;
+
+        // Ketika video sudah cukup di-buffer untuk diplay
+        const handleCanPlay = () => {
+            setVideoReady(true);
+
+            // Fade in video, fade out placeholder secara smooth
+            gsap.to(video, { opacity: 1, duration: 0.8, ease: "power2.inOut" });
+            gsap.to(placeholder, {
+                opacity: 0,
+                duration: 0.8,
+                ease: "power2.inOut",
+                onComplete: () => {
+                    // Hapus dari DOM setelah transisi selesai
+                    if (placeholder) placeholder.style.display = "none";
+                },
+            });
+        };
+
+        video.addEventListener("canplay", handleCanPlay);
+        return () => video.removeEventListener("canplay", handleCanPlay);
+    }, []);
 
     useEffect(() => {
         const scroller = document.querySelector("main");
-
-        // Kasih tau ScrollTrigger bahwa scroll container bukan window
         ScrollTrigger.defaults({ scroller });
 
         const ctx = gsap.context(() => {
 
-            // ── 1. ENTRANCE ANIMATION (on page load) ─────────────────────────
+            // ── 1. ENTRANCE ANIMATION ─────────────────────────────────────────
             const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
             tl.fromTo(
                 videoRef.current,
-                { scale: 1.15, opacity: 0 },
-                { scale: 1, opacity: 1, duration: 1.8 }
+                { scale: 1.15, opacity: 0 },  // opacity 0 by default, gsap yang handle
+                { scale: 1, opacity: videoReady ? 1 : 0, duration: 1.8 }
+                //                              👆 kalau belum ready, tetap 0 dulu
             )
             .fromTo(
                 overlayRef.current,
@@ -83,20 +110,7 @@ const HeroSection = () => {
                 },
             });
 
-            // ── 3. SCROLL FADE OUT ────────────────────────────────────────────
-            // gsap.to([headingRef.current, subtextRef.current, buttonsRef.current], {
-            //     y: -50,
-            //     opacity: 0,
-            //     ease: "none",
-            //     scrollTrigger: {
-            //         trigger: sectionRef.current,
-            //         start: "20% top",
-            //         end: "60% top",
-            //         scrub: true,
-            //     },
-            // });
-
-            // ── 4. OVERLAY DARKENS ────────────────────────────────────────────
+            // ── 3. OVERLAY DARKENS ────────────────────────────────────────────
             gsap.to(overlayRef.current, {
                 backgroundColor: "rgba(0,0,0,0.85)",
                 ease: "none",
@@ -112,7 +126,6 @@ const HeroSection = () => {
 
         return () => {
             ctx.revert();
-            // Reset defaults agar tidak bocor ke komponen lain
             ScrollTrigger.defaults({ scroller: window });
         };
     }, []);
@@ -120,6 +133,16 @@ const HeroSection = () => {
     return (
         <section ref={sectionRef} id="hero" className="relative h-screen overflow-hidden">
 
+            {/* 👇 PLACEHOLDER IMAGE — tampil duluan sebelum video ready */}
+            <img
+                ref={placeholderRef}
+                src={HeroThumbnail}
+                alt="Hero background"
+                className="absolute inset-0 w-full h-full object-cover"
+                style={{ zIndex: 1 }}
+            />
+
+            {/* Video — opacity 0 dulu, baru fade in setelah canplay */}
             <video
                 ref={videoRef}
                 autoPlay
@@ -127,13 +150,14 @@ const HeroSection = () => {
                 loop
                 playsInline
                 className="absolute inset-0 w-full h-full object-cover"
+                style={{ opacity: 0, zIndex: 1 }} // 👈 mulai dari opacity 0
             >
                 <source src={HeroVideo} type="video/mp4" />
             </video>
 
-            <div ref={overlayRef} className="absolute inset-0 bg-black/70"></div>
+            <div ref={overlayRef} className="absolute inset-0 bg-black/70" style={{ zIndex: 2 }}></div>
 
-            <div className="relative z-10 flex px-10 items-center h-full bg-black/20">
+            <div className="relative flex px-10 items-center h-full bg-black/20" style={{ zIndex: 3 }}>
                 <div className="px-6">
 
                     <div

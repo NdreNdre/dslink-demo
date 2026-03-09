@@ -46,6 +46,10 @@ const NavbarLanding = () => {
         { href: "/about-us", label: "Tentang Kami" },
     ];
 
+    const handleNavigate = (url) => {
+        navigate(url)
+    }
+
     return (
         <>
             <nav
@@ -70,9 +74,9 @@ const NavbarLanding = () => {
                         }`}
                     >
                         {navLinks.map((link) => (
-                            <a key={link.href} href={link.href}>
+                            <button key={link.href} onClick={() => handleNavigate(link.href)} >
                                 {link.label}
-                            </a>
+                            </button>
                         ))}
                     </div>
 
