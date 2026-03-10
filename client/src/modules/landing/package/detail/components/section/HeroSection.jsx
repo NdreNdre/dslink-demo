@@ -12,10 +12,11 @@ export default function HeroSection() {
   const selectedPack = useDetailPackageStore((state) => state.selectedPackage);
 
   const handleWhatsapp = () => {
-        const phone = "6282119466523";
-        const message = `Halo, saya ingin memesan paket DS Link`;
-        window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, "_blank");
-    };
+      const phone = "628139120388";
+      // const phone = "6281391200388";
+      const message = `Halo DS Link, saya [nama] dari [lokasi]. [pesan]. No HP: [telepon]`
+      window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, "_blank");
+  };
 
   return (
     <section className="relative min-h-[65vh] md:min-h-[55vh] flex items-center overflow-hidden">

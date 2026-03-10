@@ -5,6 +5,7 @@ import WorkStep from "../../../modules/landing/home/components/section/WorkStep"
 import BeforeAfterSection from "../../../modules/landing/home/components/section/BeforeAfter";
 import TestimonialSection from "../../../modules/landing/home/components/section/Testimonial";
 import FranchiseSection from "../../../modules/landing/home/components/section/Franchise";
+import CTASection from "../../../modules/landing/home/components/section/CTASection";
 
 const HomePage = () => {
     return (
@@ -22,6 +23,8 @@ const HomePage = () => {
             <TestimonialSection></TestimonialSection>
 
             <FranchiseSection></FranchiseSection>
+
+            <CTASection></CTASection>
             
         </div>
     );

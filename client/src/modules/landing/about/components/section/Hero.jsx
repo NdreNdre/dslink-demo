@@ -6,6 +6,10 @@ import { LuHammer, LuBriefcase } from "react-icons/lu";
 import { IoTrendingUp } from "react-icons/io5";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { FaBullseye } from "react-icons/fa";
+import { FaHistory } from "react-icons/fa";
+import { FaMapMarkerAlt } from "react-icons/fa";
+import { CiCreditCard1 } from "react-icons/ci";
+import { FaCreditCard } from "react-icons/fa";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -120,9 +124,10 @@ const Hero = () => {
                         className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 py-6 px-6 bg-gradient-to-br from-blue-200/30 to-white/10 rounded-xl border border-white/50 w-full md:w-3/4 shadow-lg shadow-white/20"
                     >
                         {[
-                            { icon: <LuHammer className="w-10 h-10 md:w-12 md:h-12" />, value: "500+", label: "Proyek selesai" },
-                            { icon: <LuBriefcase className="w-10 h-10 md:w-12 md:h-12" />, value: "50+", label: "Mitra Aktif" },
-                            { icon: <IoTrendingUp className="w-10 h-10 md:w-12 md:h-12" />, value: "98%", label: "Kepuasan Pelanggan" },
+                            { icon: <FaHistory className="w-10 h-10 md:w-12 md:h-12" />, value: "25+", label: "Tahun Ekosistem Depo Pelita" },
+                            { icon: <FaMapMarkerAlt className="w-10 h-10 md:w-12 md:h-12" />, value: "940+", label: "Desa Potensial" },
+                            { icon: <FaCreditCard className="w-10 h-10 md:w-12 md:h-12" />, value: "6", label: "Partner Pembiayaan Resmi" },
+                            // { icon: <IoTrendingUp className="w-10 h-10 md:w-12 md:h-12" />, value: "6", label: "Partner Pembiayaan Resmi" },
                         ].map((item, i) => (
                             <div
                                 key={i}

@@ -36,10 +36,11 @@ export default function CicilanSection() {
   const rightRef = useReveal()
 
   const handleWhatsapp = () => {
-      const phone = "6282119466523";
-      const message = `Halo, saya ingin menanyakan perihal cicilan di DS Link`;
-      window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, "_blank");
-  };
+        const phone = "628139120388";
+        // const phone = "6281391200388";
+        const message = `Halo DS Link, saya [nama] dari [lokasi]. [pesan]. No HP: [telepon]`
+        window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, "_blank");
+    };
 
   return (
     <section className="bg-[#F5F8FF] py-16 md:py-24 px-6 md:px-16">

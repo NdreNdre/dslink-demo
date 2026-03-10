@@ -43,8 +43,9 @@ const List = () => {
     };
 
     const handleWhatsapp = () => {
-        const phone = "6282119466523";
-        const message = `Halo, Saya membutuhkan bantuan terkait DS Link`;
+        const phone = "628139120388";
+        // const phone = "6281391200388";
+        const message = `Halo DS Link, saya [nama] dari [lokasi]. [pesan]. No HP: [telepon]`
         window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, "_blank");
     };
 

@@ -3,6 +3,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import HeroVideo from "../../../../../assets/Example_Hero_Video.mp4";
 import HeroThumbnail from "../../../../../assets/interior_1.jpg"; // 👈 tambah ini
+import { ImDiamonds } from "react-icons/im";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -130,6 +131,13 @@ const HeroSection = () => {
         };
     }, []);
 
+    const handleWhatsapp = () => {
+        const phone = "628139120388";
+        // const phone = "6281391200388";
+        const message = `Halo DS Link, saya [nama] dari [lokasi]. [pesan]. No HP: [telepon]`
+        window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, "_blank");
+    };
+
     return (
         <section ref={sectionRef} id="hero" className="relative h-screen overflow-hidden">
 
@@ -162,19 +170,21 @@ const HeroSection = () => {
 
                     <div
                         ref={badgeRef}
-                        className="inline-flex items-center gap-2 mb-5 px-4 py-1.5 rounded-full border border-amber-400/40 bg-amber-400/10 text-amber-300 text-sm font-medium backdrop-blur-sm"
+                        className="italic inline-flex items-center gap-2 mb-5 px-4 py-1.5 rounded-full border border-amber-400/40 bg-amber-400/10 text-amber-300 text-sm font-medium backdrop-blur-sm"
                     >
-                        <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-                        Solusi Upgrade Rumah #1 Indonesia
+                        {/* <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" /> */}
+                        <ImDiamonds className="w-4 h-4 text-amber-400 italic"></ImDiamonds>
+                        Didukung penuh oleh Depo Pelita
                     </div>
+                    
 
                     <h1
                         ref={headingRef}
-                        className="text-white text-4xl md:text-6xl font-bold leading-tight max-w-3xl"
+                        className="text-white text-4xl md:text-6xl font-bold leading-tight max-w-3xl py-6"
                     >
-                        Upgrade Rumah Jadi Mudah.{" "}
+                        Punya Ruko Nganggur di Desa?{" "}
                         <span className="bg-gradient-to-r from-amber-400 via-yellow-500 to-orange-600 bg-clip-text text-transparent">
-                            Bangun Usaha Tanpa Mulai dari Nol.
+                            Sulap Jadi Bisnis yang Langsung Jalan.
                         </span>
                     </h1>
 
@@ -182,8 +192,7 @@ const HeroSection = () => {
                         ref={subtextRef}
                         className="mt-6 text-white/90 text-lg md:text-xl max-w-2xl"
                     >
-                        Paket upgrade rumah lengkap dengan cicilan mudah, instalasi profesional,
-                        dan garansi terpercaya. Dari kamar mandi hingga dapur, semua jadi lebih praktis.
+                        Franchise DS Link — toko elektronik, furniture & kebutuhan rumah dengan sistem siap pakai. Supply chain dari Depo Pelita, 6 partner cicilan, dan 5 program inovasi yang bikin outlet Anda bukan sekadar toko — tapi pusat solusi rumah di desa.
                     </p>
 
                     <div
@@ -192,16 +201,16 @@ const HeroSection = () => {
                     >
                         <button
                             onClick={handleScrollPaket}
-                            className="bg-gradient-to-r from-amber-500 to-[#FF7A00] hover:brightness-110 active:scale-95 transition-all px-6 py-3 rounded-xl font-semibold text-white shadow-lg shadow-orange-500/30"
+                            className="bg-gradient-to-r from-amber-500 to-[#FF7A00] hover:brightness-110 active:scale-95 transition-all px-6 py-3 rounded-xl font-semibold text-white shadow-lg shadow-orange-500/30" onClickCapture={handleWhatsapp}
                         >
-                            Lihat Paket Upgrade →
+                            Tanya Info Kemitraan →
                         </button>
 
                         <button
                             onClick={handleScrollFranchise}
                             className="border-2 border-white text-white hover:bg-white/20 active:scale-95 transition-all px-6 py-3 rounded-xl font-semibold"
                         >
-                            Jadi Mitra DS Link
+                            Lihat Paket Franchise
                         </button>
                     </div>
 

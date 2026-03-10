@@ -7,8 +7,8 @@ import { FaWhatsapp } from "react-icons/fa";
 const LayoutLanding = () => {
 
     const handleWhatsapp = () => {
-        const phone = "6282119466523";
-        const message = `Halo, saya tertarik dengan Paket DS Link. Boleh saya melihat digital katalognya?`;
+        const phone = "628139120388";
+        const message = `Halo DS Link, saya ingin tanya tentang kemitraan franchise.`;
         window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, "_blank");
     };
 

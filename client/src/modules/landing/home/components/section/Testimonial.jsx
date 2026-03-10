@@ -5,27 +5,31 @@ import { ChevronLeft, ChevronRight, Star } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
+// Ganti data testimonials
 const testimonials = [
     {
-        name: "Gunawan Soewito",
-        role: "Founder Smile Consulting Indonesia",
+        name: "Pak Suroto",
+        role: "Pelanggan DS Link",
+        location: "Mujur, Kroya",
         image: "https://randomuser.me/api/portraits/men/32.jpg",
-        text: "Selama bekerjasama dengan tim ini, kami sangat puas. Kualitas pekerjaan rapi, timeline jelas, dan komunikasinya sangat profesional.",
+        text: "Kamar mandi saya jadi kayak hotel. Cicilannya lebih murah dari ngopi tiap hari. Dan gratis ongkir — barangnya diantar sampai depan rumah.",
         rating: 5,
     },
     {
-        name: "Anya Tamara Akbar",
-        role: "Entrepreneur",
+        name: "Bu Ningsih",
+        role: "Pelanggan DS Link",
+        location: "Kroya, Cilacap",
         image: "https://randomuser.me/api/portraits/women/44.jpg",
-        text: "Prosesnya transparan dari awal sampai selesai. Harga masuk akal dan hasil renovasinya benar-benar memuaskan.",
+        text: "Yang bikin percaya itu barangnya dari Depo Pelita, bukan abal-abal. Terus ada garansi 1 bulan ganti baru. Kalau rusak tinggal bawa, langsung dituker.",
         rating: 5,
     },
     {
-        name: "Ary Darma",
-        role: "Developer",
+        name: "Mas Dian",
+        role: "Pelanggan DS Link",
+        location: "Sampang, Cilacap",
         image: "https://randomuser.me/api/portraits/men/65.jpg",
-        text: "Instalasi cepat, hasil bersih dan sesuai ekspektasi. Tim sangat responsif dan membantu selama pengerjaan.",
-        rating: 4,
+        text: "Saya bandingkan harga ke mana-mana. DS Link lebih murah karena sudah termasuk pasang. AC saya dipasang teknisi mereka, rapi dan gratis.",
+        rating: 5,
     },
 ];
 
@@ -118,16 +122,20 @@ export default function TestimonialSection() {
 
                 {/* LEFT SIDE */}
                 <div ref={leftRef}>
+
+                    <p className="text-sm font-bold tracking-widest uppercase text-amber-500 mb-2">
+                        Bukti Nyata
+                    </p>
+
                     <h2 className="text-4xl lg:text-5xl font-extrabold text-gray-900 mb-6">
-                        Apa Kata{" "}
+                        Tetangga Sudah Upgrade Rumahnya.{" "}
                         <span className="bg-gradient-to-r from-blue-600 to-orange-500 bg-clip-text text-transparent">
-                            Pelanggan Kami
+                            Kapan Giliran Anda?
                         </span>
                     </h2>
 
                     <p className="text-lg text-gray-600 mb-8">
-                        Lebih dari 500+ proyek telah kami selesaikan dengan standar
-                        profesional. Kepuasan pelanggan adalah prioritas utama kami.
+                        Outlet pertama DS Link di Mujur, Kroya sudah melayani ratusan keluarga di Cilacap dan sekitarnya.
                     </p>
 
                     <div ref={ratingCardRef} className="bg-white shadow-lg rounded-2xl p-6 inline-block">
@@ -136,7 +144,7 @@ export default function TestimonialSection() {
                             {[...Array(5)].map((_, i) => (
                                 <Star key={i} size={20} fill="currentColor" />
                             ))}
-                            <span className="text-gray-800 font-semibold ml-2">4.8/5</span>
+                            <span className="text-gray-800 font-semibold ml-2">5/5</span>
                         </div>
                     </div>
                 </div>
@@ -166,6 +174,7 @@ export default function TestimonialSection() {
                                         <div>
                                             <h4 className="font-bold text-gray-900">{item.name}</h4>
                                             <p className="text-sm text-gray-500">{item.role}</p>
+                                            <p className="text-xs text-blue-500 mt-0.5">📍 {item.location}</p>
                                         </div>
                                     </div>
                                     <div className="flex mt-6 text-orange-400">
