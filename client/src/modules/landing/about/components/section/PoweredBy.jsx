@@ -99,7 +99,7 @@ const PoweredBy = () => {
 </div>
                             <div>
                                 <p className="text-black text-sm">Powered by</p>
-                                <h3 className="text-blue-500 text-4xl font-bold">Depo Pelita</h3>
+                                <h3 className="text-blue-500 text-4xl font-bold font-serif">Depo Pelita</h3>
                             </div>
                         </div>
 

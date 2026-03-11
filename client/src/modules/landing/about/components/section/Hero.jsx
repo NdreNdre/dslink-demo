@@ -89,7 +89,7 @@ const Hero = () => {
                 </span>
 
                 {/* Heading */}
-                <h1 ref={headingRef} className="text-6xl md:text-8xl font-bold leading-tight mb-6 text-white">
+                <h1 ref={headingRef} className="font-serif text-6xl md:text-8xl font-bold leading-tight mb-6 text-white">
                     Solusi Kebutuhan <br />Rumah,{" "}
                     <span
                         className="bg-clip-text text-transparent"
@@ -109,32 +109,46 @@ const Hero = () => {
 
                     {/* Stats */}
                     <div
-                        ref={statsRef}
-                        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 py-6 px-6 rounded-xl w-full md:w-2/4 shadow-lg"
-                        style={{
-                            background: "linear-gradient(to bottom right, rgba(13,27,107,0.45), rgba(0,0,102,0.3))",
-                            border: "1px solid rgba(212,160,60,0.3)",
-                            backdropFilter: "blur(12px)",
-                        }}
-                    >
-                        {[
-                            { icon: <FaHistory className="w-10 h-10 md:w-12 md:h-12" style={{ color: "#D4A03C" }} />, value: "25+", label: "Tahun Ekosistem Depo Pelita" },
-                            { icon: <FaMapMarkerAlt className="w-10 h-10 md:w-12 md:h-12" style={{ color: "#D4A03C" }} />, value: "940+", label: "Desa Potensial" },
-                            { icon: <FaCreditCard className="w-10 h-10 md:w-12 md:h-12" style={{ color: "#D4A03C" }} />, value: "6", label: "Partner Pembiayaan Resmi" },
-                        ].map((item, i) => (
-                            <div
-                                key={i}
-                                ref={(el) => (statItemRefs.current[i] = el)}
-                                className="flex items-center justify-center gap-3 text-center sm:text-left"
-                            >
-                                {item.icon}
-                                <div>
-                                    <h3 className="text-2xl md:text-3xl font-bold text-white">{item.value}</h3>
-                                    <p className="text-sm mt-1" style={{ color: "rgba(255,255,255,0.7)" }}>{item.label}</p>
-                                </div>
-                            </div>
-                        ))}
+    ref={statsRef}
+    className="px-6 md:px-12 py-6 rounded-2xl flex flex-col sm:flex-row gap-6 sm:gap-0 shadow-lg w-full max-w-xl sm:max-w-none sm:w-auto bg-gradient-to-br from-[#0D1B6B]/45 to-[#000066]/30 border border-[#D4A03C]/30 backdrop-blur-md"
+>
+    {[
+        { icon: FaHistory,      value: "25+",  label: "Tahun Ekosistem Depo Pelita" },
+        { icon: FaMapMarkerAlt, value: "940+", label: "Desa Potensial di Jawa Tengah" },
+        { icon: FaCreditCard,   value: "6",    label: "Partner Pembiayaan Resmi" },
+    ].map((item, i) => {
+        const Icon = item.icon;
+        return (
+            <div key={i} className="flex items-center sm:px-10">
+
+                {/* Divider kiri — muncul mulai item ke-2 */}
+                {i > 0 && (
+                    <div className="">
+                        {/* Vertical divider desktop */}
+                        <div className="hidden sm:block w-px h-12 bg-[#D4A03C]/25 mr-10 flex-shrink-0" />
+                        {/* Horizontal divider mobile */}
+                        <div className="block sm:hidden h-px w-full bg-[#D4A03C]/25 absolute left-0 -top-3" />
                     </div>
+                )}
+
+                <div
+                    key={i}
+                    ref={(el) => (statItemRefs.current[i] = el)}
+                    className="flex items-center  gap-4 w-full"
+                >
+                    <div className="w-11 h-11 rounded-xl flex items-center justify-center bg-[#D4A03C]/15 border border-[#D4A03C]/25 flex-shrink-0">
+                        <Icon className="text-[#D4A03C] w-5 h-5" />
+                    </div>
+                    <div>
+                        <div className="text-2xl font-bold text-white text-left md:text-center">{item.value}</div>
+                        <div className="text-xs text-white/60 leading-snug md:max-w-[120px]">{item.label}</div>
+                    </div>
+                </div>
+
+            </div>
+        );
+    })}
+</div>
 
                     {/* Visi & Misi */}
                     <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 w-full">
@@ -142,7 +156,7 @@ const Hero = () => {
                         {/* Visi */}
                         <div
                             ref={visiRef}
-                            className="rounded-2xl p-10 border-2 transition duration-300 hover:-translate-y-2"
+                            className="rounded-2xl p-10 border-2 transition duration-300 hover:-translate-y-2 "
                             style={{
                                 backgroundColor: "white",
                                 borderColor: "rgba(13,27,107,0.12)",
@@ -155,13 +169,16 @@ const Hero = () => {
                                 e.currentTarget.style.borderColor = "rgba(13,27,107,0.12)";
                                 e.currentTarget.style.boxShadow = "none";
                             }}
-                        >
-                            <div
-                                className="w-14 h-14 flex items-center justify-center rounded-full mb-8"
-                                style={{ backgroundColor: "rgba(13,27,107,0.08)" }}
-                            >
-                                <MdOutlineRemoveRedEye className="text-xl" style={{ color: "#0D1B6B" }} />
+                        >   
+                            <div className="w-full flex items-center justify-center">
+                                <div
+                                    className="w-14 h-14 flex items-center justify-center rounded-full mb-8 bg-black"
+                                    style={{ backgroundColor: "rgba(13,27,107,0.08)" }}
+                                >
+                                    <MdOutlineRemoveRedEye className="text-xl" style={{ color: "#0D1B6B" }} />
+                                </div>
                             </div>
+                            
                             <h3 className="text-2xl font-extrabold italic mb-6" style={{ color: "#0D1B6B" }}>
                                 Visi Kami
                             </h3>
@@ -188,12 +205,14 @@ const Hero = () => {
                                 e.currentTarget.style.borderColor = "rgba(13,27,107,0.12)";
                                 e.currentTarget.style.boxShadow = "none";
                             }}
-                        >
-                            <div
-                                className="w-14 h-14 flex items-center justify-center rounded-full mb-8"
-                                style={{ backgroundColor: "rgba(212,160,60,0.12)" }}
-                            >
-                                <FaBullseye className="text-xl" style={{ color: "#D4A03C" }} />
+                        >   
+                            <div className="flex justify-center items-center">
+                                <div
+                                    className="w-14 h-14 flex items-center justify-center rounded-full mb-8"
+                                    style={{ backgroundColor: "rgba(212,160,60,0.12)" }}
+                                >
+                                    <FaBullseye className="text-xl" style={{ color: "#D4A03C" }} />
+                                </div>
                             </div>
                             <h3 className="text-2xl font-extrabold italic mb-6" style={{ color: "#0D1B6B" }}>
                                 Misi Kami

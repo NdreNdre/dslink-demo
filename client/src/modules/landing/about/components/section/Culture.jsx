@@ -119,7 +119,7 @@ const Culture = () => {
                         </span>
                     </div>
 
-                    <h2 ref={headingRef} className="text-4xl md:text-5xl font-bold mt-4 mb-6">
+                    <h2 ref={headingRef} className="font-serif text-4xl md:text-5xl font-bold mt-4 mb-6">
                         Prinsip Utama <span className="text-blue-500">Kami</span>
                     </h2>
 

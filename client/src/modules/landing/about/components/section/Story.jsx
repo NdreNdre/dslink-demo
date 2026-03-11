@@ -106,7 +106,7 @@ const Story = () => {
                         </span>
                     </div>
 
-                    <h2 ref={headingRef} className="mt-3 text-4xl md:text-5xl font-bold text-[#0D1B6B] leading-tight">
+                    <h2 ref={headingRef} className="font-serif mt-3 text-4xl md:text-5xl font-bold text-[#0D1B6B] leading-tight">
                         Dari bingung menjadi{" "}
                         <span className="bg-gradient-to-r from-[#D4A03C] to-[#E8C76A] bg-clip-text text-transparent">
                             Jelas
