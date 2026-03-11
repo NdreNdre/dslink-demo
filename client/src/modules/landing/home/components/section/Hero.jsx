@@ -143,7 +143,7 @@ const HeroSection = () => {
                 ref={overlayRef}
                 className="absolute inset-0"
                 style={{
-                    background: "linear-gradient(to bottom, rgba(13,27,107,0.55) 0%, rgba(0,0,0,0.70) 60%, rgba(0,0,102,0.80) 100%)",
+                    background: "linear-gradient(to bottom, rgba(13,27,107,0.00) 0%, rgba(0,0,0,0.70) 60%, rgba(0,0,102,0.80) 100%)",
                     zIndex: 2
                 }}
             />
