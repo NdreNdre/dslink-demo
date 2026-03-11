@@ -28,26 +28,26 @@ const HeroSection = () => {
     const placeholderRef = useRef(null);
     const [videoReady, setVideoReady] = useState(false);
 
-    useEffect(() => {
-        const video = videoRef.current;
-        const placeholder = placeholderRef.current;
+    // useEffect(() => {
+    //     const video = videoRef.current;
+    //     const placeholder = placeholderRef.current;
 
-        const handleCanPlay = () => {
-            setVideoReady(true);
-            gsap.to(video, { opacity: 1, duration: 0.8, ease: "power2.inOut" });
-            gsap.to(placeholder, {
-                opacity: 0,
-                duration: 0.8,
-                ease: "power2.inOut",
-                onComplete: () => {
-                    if (placeholder) placeholder.style.display = "none";
-                },
-            });
-        };
+    //     const handleCanPlay = () => {
+    //         setVideoReady(true);
+    //         gsap.to(video, { opacity: 1, duration: 0.8, ease: "power2.inOut" });
+    //         gsap.to(placeholder, {
+    //             opacity: 0,
+    //             duration: 0.8,
+    //             ease: "power2.inOut",
+    //             onComplete: () => {
+    //                 if (placeholder) placeholder.style.display = "none";
+    //             },
+    //         });
+    //     };
 
-        video.addEventListener("canplay", handleCanPlay);
-        return () => video.removeEventListener("canplay", handleCanPlay);
-    }, []);
+    //     video.addEventListener("canplay", handleCanPlay);
+    //     return () => video.removeEventListener("canplay", handleCanPlay);
+    // }, []);
 
     useEffect(() => {
         const scroller = document.querySelector("main");
@@ -126,7 +126,7 @@ const HeroSection = () => {
             />
 
             {/* Video */}
-            <video
+            {/* <video
                 ref={videoRef}
                 autoPlay
                 muted
@@ -136,7 +136,7 @@ const HeroSection = () => {
                 style={{ opacity: 0, zIndex: 1 }}
             >
                 <source src={HeroVideo} type="video/mp4" />
-            </video>
+            </video> */}
 
             {/* Overlay — Navy gradient dari bawah untuk kedalaman */}
             <div
