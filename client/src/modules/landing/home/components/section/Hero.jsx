@@ -152,7 +152,7 @@ const HeroSection = () => {
                 <div className="px-6 ">
 
                     {/* Badge — Gold accent */}
-                    <div
+                    {/* <div
                         ref={badgeRef}
                         className=" italic inline-flex items-center gap-2 mb-5 px-4 py-1.5 rounded-full border text-sm font-medium backdrop-blur-sm"
                         style={{
@@ -163,7 +163,7 @@ const HeroSection = () => {
                     >
                         <ImDiamonds className="w-4 h-4" style={{ color: "#D4A03C" }} />
                         Didukung penuh oleh Depo Pelita
-                    </div>
+                    </div> */}
 
                     {/* Heading — Gold gradient */}
                     <h1

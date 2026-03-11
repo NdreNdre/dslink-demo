@@ -50,6 +50,17 @@ const NavbarLanding = () => {
         navigate(url)
     }
 
+    const handleNavigateMobile = (url) => {
+        setMenuOpen(false)
+        navigate(url)
+    }
+
+    const handleWhatsapp = () => {
+        const phone = "628139120388";
+        const message = `Halo DS Link, saya [nama] dari [lokasi]. [pesan]. No HP: [telepon]`;
+        window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, "_blank");
+    };
+
     return (
         <>
             <nav
@@ -68,6 +79,7 @@ const NavbarLanding = () => {
                     />
 
                     {/* Menu Desktop */}
+                    <div className="flex space-x-5 items-center">
                     <div
                         className={`hidden md:flex space-x-8 font-semibold transition-colors duration-300 ${
                             scrolled ? "text-gray-800" : "text-white"
@@ -78,6 +90,14 @@ const NavbarLanding = () => {
                                 {link.label}
                             </button>
                         ))}
+                    </div>
+
+                    <button
+                            onClick={handleWhatsapp}
+                            className="hidden md:flex px-5 py-2 rounded-full text-sm font-semibold bg-gradient-to-r from-[#D4A03C] to-[#E8C76A] text-[#0D1B6B] transition-all duration-200 hover:brightness-110 active:scale-95 shadow-md shadow-[#D4A03C]/30"
+                        >
+                            Jadi Mitra →
+                        </button>
                     </div>
 
                     {/* Burger Button Mobile */}
@@ -125,15 +145,22 @@ const NavbarLanding = () => {
                 {/* Nav Links */}
                 <nav className="flex flex-col px-6 py-8 gap-2">
                     {navLinks.map((link) => (
-                        <a
-                            key={link.href}
-                            href={link.href}
-                            onClick={() => setMenuOpen(false)}
+                        <button
+                            // key={link.href}
+                            // href={link.href}
+                            onClick={() => handleNavigateMobile(link.href)}
                             className="text-gray-800 font-semibold text-lg py-3 border-b border-gray-100 hover:text-blue-600 transition-colors"
                         >
                             {link.label}
-                        </a>
+                        </button>
                     ))}
+
+                    <button
+                        onClick={() => { setMenuOpen(false); handleWhatsapp(); }}
+                        className="mt-4 w-full py-3 rounded-full font-semibold text-sm bg-[#D4A03C] text-[#0D1B6B] shadow-md shadow-[#D4A03C]/30 hover:brightness-110 active:scale-95 transition-all duration-200"
+                    >
+                        Jadi Mitra →
+                    </button>
                 </nav>
             </div>
         </>
