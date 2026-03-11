@@ -78,11 +78,11 @@ export default function FooterLanding() {
                         Home
                         </button>
                     </li>
-                    <li>
+                    {/* <li>
                         <button onClick={handlePaket} className="hover:text-white transition">
                         Paket Upgrade
                         </button>
-                    </li>
+                    </li> */}
                     <li>
                         <button onClick={handleAbout} className="hover:text-white transition">
                         Tentang Kami
