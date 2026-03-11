@@ -94,7 +94,7 @@ export default function TestimonialSection() {
     return (
         <section
             ref={sectionRef}
-            className="py-24 lg:rounded-t-[25%]"
+            className="py-24"
             style={{ background: "linear-gradient(to bottom right, #0D1B6B, #0033CC, #000066)" }}
         >
             <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
@@ -102,11 +102,11 @@ export default function TestimonialSection() {
                 {/* LEFT SIDE */}
                 <div ref={leftRef}>
 
-                    <p className="text-sm font-bold tracking-widest uppercase mb-2" style={{ color: "#D4A03C" }}>
+                    <p className="font-serif text-sm font-bold tracking-widest uppercase mb-2" style={{ color: "#D4A03C" }}>
                         Bukti Nyata
                     </p>
 
-                    <h2 className="text-4xl lg:text-5xl font-extrabold text-white mb-6">
+                    <h2 className="font-serif text-4xl lg:text-5xl font-extrabold text-white mb-6">
                         Tetangga Sudah Upgrade Rumahnya.{" "}
                         <span
                             className="bg-clip-text text-transparent"
@@ -168,7 +168,7 @@ export default function TestimonialSection() {
                                         "
                                     </div>
 
-                                    <p className="text-lg leading-relaxed mb-8" style={{ color: "#1A3A8F" }}>
+                                    <p className="text-lg font-serif italic leading-relaxed mb-8" style={{ color: "#1A3A8F" }}>
                                         {item.text}
                                     </p>
 

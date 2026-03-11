@@ -13,7 +13,7 @@ const LayoutLanding = () => {
     };
 
     return (
-        <div className="flex flex-col h-screen bg-gray-100 transition-colors duration-200 ease-in-out">
+        <div className="flex flex-col h-screen bg-white transition-colors duration-200 ease-in-out">
 
             <NavbarLanding></NavbarLanding>
 

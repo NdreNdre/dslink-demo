@@ -58,7 +58,7 @@ export default function CTASection() {
                 </p>
 
                 {/* Heading */}
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-snug max-w-2xl mx-auto">
+                <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-snug max-w-2xl mx-auto">
                     Pasar Desa Belum Ada yang Garap Serius.{" "}
                     <em
                         className="not-italic bg-clip-text text-transparent"

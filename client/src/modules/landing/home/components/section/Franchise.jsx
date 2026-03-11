@@ -131,7 +131,7 @@ export default function FranchiseSectionPremium() {
 
                 {/* HEADER */}
                 <div className="text-center max-w-3xl mx-auto mb-20">
-                    <h2 ref={headingRef} className="text-4xl lg:text-6xl font-bold leading-tight mb-6" style={{ color: "#0D1B6B" }}>
+                    <h2 ref={headingRef} className="font-serif text-4xl lg:text-6xl font-bold leading-tight mb-6" style={{ color: "#0D1B6B" }}>
                         Dua Pilihan, Satu Tujuan: Bisnis yang menghasilkan dari {" "}
                         <span
                             className="bg-clip-text text-transparent"
@@ -225,7 +225,7 @@ export default function FranchiseSectionPremium() {
                                 style={{ backgroundColor: "rgba(13,27,107,0.08)" }}>
                                 <BsStars size={22} style={{ color: "#0D1B6B" }} />
                             </div>
-                            <h3 className="text-2xl font-semibold tracking-wide" style={{ color: "#0D1B6B" }}>
+                            <h3 className="font-serif text-2xl font-semibold tracking-wide" style={{ color: "#0D1B6B" }}>
                                 DS LINK (Standar)
                             </h3>
                         </div>
@@ -318,15 +318,19 @@ export default function FranchiseSectionPremium() {
                         onMouseLeave={e => e.currentTarget.style.borderColor = "rgba(212,160,60,0.4)"}
                     >
                         {/* Badge */}
-                        <div
-                            className="absolute top-6 right-6 text-xs px-4 py-1 rounded-full font-medium"
-                            style={{
-                                backgroundColor: "rgba(212,160,60,0.2)",
-                                color: "#E8C76A",
-                                border: "1px solid rgba(212,160,60,0.4)",
-                            }}
+                        {/* <div
+                            className="absolute -top-4 left-1/2 -translate-x-1/2 text-xs px-4 py-1 rounded-full font-medium bg-gradient-to-r from-yellow-500 to-orange-500 "
                         >
                             REKOMENDASI
+                        </div> */}
+
+                        <div className="absolute -top-4 left-1/2 -translate-x-1/2  bg-gradient-to-r from-yellow-500 to-yellow-700 text-white text-sm font-semibold px-4 py-2 rounded-full shadow-md shadow-black/20 flex items-center space-x-2"
+                        style={{
+                                background: "linear-gradient(to right, #D4A03C, #E8C76A)",
+                                color: "#0D1B6B",
+                                boxShadow: "0 8px 24px rgba(212,160,60,0.35)",
+                            }}>
+                           REKOMENDASI
                         </div>
 
                         <div className="flex items-center gap-4 mb-6">
@@ -334,7 +338,7 @@ export default function FranchiseSectionPremium() {
                                 style={{ backgroundColor: "rgba(212,160,60,0.2)" }}>
                                 <LuCrown size={22} style={{ color: "#D4A03C" }} />
                             </div>
-                            <h3 className="text-2xl font-semibold tracking-wide text-white">
+                            <h3 className="font-serif text-2xl font-semibold tracking-wide text-white">
                                 DS LINK PLUS (Premium)
                             </h3>
                         </div>

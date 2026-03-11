@@ -143,18 +143,18 @@ const HeroSection = () => {
                 ref={overlayRef}
                 className="absolute inset-0"
                 style={{
-                    background: "linear-gradient(to bottom, rgba(13,27,107,0.00) 0%, rgba(0,0,0,0.70) 60%, rgba(0,0,102,0.80) 100%)",
+                    background: "linear-gradient(to bottom, rgba(13,27,107,0.00) 0%, rgba(0,0,0,0.70) 40%, rgba(0,0,102,0.80) 100%)",
                     zIndex: 2
                 }}
             />
 
             <div className="relative flex px-10 items-center h-full" style={{ zIndex: 3 }}>
-                <div className="px-6">
+                <div className="px-6 ">
 
                     {/* Badge — Gold accent */}
                     <div
                         ref={badgeRef}
-                        className="italic inline-flex items-center gap-2 mb-5 px-4 py-1.5 rounded-full border text-sm font-medium backdrop-blur-sm"
+                        className=" italic inline-flex items-center gap-2 mb-5 px-4 py-1.5 rounded-full border text-sm font-medium backdrop-blur-sm"
                         style={{
                             borderColor: "rgba(212,160,60,0.45)",
                             backgroundColor: "rgba(212,160,60,0.12)",
@@ -168,7 +168,7 @@ const HeroSection = () => {
                     {/* Heading — Gold gradient */}
                     <h1
                         ref={headingRef}
-                        className="text-white text-4xl md:text-6xl font-bold leading-tight max-w-3xl py-6"
+                        className="font-serif text-white text-4xl md:text-6xl font-bold leading-tight max-w-3xl py-6"
                     >
                         Punya Ruko Nganggur di Desa?{" "}
                         <span
@@ -183,14 +183,14 @@ const HeroSection = () => {
 
                     <p
                         ref={subtextRef}
-                        className="mt-6 text-white/90 text-lg md:text-xl max-w-2xl"
+                        className="font-sans mt-6 text-white/90 text-lg md:text-xl max-w-2xl"
                     >
                         Franchise DS Link — toko elektronik, furniture & kebutuhan rumah dengan sistem siap pakai. Supply chain dari Depo Pelita, 6 partner cicilan, dan 5 program inovasi yang bikin outlet Anda bukan sekadar toko — tapi pusat solusi rumah di desa.
                     </p>
 
                     <div
                         ref={buttonsRef}
-                        className="mt-8 flex flex-col sm:flex-row gap-4"
+                        className="mt-8 flex flex-col sm:flex-row gap-4 font-sans"
                     >
                         {/* Primary CTA — Gold button */}
                         <button

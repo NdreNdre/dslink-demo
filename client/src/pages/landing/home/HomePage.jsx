@@ -7,6 +7,7 @@ import TestimonialSection from "../../../modules/landing/home/components/section
 import FranchiseSection from "../../../modules/landing/home/components/section/Franchise";
 import CTASection from "../../../modules/landing/home/components/section/CTASection";
 import CounterSection from "../../../modules/landing/home/components/section/Counter";
+import TrustHighlightSection from "../../../modules/landing/home/components/section/TrustHighlight";
 
 const HomePage = () => {
     return (
@@ -16,6 +17,8 @@ const HomePage = () => {
             {/* <CounterSection></CounterSection> */}
 
             <PoweredSection></PoweredSection>
+
+            {/* <TrustHighlightSection></TrustHighlightSection> */}
 
             {/* <PackageSection></PackageSection> */}
 

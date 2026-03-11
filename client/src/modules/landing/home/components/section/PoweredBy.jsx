@@ -166,7 +166,7 @@ const PoweredSection = () => {
                                 <CiMedal className="w-12 h-12 text-[#0D1B6B]" />
                             </div>
                             <div ref={leftTextRef}>
-                                <p className="text-sm text-[#E8C76A]/60">Powered by</p>
+                                <p className="text-sm text-[#E8C76A]/60">Didukung penuh oleh</p>
                                 <h3 className="text-white text-2xl font-semibold">Depo Pelita</h3>
                             </div>
                         </div>
