@@ -1,5 +1,6 @@
 import useReveal from '../../../../../shared/hooks/useReveal';
 import { useListPackageStore } from '../../../package/list/stores/listPackage.store';
+import { useNavigate } from 'react-router-dom';
 
 const trustItems = [
     'Supply Depo Pelita',
@@ -17,6 +18,7 @@ const WaIcon = () => (
 
 export default function CTASection() {
 
+    const navigate = useNavigate();
     const activeCategory = useListPackageStore((s) => s.activeCategory);
     const ref = useReveal();
 
@@ -27,8 +29,7 @@ export default function CTASection() {
     };
 
     const handleScrollFranchise = () => {
-        const element = document.getElementById("franchise");
-        element?.scrollIntoView({ behavior: "smooth" });
+        navigate('/', { state: { scrollTo: 'franchise' } });
     };
 
     return (

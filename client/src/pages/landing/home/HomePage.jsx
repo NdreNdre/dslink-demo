@@ -1,3 +1,7 @@
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+
+
 import HeroSection from "../../../modules/landing/home/components/section/Hero";
 import PoweredSection from "../../../modules/landing/home/components/section/PoweredBy";
 import PackageSection from "../../../modules/landing/home/components/section/Package";
@@ -10,6 +14,18 @@ import CounterSection from "../../../modules/landing/home/components/section/Cou
 import TrustHighlightSection from "../../../modules/landing/home/components/section/TrustHighlight";
 
 const HomePage = () => {
+
+    const location = useLocation();
+
+    useEffect(() => {
+        if (location.state?.scrollTo) {
+            const element = document.getElementById(location.state.scrollTo);
+            setTimeout(() => {
+                element?.scrollIntoView({ behavior: "smooth" });
+            }, 300);
+        }
+    }, [location.state]);
+
     return (
         <div>
             <HeroSection></HeroSection>
