@@ -147,36 +147,35 @@ export default function FranchiseSectionPremium() {
 
                 {/* STATS */}
                 <div className="flex justify-center mb-24">
-                    <div
-                        ref={statsRef}
-                        className="px-12 py-6 rounded-2xl flex gap-20 shadow-md"
-                        style={{
-                            backgroundColor: "white",
-                            border: "1px solid rgba(13,27,107,0.12)",
-                        }}
-                    >
-                        <div className="flex items-center gap-4">
-                            <div className="w-12 h-12 rounded-xl flex items-center justify-center"
-                                style={{ backgroundColor: "rgba(212,160,60,0.12)" }}>
-                                <FaHistory style={{ color: "#D4A03C" }} />
-                            </div>
-                            <div>
-                                <div className="text-2xl font-bold" style={{ color: "#0D1B6B" }}>25+</div>
-                                <div className="text-sm" style={{ color: "#1A3A8F" }}>Tahun Ekosistem Depo Pelita</div>
-                            </div>
-                        </div>
-                        <div className="flex items-center gap-4">
-                            <div className="w-12 h-12 rounded-xl flex items-center justify-center"
-                                style={{ backgroundColor: "rgba(212,160,60,0.12)" }}>
-                                <FaMapMarkerAlt style={{ color: "#D4A03C" }} />
-                            </div>
-                            <div>
-                                <div className="text-2xl font-bold" style={{ color: "#0D1B6B" }}>940+</div>
-                                <div className="text-sm" style={{ color: "#1A3A8F" }}>Desa Potensial di Jawa Tengah</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <div
+        ref={statsRef}
+        className="px-6 md:px-12 py-6 rounded-2xl flex flex-col sm:flex-row gap-6 sm:gap-12 md:gap-20 shadow-md w-full max-w-xl sm:max-w-none sm:w-auto bg-white border border-[#0D1B6B]/10"
+    >
+        <div className="flex items-center gap-4">
+            <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-[#D4A03C]/10 flex-shrink-0">
+                <FaHistory className="text-[#D4A03C]" />
+            </div>
+            <div>
+                <div className="text-2xl font-bold text-[#0D1B6B]">25+</div>
+                <div className="text-sm text-[#1A3A8F]">Tahun Ekosistem Depo Pelita</div>
+            </div>
+        </div>
+
+        {/* Divider */}
+        <div className="hidden sm:block w-px bg-[#0D1B6B]/10 self-stretch" />
+        <div className="block sm:hidden h-px w-full bg-[#0D1B6B]/10" />
+
+        <div className="flex items-center gap-4">
+            <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-[#D4A03C]/10 flex-shrink-0">
+                <FaMapMarkerAlt className="text-[#D4A03C]" />
+            </div>
+            <div>
+                <div className="text-2xl font-bold text-[#0D1B6B]">940+</div>
+                <div className="text-sm text-[#1A3A8F]">Desa Potensial di Jawa Tengah</div>
+            </div>
+        </div>
+    </div>
+</div>
 
                 {/* FEATURE CARDS */}
                 <div className="grid md:grid-cols-4 gap-6 mb-28">

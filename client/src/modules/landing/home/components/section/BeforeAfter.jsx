@@ -31,7 +31,7 @@ const projects = [
         category: "Kitchen Upgrade",
         before: "https://images.unsplash.com/photo-1579618217299-92460380cf99?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxvbGQlMjBraXRjaGVuJTIwYmVmb3JlJTIwcmVub3ZhdGlvbnxlbnwxfHx8fDE3NzIwMTYzOTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
         after: "https://images.unsplash.com/photo-1769739132671-ac41c439d51e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjByZW5vdmF0ZWQlMjBraXRjaGVuJTIwaW50ZXJpb3IlMjBicmlnaHR8ZW58MXx8fHwxNzcyMDgzMTg2fDA&ixlib=rb-4.1.0&q=80&w=1080",
-        improvements: ["Kabinet baru premium", "Countertop granite", "Lighting modern", "Lantai keramik"],
+        improvements: ["Kabinet premium", "Countertop granite", "Lighting modern", "Lantai keramik"],
     },
     {
         id: 2,
