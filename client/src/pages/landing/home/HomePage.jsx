@@ -6,11 +6,14 @@ import BeforeAfterSection from "../../../modules/landing/home/components/section
 import TestimonialSection from "../../../modules/landing/home/components/section/Testimonial";
 import FranchiseSection from "../../../modules/landing/home/components/section/Franchise";
 import CTASection from "../../../modules/landing/home/components/section/CTASection";
+import CounterSection from "../../../modules/landing/home/components/section/Counter";
 
 const HomePage = () => {
     return (
         <div>
             <HeroSection></HeroSection>
+
+            {/* <CounterSection></CounterSection> */}
 
             <PoweredSection></PoweredSection>
 

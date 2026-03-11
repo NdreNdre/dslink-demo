@@ -141,11 +141,11 @@ const HeroSection = () => {
             {/* Overlay — Navy gradient dari bawah untuk kedalaman */}
             <div
                 ref={overlayRef}
-                className="absolute inset-0"
-                style={{
-                    background: "linear-gradient(to bottom, rgba(13,27,107,0.00) 0%, rgba(0,0,0,0.70) 60%, rgba(0,0,102,0.80) 100%)",
-                    zIndex: 2
-                }}
+                className="absolute inset-0 bg-gradient-to-b from-transparent via-black/70 to-slate-900 z-2"
+                // style={{
+                //     background: "linear-gradient(to bottom, rgba(13,27,107,0.00) 0%, rgba(0,0,0,0.70) 60%, rgba(0,0,102,0.80) 100%)",
+                //     zIndex: 2
+                // }}
             />
 
             <div className="relative flex px-10 items-center h-full" style={{ zIndex: 3 }}>
