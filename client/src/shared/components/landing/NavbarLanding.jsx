@@ -42,7 +42,7 @@ const NavbarLanding = () => {
 
     const navLinks = [
         { href: "/", label: "Home" },
-        { href: "/package", label: "Paket Upgrade" },
+        // { href: "/package", label: "Paket Upgrade" },
         { href: "/about-us", label: "Tentang Kami" },
     ];
 

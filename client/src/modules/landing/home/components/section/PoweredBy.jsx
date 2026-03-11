@@ -18,7 +18,6 @@ const PoweredSection = () => {
 
         const timer = setTimeout(() => {
 
-            // ── 1. TOP LINE — tumbuh dari kiri ke kanan ──────────────────────
             gsap.set(topLineRef.current, { scaleX: 0, transformOrigin: "left center" });
             ScrollTrigger.create({
                 trigger: topLineRef.current,
@@ -28,7 +27,6 @@ const PoweredSection = () => {
                 },
             });
 
-            // ── 2. ICON — pop in dengan bounce ───────────────────────────────
             gsap.set(iconRef.current, { scale: 0, opacity: 0, rotation: -15 });
             ScrollTrigger.create({
                 trigger: iconRef.current,
@@ -41,7 +39,6 @@ const PoweredSection = () => {
                 },
             });
 
-            // ── 3. LEFT TEXT — fade slide dari kiri ──────────────────────────
             gsap.set(leftTextRef.current, { x: -40, opacity: 0 });
             ScrollTrigger.create({
                 trigger: leftTextRef.current,
@@ -54,7 +51,6 @@ const PoweredSection = () => {
                 },
             });
 
-            // ── 4. DIVIDER — grow dari atas ke bawah ─────────────────────────
             gsap.set(dividerRef.current, { scaleY: 0, transformOrigin: "top center", opacity: 0 });
             ScrollTrigger.create({
                 trigger: dividerRef.current,
@@ -67,7 +63,6 @@ const PoweredSection = () => {
                 },
             });
 
-            // ── 5. RIGHT TEXT — fade slide dari kanan ────────────────────────
             gsap.set(rightTextRef.current, { x: 40, opacity: 0 });
             ScrollTrigger.create({
                 trigger: rightTextRef.current,
@@ -80,7 +75,6 @@ const PoweredSection = () => {
                 },
             });
 
-            // ── 6. BOTTOM LINE — tumbuh dari kanan ke kiri ───────────────────
             gsap.set(bottomLineRef.current, { scaleX: 0, transformOrigin: "right center" });
             ScrollTrigger.create({
                 trigger: bottomLineRef.current,
@@ -102,10 +96,18 @@ const PoweredSection = () => {
     return (
         <section className="relative">
 
-            {/* Top Gradient Line */}
-            <div ref={topLineRef} className="h-1 w-full bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600" />
+            {/* Top Gradient Line — Navy Blue */}
+            <div
+                ref={topLineRef}
+                className="h-1 w-full"
+                style={{ background: "linear-gradient(to right, #0D1B6B, #1A3A8F, #0D1B6B)" }}
+            />
 
-            <div className="bg-gradient-to-r from-slate-900 to-slate-800 py-16">
+            {/* Background — Navy gradient sesuai spec */}
+            <div
+                className="py-16"
+                style={{ background: "linear-gradient(to right, #0D1B6B, #000066)" }}
+            >
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="flex flex-col md:flex-row items-center justify-between gap-10">
 
@@ -113,23 +115,34 @@ const PoweredSection = () => {
                         <div className="flex items-center gap-6">
                             <div
                                 ref={iconRef}
-                                className="w-20 h-20 rounded-2xl bg-gradient-to-br from-amber-400 to-orange-600 flex items-center justify-center shadow-xl shadow-amber-500/30"
+                                className="w-20 h-20 rounded-2xl flex items-center justify-center shadow-xl"
+                                style={{
+                                    background: "linear-gradient(to bottom right, #D4A03C, #E8C76A)",
+                                    boxShadow: "0 8px 24px rgba(212,160,60,0.35)",
+                                }}
                             >
-                                <CiMedal className="text-white w-12 h-12" />
+                                <CiMedal className="w-12 h-12" style={{ color: "#0D1B6B" }} />
                             </div>
                             <div ref={leftTextRef}>
-                                <p className="text-gray-400 text-sm">Powered by</p>
+                                <p className="text-sm" style={{ color: "rgba(232,199,106,0.6)" }}>Powered by</p>
                                 <h3 className="text-white text-2xl font-semibold">Depo Pelita</h3>
                             </div>
                         </div>
 
                         {/* Divider */}
-                        <div ref={dividerRef} className="hidden md:block w-px h-16 bg-white/20" />
+                        <div
+                            ref={dividerRef}
+                            className="hidden md:block w-px h-16"
+                            style={{ backgroundColor: "rgba(212,160,60,0.25)" }}
+                        />
 
                         {/* Right Side */}
                         <div ref={rightTextRef} className="text-center md:text-left max-w-2xl">
-                            <h4 className="text-lg md:text-xl text-gray-200 leading-relaxed">
-                                <span className="bg-gradient-to-r from-orange-400 to-amber-400 bg-clip-text text-transparent font-semibold">
+                            <h4 className="text-lg md:text-xl leading-relaxed" style={{ color: "rgba(255,255,255,0.85)" }}>
+                                <span
+                                    className="bg-clip-text text-transparent font-semibold"
+                                    style={{ backgroundImage: "linear-gradient(to right, #D4A03C, #E8C76A)" }}
+                                >
                                     Sistem distribusi terpercaya
                                 </span>{" "}
                                 dengan produk berkualitas tinggi untuk setiap proyek
@@ -140,8 +153,12 @@ const PoweredSection = () => {
                 </div>
             </div>
 
-            {/* Bottom Gradient Line */}
-            <div ref={bottomLineRef} className="h-1 w-full bg-gradient-to-l from-blue-400 via-blue-500 to-blue-600" />
+            {/* Bottom Gradient Line — Navy Blue */}
+            <div
+                ref={bottomLineRef}
+                className="h-1 w-full"
+                style={{ background: "linear-gradient(to left, #0D1B6B, #1A3A8F, #0D1B6B)" }}
+            />
 
         </section>
     );

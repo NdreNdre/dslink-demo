@@ -2,14 +2,8 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import HeroBackground from "../../../../../assets/interior_2.jpg";
-import { LuHammer, LuBriefcase } from "react-icons/lu";
-import { IoTrendingUp } from "react-icons/io5";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
-import { FaBullseye } from "react-icons/fa";
-import { FaHistory } from "react-icons/fa";
-import { FaMapMarkerAlt } from "react-icons/fa";
-import { CiCreditCard1 } from "react-icons/ci";
-import { FaCreditCard } from "react-icons/fa";
+import { FaBullseye, FaHistory, FaMapMarkerAlt, FaCreditCard } from "react-icons/fa";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -29,7 +23,6 @@ const Hero = () => {
 
         const ctx = gsap.context(() => {
 
-            // Set initial state semua elemen
             gsap.set(imgRef.current, { scale: 1.12, opacity: 0 });
             gsap.set(badgeRef.current, { y: -30, opacity: 0 });
             gsap.set(headingRef.current, { y: 70, opacity: 0, clipPath: "inset(0 0 100% 0)" });
@@ -39,39 +32,16 @@ const Hero = () => {
             gsap.set(visiRef.current, { x: -80, opacity: 0 });
             gsap.set(misiRef.current, { x: 80, opacity: 0 });
 
-            // Satu timeline dari atas ke bawah — tidak ada ScrollTrigger
-            // karena semua elemen ini berada dalam satu layar / hero section
             const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
             tl
-            // BG image
             .to(imgRef.current, { scale: 1, opacity: 0.4, duration: 2 }, 0)
-
-            // Badge
             .to(badgeRef.current, { y: 0, opacity: 1, duration: 0.6 }, 0.4)
-
-            // Heading
-            .to(headingRef.current, {
-                y: 0, opacity: 1, clipPath: "inset(0 0 0% 0)", duration: 1,
-            }, 0.65)
-
-            // Subtext
+            .to(headingRef.current, { y: 0, opacity: 1, clipPath: "inset(0 0 0% 0)", duration: 1 }, 0.65)
             .to(subheadRef.current, { y: 0, opacity: 1, duration: 0.7 }, 0.95)
-
-            // Stats box
-            .to(statsRef.current, {
-                y: 0, opacity: 1, scale: 1, duration: 0.7, ease: "back.out(1.4)",
-            }, 1.15)
-
-            // Stat items stagger
-            .to(statItemRefs.current, {
-                y: 0, opacity: 1, duration: 0.5, stagger: 0.15,
-            }, 1.35)
-
-            // Visi dari kiri
+            .to(statsRef.current, { y: 0, opacity: 1, scale: 1, duration: 0.7, ease: "back.out(1.4)" }, 1.15)
+            .to(statItemRefs.current, { y: 0, opacity: 1, duration: 0.5, stagger: 0.15 }, 1.35)
             .to(visiRef.current, { x: 0, opacity: 1, duration: 0.8 }, 1.6)
-
-            // Misi dari kanan, sedikit setelah visi
             .to(misiRef.current, { x: 0, opacity: 1, duration: 0.8 }, 1.75);
 
         });
@@ -87,6 +57,7 @@ const Hero = () => {
             id="hero"
             className="relative min-h-screen flex items-start justify-center text-center py-24 px-6"
         >
+            {/* Background */}
             <div className="absolute inset-0">
                 <img
                     ref={imgRef}
@@ -95,23 +66,41 @@ const Hero = () => {
                     className="w-full h-full object-cover"
                     style={{ opacity: 0 }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-white" />
+                {/* Overlay: Navy gradient dari atas, fade ke Cream di bawah */}
+                <div
+                    className="absolute inset-0"
+                    style={{ background: "linear-gradient(to bottom, rgba(13,27,107,0.00) 0%, rgba(5,13,53,0.5) 40%, #FAF9F6 100%)" }}
+                />
             </div>
 
-            <div className="relative z-10">
+            <div className="relative z-10 w-full">
 
-                <span ref={badgeRef} className="inline-block mb-6 px-4 py-1 text-sm rounded-full bg-white/10 border border-white/20 backdrop-blur">
+                {/* Badge */}
+                <span
+                    ref={badgeRef}
+                    className="inline-block mb-6 px-4 py-1 text-sm rounded-full backdrop-blur"
+                    style={{
+                        backgroundColor: "rgba(212,160,60,0.15)",
+                        border: "1px solid rgba(212,160,60,0.4)",
+                        color: "#E8C76A",
+                    }}
+                >
                     TENTANG DS LINK
                 </span>
 
-                <h1 ref={headingRef} className="text-6xl md:text-8xl font-bold leading-tight mb-6">
+                {/* Heading */}
+                <h1 ref={headingRef} className="text-6xl md:text-8xl font-bold leading-tight mb-6 text-white">
                     Solusi Kebutuhan <br />Rumah,{" "}
-                    <span className="bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 bg-clip-text text-transparent">
+                    <span
+                        className="bg-clip-text text-transparent"
+                        style={{ backgroundImage: "linear-gradient(to right, #D4A03C, #E8C76A)" }}
+                    >
                         Jadi Mudah
                     </span>
                 </h1>
 
-                <p ref={subheadRef} className="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto">
+                {/* Subheading */}
+                <p ref={subheadRef} className="text-lg md:text-xl max-w-2xl mx-auto" style={{ color: "rgba(255,255,255,0.75)" }}>
                     DS Link hadir untuk membantu Anda mewujudkan rumah yang lebih nyaman,
                     modern, dan siap digunakan dengan paket upgrade yang transparan dan profesional.
                 </p>
@@ -121,13 +110,17 @@ const Hero = () => {
                     {/* Stats */}
                     <div
                         ref={statsRef}
-                        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 py-6 px-6 bg-gradient-to-br from-blue-200/30 to-white/10 rounded-xl border border-white/50 w-full md:w-3/4 shadow-lg shadow-white/20"
+                        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 py-6 px-6 rounded-xl w-full md:w-2/4 shadow-lg"
+                        style={{
+                            background: "linear-gradient(to bottom right, rgba(13,27,107,0.45), rgba(0,0,102,0.3))",
+                            border: "1px solid rgba(212,160,60,0.3)",
+                            backdropFilter: "blur(12px)",
+                        }}
                     >
                         {[
-                            { icon: <FaHistory className="w-10 h-10 md:w-12 md:h-12" />, value: "25+", label: "Tahun Ekosistem Depo Pelita" },
-                            { icon: <FaMapMarkerAlt className="w-10 h-10 md:w-12 md:h-12" />, value: "940+", label: "Desa Potensial" },
-                            { icon: <FaCreditCard className="w-10 h-10 md:w-12 md:h-12" />, value: "6", label: "Partner Pembiayaan Resmi" },
-                            // { icon: <IoTrendingUp className="w-10 h-10 md:w-12 md:h-12" />, value: "6", label: "Partner Pembiayaan Resmi" },
+                            { icon: <FaHistory className="w-10 h-10 md:w-12 md:h-12" style={{ color: "#D4A03C" }} />, value: "25+", label: "Tahun Ekosistem Depo Pelita" },
+                            { icon: <FaMapMarkerAlt className="w-10 h-10 md:w-12 md:h-12" style={{ color: "#D4A03C" }} />, value: "940+", label: "Desa Potensial" },
+                            { icon: <FaCreditCard className="w-10 h-10 md:w-12 md:h-12" style={{ color: "#D4A03C" }} />, value: "6", label: "Partner Pembiayaan Resmi" },
                         ].map((item, i) => (
                             <div
                                 key={i}
@@ -136,34 +129,76 @@ const Hero = () => {
                             >
                                 {item.icon}
                                 <div>
-                                    <h3 className="text-2xl md:text-3xl font-bold">{item.value}</h3>
-                                    <p className="text-white/80 text-sm mt-1">{item.label}</p>
+                                    <h3 className="text-2xl md:text-3xl font-bold text-white">{item.value}</h3>
+                                    <p className="text-sm mt-1" style={{ color: "rgba(255,255,255,0.7)" }}>{item.label}</p>
                                 </div>
                             </div>
                         ))}
                     </div>
 
                     {/* Visi & Misi */}
-                    <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8">
+                    <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 w-full">
 
-                        <div ref={visiRef} className="bg-gray-50 rounded-2xl p-10 border-2 border-gray-200 hover:shadow-md hover:border-blue-300 transition duration-300 hover:-translate-y-2">
-                            <div className="w-14 h-14 flex items-center justify-center rounded-full bg-blue-200 mb-8">
-                                <MdOutlineRemoveRedEye className="text-blue-500 text-xl" />
+                        {/* Visi */}
+                        <div
+                            ref={visiRef}
+                            className="rounded-2xl p-10 border-2 transition duration-300 hover:-translate-y-2"
+                            style={{
+                                backgroundColor: "white",
+                                borderColor: "rgba(13,27,107,0.12)",
+                            }}
+                            onMouseEnter={e => {
+                                e.currentTarget.style.borderColor = "#D4A03C";
+                                e.currentTarget.style.boxShadow = "0 8px 32px rgba(212,160,60,0.15)";
+                            }}
+                            onMouseLeave={e => {
+                                e.currentTarget.style.borderColor = "rgba(13,27,107,0.12)";
+                                e.currentTarget.style.boxShadow = "none";
+                            }}
+                        >
+                            <div
+                                className="w-14 h-14 flex items-center justify-center rounded-full mb-8"
+                                style={{ backgroundColor: "rgba(13,27,107,0.08)" }}
+                            >
+                                <MdOutlineRemoveRedEye className="text-xl" style={{ color: "#0D1B6B" }} />
                             </div>
-                            <h3 className="text-2xl font-extrabold italic text-gray-900 mb-6">Visi Kami</h3>
-                            <p className="text-gray-600 leading-relaxed text-lg">
+                            <h3 className="text-2xl font-extrabold italic mb-6" style={{ color: "#0D1B6B" }}>
+                                Visi Kami
+                            </h3>
+                            <p className="leading-relaxed text-lg" style={{ color: "#1A3A8F" }}>
                                 Menjadi solusi terpercaya untuk kebutuhan upgrade rumah,
                                 menghadirkan kenyamanan dan kualitas hidup yang lebih baik
                                 bagi setiap keluarga.
                             </p>
                         </div>
 
-                        <div ref={misiRef} className="bg-gray-50 rounded-2xl p-10 border-2 border-gray-200 hover:shadow-md hover:border-blue-300 transition duration-300 hover:-translate-y-2">
-                            <div className="w-14 h-14 flex items-center justify-center rounded-full bg-orange-200 mb-8">
-                                <FaBullseye className="text-orange-500 text-xl" />
+                        {/* Misi */}
+                        <div
+                            ref={misiRef}
+                            className="rounded-2xl p-10 border-2 transition duration-300 hover:-translate-y-2"
+                            style={{
+                                backgroundColor: "white",
+                                borderColor: "rgba(13,27,107,0.12)",
+                            }}
+                            onMouseEnter={e => {
+                                e.currentTarget.style.borderColor = "#D4A03C";
+                                e.currentTarget.style.boxShadow = "0 8px 32px rgba(212,160,60,0.15)";
+                            }}
+                            onMouseLeave={e => {
+                                e.currentTarget.style.borderColor = "rgba(13,27,107,0.12)";
+                                e.currentTarget.style.boxShadow = "none";
+                            }}
+                        >
+                            <div
+                                className="w-14 h-14 flex items-center justify-center rounded-full mb-8"
+                                style={{ backgroundColor: "rgba(212,160,60,0.12)" }}
+                            >
+                                <FaBullseye className="text-xl" style={{ color: "#D4A03C" }} />
                             </div>
-                            <h3 className="text-2xl font-extrabold italic text-gray-900 mb-6">Misi Kami</h3>
-                            <p className="text-gray-600 leading-relaxed text-lg">
+                            <h3 className="text-2xl font-extrabold italic mb-6" style={{ color: "#0D1B6B" }}>
+                                Misi Kami
+                            </h3>
+                            <p className="leading-relaxed text-lg" style={{ color: "#1A3A8F" }}>
                                 Menyediakan paket renovasi dan instalasi yang transparan,
                                 efisien, dan profesional, sehingga pelanggan dapat menikmati
                                 hasil maksimal tanpa proses yang rumit.

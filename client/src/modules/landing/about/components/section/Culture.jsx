@@ -113,14 +113,14 @@ const Culture = () => {
                 {/* LEFT — konten */}
                 <div>
                     <div className="flex items-center space-x-2">
-                        <div ref={lineRef} className="w-0.5 bg-orange-500 h-10" />
-                        <span ref={labelRef} className="text-sm font-semibold text-orange-500 tracking-wider">
+                        <div ref={lineRef} className="w-0.5 bg-blue-500 h-10" />
+                        <span ref={labelRef} className="text-sm font-semibold text-blue-500 tracking-wider">
                             Kebudayaan Kami
                         </span>
                     </div>
 
                     <h2 ref={headingRef} className="text-4xl md:text-5xl font-bold mt-4 mb-6">
-                        Prinsip Utama <span className="text-orange-500">Kami</span>
+                        Prinsip Utama <span className="text-blue-500">Kami</span>
                     </h2>
 
                     <p ref={subheadRef} className="text-gray-500 max-w-md mb-10">

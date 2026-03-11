@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from "react";  // tambah useState
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import HeroVideo from "../../../../../assets/Example_Hero_Video.mp4";
-import HeroThumbnail from "../../../../../assets/interior_1.jpg"; // 👈 tambah ini
+import HeroThumbnail from "../../../../../assets/interior_1.jpg";
 import { ImDiamonds } from "react-icons/im";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -25,25 +25,21 @@ const HeroSection = () => {
     const subtextRef = useRef(null);
     const buttonsRef = useRef(null);
     const badgeRef = useRef(null);
-    const placeholderRef = useRef(null); // 👈 tambah ini
-    const [videoReady, setVideoReady] = useState(false); // 👈 tambah ini
+    const placeholderRef = useRef(null);
+    const [videoReady, setVideoReady] = useState(false);
 
     useEffect(() => {
         const video = videoRef.current;
         const placeholder = placeholderRef.current;
 
-        // Ketika video sudah cukup di-buffer untuk diplay
         const handleCanPlay = () => {
             setVideoReady(true);
-
-            // Fade in video, fade out placeholder secara smooth
             gsap.to(video, { opacity: 1, duration: 0.8, ease: "power2.inOut" });
             gsap.to(placeholder, {
                 opacity: 0,
                 duration: 0.8,
                 ease: "power2.inOut",
                 onComplete: () => {
-                    // Hapus dari DOM setelah transisi selesai
                     if (placeholder) placeholder.style.display = "none";
                 },
             });
@@ -58,40 +54,22 @@ const HeroSection = () => {
         ScrollTrigger.defaults({ scroller });
 
         const ctx = gsap.context(() => {
-
-            // ── 1. ENTRANCE ANIMATION ─────────────────────────────────────────
             const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
             tl.fromTo(
                 videoRef.current,
-                { scale: 1.15, opacity: 0 },  // opacity 0 by default, gsap yang handle
+                { scale: 1.15, opacity: 0 },
                 { scale: 1, opacity: videoReady ? 1 : 0, duration: 1.8 }
-                //                              👆 kalau belum ready, tetap 0 dulu
             )
-            .fromTo(
-                overlayRef.current,
-                { opacity: 0 },
-                { opacity: 1, duration: 1 },
-                "-=1.2"
-            )
-            .fromTo(
-                badgeRef.current,
-                { y: -30, opacity: 0 },
-                { y: 0, opacity: 1, duration: 0.6 },
-                "-=0.4"
-            )
+            .fromTo(overlayRef.current, { opacity: 0 }, { opacity: 1, duration: 1 }, "-=1.2")
+            .fromTo(badgeRef.current, { y: -30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6 }, "-=0.4")
             .fromTo(
                 headingRef.current,
                 { y: 60, opacity: 0, clipPath: "inset(0 0 100% 0)" },
                 { y: 0, opacity: 1, clipPath: "inset(0 0 0% 0)", duration: 0.9 },
                 "-=0.2"
             )
-            .fromTo(
-                subtextRef.current,
-                { y: 30, opacity: 0 },
-                { y: 0, opacity: 1, duration: 0.7 },
-                "-=0.4"
-            )
+            .fromTo(subtextRef.current, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7 }, "-=0.4")
             .fromTo(
                 buttonsRef.current.children,
                 { y: 25, opacity: 0, scale: 0.95 },
@@ -99,7 +77,6 @@ const HeroSection = () => {
                 "-=0.3"
             );
 
-            // ── 2. SCROLL PARALLAX ────────────────────────────────────────────
             gsap.to(videoRef.current, {
                 yPercent: 20,
                 ease: "none",
@@ -111,7 +88,6 @@ const HeroSection = () => {
                 },
             });
 
-            // ── 3. OVERLAY DARKENS ────────────────────────────────────────────
             gsap.to(overlayRef.current, {
                 backgroundColor: "rgba(0,0,0,0.85)",
                 ease: "none",
@@ -133,15 +109,14 @@ const HeroSection = () => {
 
     const handleWhatsapp = () => {
         const phone = "628139120388";
-        // const phone = "6281391200388";
-        const message = `Halo DS Link, saya [nama] dari [lokasi]. [pesan]. No HP: [telepon]`
+        const message = `Halo DS Link, saya [nama] dari [lokasi]. [pesan]. No HP: [telepon]`;
         window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, "_blank");
     };
 
     return (
         <section ref={sectionRef} id="hero" className="relative h-screen overflow-hidden">
 
-            {/* 👇 PLACEHOLDER IMAGE — tampil duluan sebelum video ready */}
+            {/* Placeholder image */}
             <img
                 ref={placeholderRef}
                 src={HeroThumbnail}
@@ -150,7 +125,7 @@ const HeroSection = () => {
                 style={{ zIndex: 1 }}
             />
 
-            {/* Video — opacity 0 dulu, baru fade in setelah canplay */}
+            {/* Video */}
             <video
                 ref={videoRef}
                 autoPlay
@@ -158,32 +133,50 @@ const HeroSection = () => {
                 loop
                 playsInline
                 className="absolute inset-0 w-full h-full object-cover"
-                style={{ opacity: 0, zIndex: 1 }} // 👈 mulai dari opacity 0
+                style={{ opacity: 0, zIndex: 1 }}
             >
                 <source src={HeroVideo} type="video/mp4" />
             </video>
 
-            <div ref={overlayRef} className="absolute inset-0 bg-black/70" style={{ zIndex: 2 }}></div>
+            {/* Overlay — Navy gradient dari bawah untuk kedalaman */}
+            <div
+                ref={overlayRef}
+                className="absolute inset-0"
+                style={{
+                    background: "linear-gradient(to bottom, rgba(13,27,107,0.55) 0%, rgba(0,0,0,0.70) 60%, rgba(0,0,102,0.80) 100%)",
+                    zIndex: 2
+                }}
+            />
 
-            <div className="relative flex px-10 items-center h-full bg-black/20" style={{ zIndex: 3 }}>
+            <div className="relative flex px-10 items-center h-full" style={{ zIndex: 3 }}>
                 <div className="px-6">
 
+                    {/* Badge — Gold accent */}
                     <div
                         ref={badgeRef}
-                        className="italic inline-flex items-center gap-2 mb-5 px-4 py-1.5 rounded-full border border-amber-400/40 bg-amber-400/10 text-amber-300 text-sm font-medium backdrop-blur-sm"
+                        className="italic inline-flex items-center gap-2 mb-5 px-4 py-1.5 rounded-full border text-sm font-medium backdrop-blur-sm"
+                        style={{
+                            borderColor: "rgba(212,160,60,0.45)",
+                            backgroundColor: "rgba(212,160,60,0.12)",
+                            color: "#E8C76A",
+                        }}
                     >
-                        {/* <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" /> */}
-                        <ImDiamonds className="w-4 h-4 text-amber-400 italic"></ImDiamonds>
+                        <ImDiamonds className="w-4 h-4" style={{ color: "#D4A03C" }} />
                         Didukung penuh oleh Depo Pelita
                     </div>
-                    
 
+                    {/* Heading — Gold gradient */}
                     <h1
                         ref={headingRef}
                         className="text-white text-4xl md:text-6xl font-bold leading-tight max-w-3xl py-6"
                     >
                         Punya Ruko Nganggur di Desa?{" "}
-                        <span className="bg-gradient-to-r from-amber-400 via-yellow-500 to-orange-600 bg-clip-text text-transparent">
+                        <span
+                            className="bg-clip-text text-transparent"
+                            style={{
+                                backgroundImage: "linear-gradient(to right, #D4A03C, #E8C76A, #D4A03C)",
+                            }}
+                        >
                             Sulap Jadi Bisnis yang Langsung Jalan.
                         </span>
                     </h1>
@@ -199,16 +192,35 @@ const HeroSection = () => {
                         ref={buttonsRef}
                         className="mt-8 flex flex-col sm:flex-row gap-4"
                     >
+                        {/* Primary CTA — Gold button */}
                         <button
-                            onClick={handleScrollPaket}
-                            className="bg-gradient-to-r from-amber-500 to-[#FF7A00] hover:brightness-110 active:scale-95 transition-all px-6 py-3 rounded-xl font-semibold text-white shadow-lg shadow-orange-500/30" onClickCapture={handleWhatsapp}
+                            onClick={handleWhatsapp}
+                            className="active:scale-95 transition-all px-6 py-3 rounded-xl font-semibold text-white shadow-lg"
+                            style={{
+                                background: "linear-gradient(to right, #D4A03C, #E8C76A)",
+                                color: "#0D1B6B",
+                                boxShadow: "0 8px 24px rgba(212,160,60,0.35)",
+                            }}
+                            onMouseEnter={e => e.currentTarget.style.filter = "brightness(1.1)"}
+                            onMouseLeave={e => e.currentTarget.style.filter = "brightness(1)"}
                         >
                             Tanya Info Kemitraan →
                         </button>
 
+                        {/* Secondary CTA — Navy border */}
                         <button
                             onClick={handleScrollFranchise}
-                            className="border-2 border-white text-white hover:bg-white/20 active:scale-95 transition-all px-6 py-3 rounded-xl font-semibold"
+                            className="active:scale-95 transition-all px-6 py-3 rounded-xl font-semibold border-2 text-white"
+                            style={{
+                                borderColor: "rgba(232,199,106,0.6)",
+                                color: "#E8C76A",
+                            }}
+                            onMouseEnter={e => {
+                                e.currentTarget.style.backgroundColor = "rgba(232,199,106,0.12)";
+                            }}
+                            onMouseLeave={e => {
+                                e.currentTarget.style.backgroundColor = "transparent";
+                            }}
                         >
                             Lihat Paket Franchise
                         </button>

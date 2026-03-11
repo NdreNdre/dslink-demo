@@ -30,10 +30,10 @@ const projects = [
 ];
 
 const trustBadges = [
-    { icon: Award, label: "Sertifikasi Resmi", color: "from-yellow-500 to-amber-600" },
-    { icon: CheckCircle, label: "100% Garansi", color: "from-green-500 to-emerald-600" },
-    { icon: Clock, label: "On-Time Delivery", color: "from-blue-500 to-cyan-600" },
-    { icon: Users, label: "Tim Profesional", color: "from-purple-500 to-pink-600" },
+    { icon: Award,       label: "Sertifikasi Resmi", colorFrom: "#D4A03C", colorTo: "#E8C76A" },
+    { icon: CheckCircle, label: "100% Garansi",      colorFrom: "#0D1B6B", colorTo: "#1A3A8F" },
+    { icon: Clock,       label: "On-Time Delivery",  colorFrom: "#1A3A8F", colorTo: "#0033CC" },
+    { icon: Users,       label: "Tim Profesional",   colorFrom: "#D4A03C", colorTo: "#0D1B6B" },
 ];
 
 const BeforeAfterSection = () => {
@@ -47,105 +47,64 @@ const BeforeAfterSection = () => {
 
         const timer = setTimeout(() => {
 
-            // ── 1. HEADING ────────────────────────────────────────────────────
             gsap.set([headingRef.current, subheadRef.current], { y: 40, opacity: 0 });
             ScrollTrigger.create({
                 trigger: headingRef.current,
-                scroller,
-                start: "top 88%",
-                once: true,
+                scroller, start: "top 88%", once: true,
                 onEnter: () => {
                     gsap.to(headingRef.current, { y: 0, opacity: 1, duration: 0.75, ease: "power3.out" });
                     gsap.to(subheadRef.current, { y: 0, opacity: 1, duration: 0.75, ease: "power3.out", delay: 0.15 });
                 },
             });
 
-            // ── 2. TRUST BADGES — stagger dari bawah ─────────────────────────
             badgeRefs.current.forEach((el, i) => {
                 if (!el) return;
                 gsap.set(el, { y: 40, opacity: 0, scale: 0.92 });
                 ScrollTrigger.create({
-                    trigger: el,
-                    scroller,
-                    start: "top 90%",
-                    once: true,
+                    trigger: el, scroller, start: "top 90%", once: true,
                     onEnter: () => {
-                        gsap.to(el, {
-                            y: 0, opacity: 1, scale: 1,
-                            duration: 0.55, ease: "back.out(1.5)",
-                            delay: i * 0.1,
-                        });
+                        gsap.to(el, { y: 0, opacity: 1, scale: 1, duration: 0.55, ease: "back.out(1.5)", delay: i * 0.1 });
                     },
                 });
             });
 
-            // ── 3. PROJECT CARDS ──────────────────────────────────────────────
             projectRefs.current.forEach((project, i) => {
                 if (!project) return;
-
                 const isEven = i % 2 === 0;
 
-                // Header project (title, category) — slide dari kiri/kanan bergantian
                 const header = project.querySelector(".project-header");
                 if (header) {
                     gsap.set(header, { x: isEven ? -50 : 50, opacity: 0 });
                     ScrollTrigger.create({
-                        trigger: header,
-                        scroller,
-                        start: "top 88%",
-                        once: true,
-                        onEnter: () => {
-                            gsap.to(header, { x: 0, opacity: 1, duration: 0.7, ease: "power3.out" });
-                        },
+                        trigger: header, scroller, start: "top 88%", once: true,
+                        onEnter: () => gsap.to(header, { x: 0, opacity: 1, duration: 0.7, ease: "power3.out" }),
                     });
                 }
 
-                // Card foto Before — slide dari kiri
                 const beforeImg = project.querySelector(".img-before");
                 if (beforeImg) {
                     gsap.set(beforeImg, { x: -60, opacity: 0 });
                     ScrollTrigger.create({
-                        trigger: beforeImg,
-                        scroller,
-                        start: "top 88%",
-                        once: true,
-                        onEnter: () => {
-                            gsap.to(beforeImg, { x: 0, opacity: 1, duration: 0.8, ease: "power3.out" });
-                        },
+                        trigger: beforeImg, scroller, start: "top 88%", once: true,
+                        onEnter: () => gsap.to(beforeImg, { x: 0, opacity: 1, duration: 0.8, ease: "power3.out" }),
                     });
                 }
 
-                // Card foto After — slide dari kanan, sedikit delay (kesan reveal)
                 const afterImg = project.querySelector(".img-after");
                 if (afterImg) {
                     gsap.set(afterImg, { x: 60, opacity: 0 });
                     ScrollTrigger.create({
-                        trigger: afterImg,
-                        scroller,
-                        start: "top 88%",
-                        once: true,
-                        onEnter: () => {
-                            gsap.to(afterImg, { x: 0, opacity: 1, duration: 0.8, ease: "power3.out", delay: 0.15 });
-                        },
+                        trigger: afterImg, scroller, start: "top 88%", once: true,
+                        onEnter: () => gsap.to(afterImg, { x: 0, opacity: 1, duration: 0.8, ease: "power3.out", delay: 0.15 }),
                     });
                 }
 
-                // Improvements pills — stagger pop in
                 const pills = project.querySelectorAll(".improvement-pill");
                 pills.forEach((pill, j) => {
                     gsap.set(pill, { scale: 0.7, opacity: 0 });
                     ScrollTrigger.create({
-                        trigger: pill,
-                        scroller,
-                        start: "top 92%",
-                        once: true,
-                        onEnter: () => {
-                            gsap.to(pill, {
-                                scale: 1, opacity: 1,
-                                duration: 0.4, ease: "back.out(1.8)",
-                                delay: j * 0.08,
-                            });
-                        },
+                        trigger: pill, scroller, start: "top 92%", once: true,
+                        onEnter: () => gsap.to(pill, { scale: 1, opacity: 1, duration: 0.4, ease: "back.out(1.8)", delay: j * 0.08 }),
                     });
                 });
             });
@@ -160,18 +119,24 @@ const BeforeAfterSection = () => {
     }, []);
 
     return (
-        <section className="py-24 bg-gradient-to-t from-gray-100 via-white to-indigo-50 relative overflow-hidden">
+        <section
+            className="py-24 relative overflow-hidden bg-gradient-to-t from-gray-100 to-white"
+            
+        >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
                 {/* Header */}
                 <div className="text-center mb-16">
-                    <h2 ref={headingRef} className="text-4xl lg:text-6xl font-black text-gray-900 mt-6">
+                    <h2 ref={headingRef} className="text-4xl lg:text-6xl font-black mt-6" style={{ color: "#0D1B6B" }}>
                         Ini Cara Kami{" "}
-                        <span className="bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 bg-clip-text text-transparent">
+                        <span
+                            className="bg-clip-text text-transparent"
+                            style={{ backgroundImage: "linear-gradient(to right, #D4A03C, #E8C76A)" }}
+                        >
                             Bekerja
                         </span>
                     </h2>
-                    <p ref={subheadRef} className="text-xl text-gray-600 max-w-2xl mx-auto mt-4">
+                    <p ref={subheadRef} className="text-xl max-w-2xl mx-auto mt-4" style={{ color: "#1A3A8F" }}>
                         Hasil nyata dari proyek-proyek yang telah kami selesaikan dengan standar kualitas tinggi
                     </p>
                 </div>
@@ -184,13 +149,24 @@ const BeforeAfterSection = () => {
                             <div
                                 key={i}
                                 ref={(el) => (badgeRefs.current[i] = el)}
-                                className="bg-white rounded-2xl p-6 shadow-sm border"
+                                className="rounded-2xl p-6 shadow-sm border"
+                                style={{
+                                    backgroundColor: "white",
+                                    borderColor: "rgba(13,27,107,0.1)",
+                                }}
                             >
                                 <div className="flex flex-col items-center text-center space-y-3">
-                                    <div className={`w-14 h-14 bg-gradient-to-br ${badge.color} rounded-2xl flex items-center justify-center`}>
+                                    <div
+                                        className="w-14 h-14 rounded-2xl flex items-center justify-center"
+                                        style={{
+                                            background: `linear-gradient(to bottom right, ${badge.colorFrom}, ${badge.colorTo})`,
+                                        }}
+                                    >
                                         <Icon className="w-7 h-7 text-white" />
                                     </div>
-                                    <span className="font-bold text-gray-900 text-sm">{badge.label}</span>
+                                    <span className="font-bold text-sm" style={{ color: "#0D1B6B" }}>
+                                        {badge.label}
+                                    </span>
                                 </div>
                             </div>
                         );
@@ -204,55 +180,63 @@ const BeforeAfterSection = () => {
 
                             {/* Project Header */}
                             <div className="project-header mb-6">
-                                <span className="px-4 py-1 bg-indigo-600 text-white rounded-full text-xs font-bold">
+                                <span
+                                    className="px-4 py-1 rounded-full text-xs font-bold text-white"
+                                    style={{ backgroundColor: "#D4A03C" }}
+                                >
                                     {project.category}
                                 </span>
-                                <h3 className="text-3xl font-bold text-gray-900 mt-3">{project.title}</h3>
-                                <div className="flex gap-6 mt-2 text-gray-600 text-sm">
+                                <h3 className="text-3xl font-bold mt-3" style={{ color: "#0D1B6B" }}>
+                                    {project.title}
+                                </h3>
+                                {/* <div className="flex gap-6 mt-2 text-sm" style={{ color: "#1A3A8F" }}>
                                     <span className="flex items-center gap-2">
                                         <Clock className="w-4 h-4" />{project.duration}
                                     </span>
                                     <span>💰 {project.budget}</span>
-                                </div>
+                                </div> */}
                             </div>
 
                             {/* Before After Card */}
-                            <div className="bg-white rounded-3xl shadow-lg overflow-hidden">
+                            <div className="rounded-3xl shadow-lg overflow-hidden" style={{ backgroundColor: "white" }}>
                                 <div className="grid grid-cols-1 lg:grid-cols-2">
 
                                     <div className="img-before relative">
-                                        <span className="absolute top-4 left-4 z-10 bg-gray-900 text-white text-xs px-3 py-1 rounded-full">
+                                        <span className="absolute top-4 left-4 z-10 text-white text-xs px-3 py-1 rounded-full"
+                                            style={{ backgroundColor: "#0D1B6B" }}>
                                             SEBELUM
                                         </span>
-                                        <ImageWithFallback
-                                            src={project.before}
-                                            alt="Before"
-                                            className="w-full h-80 object-cover"
-                                        />
+                                        <ImageWithFallback src={project.before} alt="Before" className="w-full h-80 object-cover" />
                                     </div>
 
                                     <div className="img-after relative">
-                                        <span className="absolute top-4 left-4 z-10 bg-indigo-600 text-white text-xs px-3 py-1 rounded-full">
+                                        <span className="absolute top-4 left-4 z-10 text-white text-xs px-3 py-1 rounded-full"
+                                            style={{ backgroundColor: "#D4A03C" }}>
                                             SESUDAH ✨
                                         </span>
-                                        <ImageWithFallback
-                                            src={project.after}
-                                            alt="After"
-                                            className="w-full h-80 object-cover"
-                                        />
+                                        <ImageWithFallback src={project.after} alt="After" className="w-full h-80 object-cover" />
                                     </div>
 
                                 </div>
 
-                                <div className="p-8 bg-gray-50">
-                                    <h4 className="font-semibold mb-4 flex items-center gap-2">
-                                        <CheckCircle className="w-5 h-5 text-green-600" />
+                                {/* Improvements */}
+                                <div className="p-8" style={{ backgroundColor: "#F0EDE8" }}>
+                                    <h4 className="font-semibold mb-4 flex items-center gap-2" style={{ color: "#0D1B6B" }}>
+                                        <CheckCircle className="w-5 h-5" style={{ color: "#D4A03C" }} />
                                         Yang Kami Kerjakan:
                                     </h4>
-                                    <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm text-gray-700">
+                                    <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">
                                         {project.improvements.map((item, i) => (
-                                            <div key={i} className="improvement-pill flex justify-center items-center gap-2 p-2 border border-blue-500 bg-blue-300/10 rounded-full">
-                                                <span className="font-semibold text-blue-900">{item}</span>
+                                            <div
+                                                key={i}
+                                                className="improvement-pill flex justify-center items-center gap-2 p-2 rounded-full border"
+                                                style={{
+                                                    borderColor: "rgba(13,27,107,0.25)",
+                                                    backgroundColor: "rgba(13,27,107,0.05)",
+                                                    color: "#0D1B6B",
+                                                }}
+                                            >
+                                                <span className="font-semibold">{item}</span>
                                             </div>
                                         ))}
                                     </div>

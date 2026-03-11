@@ -92,11 +92,11 @@ const PoweredBy = () => {
 
                         <div className="flex items-center gap-6 mb-8">
                             <div
-                                ref={iconRef}
-                                className="w-20 h-20 rounded-2xl bg-gradient-to-br from-amber-400 to-orange-600 flex items-center justify-center"
-                            >
-                                <CiMedal className="text-white w-12 h-12" />
-                            </div>
+    ref={iconRef}
+    className="w-20 h-20 rounded-2xl bg-gradient-to-br from-[#D4A03C] to-[#E8C76A] flex items-center justify-center shadow-xl shadow-[#D4A03C]/30"
+>
+    <CiMedal className="w-12 h-12 text-white" />
+</div>
                             <div>
                                 <p className="text-black text-sm">Powered by</p>
                                 <h3 className="text-blue-500 text-4xl font-bold">Depo Pelita</h3>

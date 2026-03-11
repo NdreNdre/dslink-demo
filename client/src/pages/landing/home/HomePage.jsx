@@ -14,9 +14,9 @@ const HomePage = () => {
 
             <PoweredSection></PoweredSection>
 
-            <PackageSection></PackageSection>
+            {/* <PackageSection></PackageSection> */}
 
-            <WorkStep></WorkStep>
+            {/* <WorkStep></WorkStep> */}
 
             <BeforeAfterSection></BeforeAfterSection>
 
