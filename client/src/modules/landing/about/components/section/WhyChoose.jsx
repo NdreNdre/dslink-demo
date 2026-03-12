@@ -23,9 +23,9 @@ const cards = [
         iconColor: "text-[#D4A03C]",
         btnColor: "text-[#D4A03C]",
         Icon: FaHandshake,
-        title: "6 Partner Pembiayaan",
+        title: "8 Partner Pembiayaan",
         subtitle: "Cicilan 0% Tanpa Kartu Kredit",
-        desc: "BRI, BCA, BNI, Home Credit, Akulaku, Kredivo. Warga desa bisa cicilan bunga 0% tanpa kartu kredit. Approval Home Credit hanya 15 menit — di tempat.",
+        desc: "BRI, BCA, BNI, Mandiri, Home Credit, Indodana, Akulaku, Kredivo. Warga desa bisa cicilan bunga 0% tanpa kartu kredit. Approval Home Credit hanya 15 menit — di tempat.",
         from: { y: 70, opacity: 0 },
     },
     {
