@@ -115,7 +115,7 @@ const Hero = () => {
     {[
         { icon: FaHistory,      value: "25+",  label: "Tahun Ekosistem Depo Pelita" },
         { icon: FaMapMarkerAlt, value: "940+", label: "Desa Potensial di Jawa Tengah" },
-        { icon: FaCreditCard,   value: "6",    label: "Partner Pembiayaan Resmi" },
+        { icon: FaCreditCard,   value: "8",    label: "Partner Pembiayaan Resmi" },
     ].map((item, i) => {
         const Icon = item.icon;
         return (
@@ -183,9 +183,7 @@ const Hero = () => {
                                 Visi Kami
                             </h3>
                             <p className="leading-relaxed text-lg" style={{ color: "#1A3A8F" }}>
-                                Menjadi solusi terpercaya untuk kebutuhan upgrade rumah,
-                                menghadirkan kenyamanan dan kualitas hidup yang lebih baik
-                                bagi setiap keluarga.
+                                Menjadi jaringan toko solusi kebutuhan rumah paling dipercaya di desa-desa sekitar Depo Pelita, yang membuat upgrade rumah terasa mudah, rapi, aman, dan terjangkau (cash maupun cicilan).
                             </p>
                         </div>
 
@@ -218,9 +216,7 @@ const Hero = () => {
                                 Misi Kami
                             </h3>
                             <p className="leading-relaxed text-lg" style={{ color: "#1A3A8F" }}>
-                                Menyediakan paket renovasi dan instalasi yang transparan,
-                                efisien, dan profesional, sehingga pelanggan dapat menikmati
-                                hasil maksimal tanpa proses yang rumit.
+                                Mengembangkan ekosistem mitra lokal sebagai sumber referral sekaligus membangun sistem franchise yang sederhana, terstandar, dan mudah dijalankan sehingga dapat berkembang dan direplikasi di berbagai daerah.
                             </p>
                         </div>
 

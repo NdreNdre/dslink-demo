@@ -1,17 +1,41 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import TeamImage2 from "../../../../../assets/team_2.jpg";
-import Interior1 from "../../../../../assets/interior_1.jpg";
-import Interior2 from "../../../../../assets/interior_3.jpg";
+import TeamImage2 from "../../../../../assets/about_5.png";
+import Interior2 from "../../../../../assets/interior_1.jpg";
+import Interior1 from "../../../../../assets/interior_3.jpg";
+import { FaLightbulb } from "react-icons/fa";        // Fokus pada Solusi
+import { MdOutlineVisibility } from "react-icons/md"; // Transparansi
+import { HiBriefcase } from "react-icons/hi";         // Profesionalitas
+import { BsPatchCheckFill } from "react-icons/bs";    // Komitmen Kualitas
 
 gsap.registerPlugin(ScrollTrigger);
 
 const principles = [
-    { icon: "👤", title: "ATTITUDE", desc: "Profesional, disiplin, dan berorientasi solusi dalam setiap proyek." },
-    { icon: "🛡", title: "INTEGRITY", desc: "Transparansi dan kejujuran menjadi dasar hubungan dengan klien." },
-    { icon: "🎯", title: "OWNERSHIP", desc: "Bertanggung jawab penuh terhadap hasil dan kualitas pekerjaan." },
-    { icon: "🤝", title: "SYNERGY", desc: "Kolaborasi yang solid menghasilkan solusi terbaik untuk klien." },
+    {
+        icon: <FaLightbulb className="text-amber-400" size={20} />,
+        bgIcon: "bg-blue-50",
+        title: "Fokus pada Solusi",
+        desc: "Setiap proses, harga, dan spesifikasi kami jelaskan dengan jelas agar klien dapat mengambil keputusan dengan percaya diri."
+    },
+    {
+        icon: <MdOutlineVisibility className="text-blue-600" size={20} />,
+        bgIcon: "bg-blue-100",
+        title: "Transparansi",
+        desc: "Transparansi dan kejujuran menjadi dasar hubungan dengan klien."
+    },
+    {
+        icon: <HiBriefcase className="text-amber-500" size={20} />,
+        bgIcon: "bg-amber-50",
+        title: "Profesionalitas",
+        desc: "Tim kami bekerja dengan standar kerja yang rapi, disiplin, dan bertanggung jawab untuk memastikan hasil instalasi yang berkualitas."
+    },
+    {
+        icon: <BsPatchCheckFill className="text-blue-700" size={20} />,
+        bgIcon: "bg-blue-50",
+        title: "Komitmen Kualitas",
+        desc: "Setiap detail pekerjaan kami lakukan dengan standar kualitas yang konsisten untuk memastikan kepuasan jangka panjang."
+    },
 ];
 
 const Culture = () => {
@@ -124,8 +148,7 @@ const Culture = () => {
                     </h2>
 
                     <p ref={subheadRef} className="text-gray-500 max-w-md mb-10">
-                        Nilai-nilai yang menjadi fondasi DS Link dalam bekerja,
-                        melayani pelanggan, dan membangun kepercayaan jangka panjang.
+                        Nilai yang menjadi dasar DS Link dalam bekerja, melayani klien, dan memastikan setiap proyek berjalan dengan standar terbaik.
                     </p>
 
                     <div className="grid sm:grid-cols-2 gap-6">
@@ -135,9 +158,9 @@ const Culture = () => {
                                 ref={(el) => (cardRefs.current[i] = el)}
                                 className="bg-white p-6 rounded-2xl shadow-sm hover:shadow-lg hover:-translate-y-1 transition duration-300"
                             >
-                                <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center mb-4">
-                                    {item.icon}
-                                </div>
+                                <div className={`w-10 h-10 ${item.bgIcon} rounded-lg flex items-center justify-center mb-4`}>
+    {item.icon}
+</div>
                                 <h4 className="font-bold mb-2">{item.title}</h4>
                                 <p className="text-gray-500 text-sm">{item.desc}</p>
                             </div>

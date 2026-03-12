@@ -13,7 +13,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const features = [
     { icon: FaBoxOpen,    title: "Supply Depo Pelita", desc: "Stok dari gudang distributor, harga kompetitif" },
-    { icon: FaCreditCard, title: "6 Partner Cicilan",  desc: "Stok dari gudang distributor, harga kompetitif" },
+    { icon: FaCreditCard, title: "8 Partner Cicilan",  desc: "Stok dari gudang distributor, harga kompetitif" },
     { icon: ImTruck,      title: "Gratis Ongkir 15km", desc: "Standar layanan permanen, bukan promo" },
     { icon: FaShieldAlt,  title: "Garansi 1 Bulan",   desc: "Rusak pabrik? Ganti baru. Titik." },
 ];
@@ -272,7 +272,7 @@ export default function FranchiseSectionPremium() {
                                 "Training tim (sales, operasional, finance, marketing)",
                                 "Marketing launch kit + panduan grand opening",
                                 "Pendampingan bulan-bulan awal operasional",
-                                "Akses 6 partner pembiayaan (BRI, BCA, BNI, Home Credit, Akulaku, Kredivo)",
+                                "Akses 8 partner pembiayaan (BRI, BCA, BNI, Mandiri, Home Credit, Akulaku, Kredivo, Indodana)",
                                 "Supply produk harga distributor dari Depo Pelita",
                                 "Akses 5 program inovasi (Tukang Binaan, Arisan, Academy, BUMDes, Eco Corner)",
                             ].map((item, i) => (

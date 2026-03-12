@@ -157,10 +157,10 @@ const WhyChooseSection = () => {
                             </div>
                             <h3 className="text-xl font-semibold text-[#0D1B6B]">{card.title}</h3>
                             <p className="text-sm text-[#1A3A8F]/60 mt-1">{card.subtitle}</p>
-                            <p className="mt-4 text-[#1A3A8F]/80 leading-relaxed">{card.desc}</p>
+                            {/* <p className="mt-4 text-[#1A3A8F]/80 leading-relaxed">{card.desc}</p>
                             <button className={`mt-6 ${card.btnColor} font-medium flex items-center gap-2 hover:gap-3 transition-all`}>
                                 Pelajari lebih lanjut →
-                            </button>
+                            </button> */}
                         </div>
                     ))}
                 </div>

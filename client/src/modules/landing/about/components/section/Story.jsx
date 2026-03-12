@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import TeamImage2 from "../../../../../assets/team_2.jpg";
+import TeamImage2 from "../../../../../assets/about_2.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -107,9 +107,9 @@ const Story = () => {
                     </div>
 
                     <h2 ref={headingRef} className="font-serif mt-3 text-4xl md:text-5xl font-bold text-[#0D1B6B] leading-tight">
-                        Dari bingung menjadi{" "}
+                        Solusi Rumah {" "}
                         <span className="bg-gradient-to-r from-[#D4A03C] to-[#E8C76A] bg-clip-text text-transparent">
-                            Jelas
+                            Tanpa Ribet
                         </span>
                     </h2>
 
@@ -184,23 +184,23 @@ const Story = () => {
 
                     {/* Stat 1 — Gold */}
                     <div ref={(el) => (statRefs.current[0] = el)} className="bg-[#D4A03C] p-8 rounded-xl">
-                        <h3 className="text-4xl font-bold text-[#0D1B6B]">500+</h3>
-                        <p className="mt-2 font-semibold text-[#0D1B6B]">Pelanggan</p>
-                        <p className="text-sm mt-1 text-[#0D1B6B]/75">Mempercayakan rumah mereka kepada DS Link</p>
+                        <h3 className="text-4xl font-bold text-[#0D1B6B]">25+</h3>
+                        <p className="mt-2 font-semibold text-[#0D1B6B]">Tahun</p>
+                        <p className="text-sm mt-1 text-[#0D1B6B]/75">Ekosistem Depo Pelita</p>
                     </div>
 
                     {/* Stat 2 — Navy */}
                     <div ref={(el) => (statRefs.current[1] = el)} className="bg-[#0D1B6B] p-8 rounded-xl">
-                        <h3 className="text-4xl font-bold text-[#E8C76A]">98%</h3>
-                        <p className="mt-2 font-semibold text-white">Kepuasan</p>
-                        <p className="text-sm mt-1 text-white/55">Jaminan kualitas pengerjaan</p>
+                        <h3 className="text-4xl font-bold text-[#E8C76A]">940+</h3>
+                        <p className="mt-2 font-semibold text-white">Desa Potensial</p>
+                        <p className="text-sm mt-1 text-white/55">Di Jawa Tengah</p>
                     </div>
 
                     {/* Stat 3 — White / Cream */}
                     <div ref={(el) => (statRefs.current[2] = el)} className="bg-white border border-[#0D1B6B]/15 p-8 rounded-xl">
-                        <h3 className="text-4xl font-bold text-[#0D1B6B]">5+</h3>
-                        <p className="mt-2 font-semibold text-[#0D1B6B]">Tahun</p>
-                        <p className="text-sm mt-1 text-[#1A3A8F]/60">Terpercaya dan berpengalaman</p>
+                        <h3 className="text-4xl font-bold text-[#0D1B6B]">8</h3>
+                        <p className="mt-2 font-semibold text-[#0D1B6B]">Partner</p>
+                        <p className="text-sm mt-1 text-[#1A3A8F]/60">Pembiayaan Resmi</p>
                     </div>
 
                 </div>

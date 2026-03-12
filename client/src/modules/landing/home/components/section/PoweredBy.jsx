@@ -10,7 +10,7 @@ gsap.registerPlugin(ScrollTrigger);
 const counters = [
     { icon: FaHistory,      value: 25,  suffix: "+", label: "Tahun Ekosistem Depo Pelita" },
     { icon: FaMapMarkerAlt, value: 940, suffix: "+", label: "Desa Potensial di Jawa Tengah" },
-    { icon: FaCreditCard,   value: 6,   suffix: "",  label: "Partner Pembiayaan Resmi" },
+    { icon: FaCreditCard,   value: 8,   suffix: "",  label: "Partner Pembiayaan Resmi" },
     { icon: BsStars,        value: 5,   suffix: "",  label: "Program Inovasi Terintegrasi" },
 ];
 

@@ -5,6 +5,10 @@ import { ImageWithFallback } from "../ImageWithFallback";
 import { CheckCircle } from "lucide-react";
 import { FaBoxOpen, FaCreditCard, FaShieldAlt } from "react-icons/fa";
 import { ImTruck } from "react-icons/im";
+import Before1 from "../../../../../assets/dapur_before_1.png";
+import Before2 from "../../../../../assets/kamar_mandi_before_1.png";
+import After1 from "../../../../../assets/dapur_after_1.png";
+import After2 from "../../../../../assets/kamar_mandi_after_1.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -12,14 +16,16 @@ const partners = [
     { name: "BRI",         color: "#003d99", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2e/BRI_2020.svg" },
     { name: "BCA",         color: "#005baa", logo: "https://upload.wikimedia.org/wikipedia/commons/5/5c/Bank_Central_Asia.svg" },
     { name: "BNI",         color: "#f36f21", logo: "https://wwf.id/sites/default/files/inline-images/BNI_logo.svg__1.png" },
+    { name: "Mandiri",         color: "#f36f21", logo: "https://upload.wikimedia.org/wikipedia/id/thumb/f/fa/Bank_Mandiri_logo.svg/960px-Bank_Mandiri_logo.svg.png" },
     { name: "Home Credit", color: "#e4002b", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Home_Credit_logo.svg/1280px-Home_Credit_logo.svg.png" },
+    { name: "Indodana",     color: "#1a73e8", logo: "https://afpi.or.id/fm/Members/4031_a9d7856fce7.png" },
     { name: "Akulaku",     color: "#1a73e8", logo: "https://ec-cstatic.akulaku.net/web-site/_nuxt/img/m_akulaku_logo.35cf85f.png" },
     { name: "Kredivo",     color: "#00b14f", logo: "https://image.cermati.com/v1582185705/upcaqimam6jtf9hoy6mz.png" },
 ];
 
 const trustBadges = [
     { icon: FaBoxOpen,    label: "Supply Depo Pelita", desc: "Harga distributor langsung", colorFrom: "#D4A03C", colorTo: "#E8C76A" },
-    { icon: FaCreditCard, label: "6 Partner Cicilan",  desc: "Bunga 0% tanpa kartu kredit", colorFrom: "#0D1B6B", colorTo: "#1A3A8F" },
+    { icon: FaCreditCard, label: "8 Partner Cicilan",  desc: "Bunga 0% tanpa kartu kredit", colorFrom: "#0D1B6B", colorTo: "#1A3A8F" },
     { icon: ImTruck,      label: "Gratis Ongkir 15km", desc: "Layanan permanen, bukan promo", colorFrom: "#1A3A8F", colorTo: "#0033CC" },
     { icon: FaShieldAlt,  label: "Garansi 1 Bulan",   desc: "Rusak pabrik? Ganti baru.", colorFrom: "#D4A03C", colorTo: "#0D1B6B" },
 ];
@@ -29,17 +35,17 @@ const projects = [
         id: 1,
         title: "Renovasi Dapur Modern",
         category: "Kitchen Upgrade",
-        before: "https://images.unsplash.com/photo-1579618217299-92460380cf99?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxvbGQlMjBraXRjaGVuJTIwYmVmb3JlJTIwcmVub3ZhdGlvbnxlbnwxfHx8fDE3NzIwMTYzOTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
-        after: "https://images.unsplash.com/photo-1769739132671-ac41c439d51e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjByZW5vdmF0ZWQlMjBraXRjaGVuJTIwaW50ZXJpb3IlMjBicmlnaHR8ZW58MXx8fHwxNzcyMDgzMTg2fDA&ixlib=rb-4.1.0&q=80&w=1080",
-        improvements: ["Kabinet premium", "Countertop granite", "Lighting modern", "Lantai keramik"],
+        before: Before1,
+        after: After1,
+        improvements: ["Rak Piring", "Mixer", "Oven", "Set Storage"],
     },
     {
         id: 2,
         title: "Renovasi Kamar Mandi",
         category: "Bathroom Upgrade",
-        before: "https://images.unsplash.com/photo-1758448018619-4cbe2250b9ad?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxiYXRocm9vbSUyMHJlbm92YXRpb24lMjBtb2Rlcm4lMjBjbGVhbnxlbnwxfHx8fDE3NzIwODMxODZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
-        after: "https://images.unsplash.com/photo-1651442897558-47cff0f64bd9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZW5vdmF0ZWQlMjBtb2Rlcm4lMjBiYXRocm9vbSUyMGFmdGVyfGVufDF8fHx8MTc3MjA4MzE4N3ww&ixlib=rb-4.1.0&q=80&w=1080",
-        improvements: ["Shower modern", "Wastafel premium", "Keramik dinding", "Ventilasi upgrade"],
+        before: Before2,
+        after: After2,
+        improvements: ["Shower set", "Floor drain", "Pipa & Fitting", "Keran Air"],
     },
 ];
 
@@ -166,7 +172,7 @@ const BeforeAfterSection = () => {
                         </span>
                     </h2>
                     <p ref={subheadRef} className="text-xl text-[#1A3A8F] max-w-2xl mx-auto mt-4">
-                        Didukung ekosistem terpercaya, partner pembiayaan resmi, dan layanan yang benar-benar berpihak pada Anda.
+                        Tenang aja, kita punya ekosistem terpercaya dan partner pembiayaan resmi yang siap bantuin kamu kapan aja. Karena bagi kami, kenyamanan kamu itu nomor satu.
                     </p>
                 </div>
 
@@ -261,7 +267,7 @@ const BeforeAfterSection = () => {
                                 <div className="p-8 bg-white">
                                     <h4 className="font-semibold mb-4 flex items-center gap-2 text-[#0D1B6B]">
                                         <CheckCircle className="w-5 h-5 text-[#D4A03C]" />
-                                        Yang Kami Kerjakan:
+                                        Spesialisasi Kami:
                                     </h4>
                                     <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">
                                         {project.improvements.map((item, i) => (
