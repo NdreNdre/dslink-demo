@@ -37,7 +37,7 @@ const projects = [
         category: "Kitchen Upgrade",
         before: Before1,
         after: After1,
-        improvements: ["Rak Piring", "Mixer", "Oven", "Set Storage"],
+        improvements: ["Specialist", "Kitchen Appliances", "Set Storages", "Mixer"],
     },
     {
         id: 2,
