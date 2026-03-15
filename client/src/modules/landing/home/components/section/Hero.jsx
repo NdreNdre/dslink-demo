@@ -185,7 +185,7 @@ const HeroSection = () => {
                         ref={subtextRef}
                         className="font-sans mt-6 text-white/90 text-lg md:text-xl max-w-2xl"
                     >
-                        Franchise DS Link — toko elektronik, furniture & kebutuhan rumah dengan sistem siap pakai. Supply chain dari Depo Pelita, 6 partner cicilan, dan 5 program inovasi yang bikin outlet Anda bukan sekadar toko — tapi pusat solusi rumah di desa.
+                        Franchise DS Link — toko elektronik, furniture & kebutuhan rumah dengan sistem siap pakai. Supply chain dari Depo Pelita, Berbagai partner pembayaran dan program program inovasi yang bikin outlet Anda bukan sekadar toko — tapi pusat solusi rumah di desa.
                     </p>
 
                     <div
