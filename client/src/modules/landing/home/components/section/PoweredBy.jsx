@@ -10,8 +10,8 @@ gsap.registerPlugin(ScrollTrigger);
 const counters = [
     { icon: FaHistory,      value: 25,  suffix: "+", label: "Tahun Ekosistem Depo Pelita" },
     { icon: FaMapMarkerAlt, value: 940, suffix: "+", label: "Desa Potensial di Jawa Tengah" },
-    { icon: FaCreditCard,   value: "Multi",   suffix: "",  label: "Partner Pembiayaan Resmi" },
     { icon: BsStars,        value: 5,   suffix: "",  label: "Program Inovasi Terintegrasi" },
+    { icon: FaCreditCard,   value: "Multi",   suffix: "",  label: "Partner Pembiayaan Resmi" },
 ];
 
 const PoweredSection = () => {
@@ -50,6 +50,11 @@ const PoweredSection = () => {
                     if (!hasAnimated.current) {
                         hasAnimated.current = true;
                         counters.forEach((counter, i) => {
+
+                            const isNumeric = !isNaN(Number(counter.value)) && counter.value.toString().trim() !== "";
+
+                            if (!isNumeric) return;
+
                             const obj = { val: 0 };
                             gsap.to(obj, {
                                 val: counter.value,
@@ -198,7 +203,7 @@ const PoweredSection = () => {
                     <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-[#0D1B6B]/10">
                         {counters.map((counter, i) => {
                             const Icon = counter.icon;
-                            const isNumber = Number(counter.value);
+                            const isNumeric = !isNaN(Number(counter.value)) && counter.value.toString().trim() !== "";
                             return (
                                 <div
                                     key={i}
@@ -208,14 +213,17 @@ const PoweredSection = () => {
                                     <div className="w-10 h-10 rounded-xl bg-[#D4A03C]/10 flex items-center justify-center mb-3">
                                         <Icon className="w-5 h-5 text-[#D4A03C]" />
                                     </div>
-                                    {!isNaN(isNumber) && <div className="text-3xl md:text-4xl font-bold text-white leading-none">
-                                        {counts[i]}
-                                        <span className="text-[#D4A03C]">{counter.suffix}</span>
-                                    </div>}
-                                    {isNaN(isNumber) && <div className="text-3xl md:text-4xl font-bold text-white leading-none">
-                                        {counts[i]}
-                                        <span className="text-[#D4A03C]">{counter.suffix}</span>
-                                    </div>}
+                                    {isNumeric ? (
+                                        <div className="text-3xl md:text-4xl font-bold text-white leading-none">
+                                            {counts[i]}
+                                            <span className="text-[#D4A03C]">{counter.suffix}</span>
+                                        </div>
+                                    ) : (
+                                        <div className="text-3xl md:text-4xl font-bold text-white leading-none">
+                                            {counter.value}
+                                            <span className="text-[#D4A03C]">{counter.suffix}</span>
+                                        </div>
+                                    )}
                                     <p className="mt-2 text-xs md:text-sm text-white/70 leading-snug">
                                         {counter.label}
                                     </p>
