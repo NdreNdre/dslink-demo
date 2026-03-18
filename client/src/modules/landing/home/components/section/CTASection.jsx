@@ -59,12 +59,12 @@ export default function CTASection() {
 
                 {/* Heading */}
                 <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-snug max-w-2xl mx-auto">
-                    Pasar Desa Belum Ada yang Garap Serius.{" "}
+                    Market Desa masih minim {" "}
                     <em
                         className="not-italic bg-clip-text text-transparent"
                         style={{ backgroundImage: "linear-gradient(to right, #D4A03C, #E8C76A)" }}
                     >
-                        Sampai Sekarang.
+                        retail modern yang serius.
                     </em>
                 </h2>
 
