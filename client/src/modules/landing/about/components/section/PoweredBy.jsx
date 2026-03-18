@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { CiMedal } from "react-icons/ci";
+import DepoImage from "../../../../../assets/depo_1.jpg"
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -122,7 +123,7 @@ const PoweredBy = () => {
                     {/* RIGHT IMAGE */}
                     <div ref={imageRef} className="h-96 md:h-auto overflow-hidden">
                         <img
-                            src="https://instagram.fcgk28-1.fna.fbcdn.net/v/t51.82787-15/618877403_18009532775819662_9170569843964346952_n.webp?_nc_cat=104&ig_cache_key=MzA0NDQzOTYzODE5NTExNDI2Mg%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjEwODB4MTA4MC5zZHIuQzMifQ%3D%3D&_nc_ohc=ZtdJ2s5NAxUQ7kNvwGMIEYy&_nc_oc=AdkVLTWRFP0QQtbwQQHVogkFMXVw9I4NXKLwkY_FxNRtmo-wCRS5cBFeUMZpR-5VDvc&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=instagram.fcgk28-1.fna&_nc_gid=e9hXSuhOVY0r3dHAhl9Y0g&_nc_ss=8&oh=00_AfxNfZtTv18UAQctZQhv-o1HyOdceW0WIIt1rbc3pqZAaQ&oe=69B5F943"
+                            src={DepoImage}
                             alt="Depo Pelita"
                             className="w-full h-full object-cover"
                         />

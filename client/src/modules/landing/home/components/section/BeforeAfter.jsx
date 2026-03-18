@@ -25,7 +25,7 @@ const partners = [
 
 const trustBadges = [
     { icon: FaBoxOpen,    label: "Supply Depo Pelita", desc: "Harga distributor langsung", colorFrom: "#D4A03C", colorTo: "#E8C76A" },
-    { icon: FaCreditCard, label: "8 Partner Cicilan",  desc: "Bunga 0% tanpa kartu kredit", colorFrom: "#0D1B6B", colorTo: "#1A3A8F" },
+    { icon: FaCreditCard, label: "Multi Partner Cicilan",  desc: "Bunga 0% tanpa kartu kredit", colorFrom: "#0D1B6B", colorTo: "#1A3A8F" },
     { icon: ImTruck,      label: "Gratis Ongkir 15km", desc: "Layanan permanen, bukan promo", colorFrom: "#1A3A8F", colorTo: "#0033CC" },
     { icon: FaShieldAlt,  label: "Garansi 1 Bulan",   desc: "Rusak pabrik? Ganti baru.", colorFrom: "#D4A03C", colorTo: "#0D1B6B" },
 ];

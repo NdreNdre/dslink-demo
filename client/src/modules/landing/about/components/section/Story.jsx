@@ -180,13 +180,13 @@ const Story = () => {
                 </div>
 
                 {/* Stats */}
-                <div className="grid md:grid-cols-3 gap-6 mt-14">
+                <div className="grid md:grid-cols-4 gap-6 mt-14">
 
                     {/* Stat 1 — Gold */}
                     <div ref={(el) => (statRefs.current[0] = el)} className="bg-[#D4A03C] p-8 rounded-xl">
-                        <h3 className="text-4xl font-bold text-[#0D1B6B]">25+</h3>
+                        <h3 className="text-4xl font-bold text-[#0D1B6B]">20</h3>
                         <p className="mt-2 font-semibold text-[#0D1B6B]">Tahun</p>
-                        <p className="text-sm mt-1 text-[#0D1B6B]/75">Ekosistem Depo Pelita</p>
+                        <p className="text-sm mt-1 text-[#0D1B6B]/75">Depo Pelita</p>
                     </div>
 
                     {/* Stat 2 — Navy */}
@@ -198,9 +198,16 @@ const Story = () => {
 
                     {/* Stat 3 — White / Cream */}
                     <div ref={(el) => (statRefs.current[2] = el)} className="bg-white border border-[#0D1B6B]/15 p-8 rounded-xl">
-                        <h3 className="text-4xl font-bold text-[#0D1B6B]">8</h3>
+                        <h3 className="text-4xl font-bold text-[#0D1B6B]">Multi</h3>
                         <p className="mt-2 font-semibold text-[#0D1B6B]">Partner</p>
                         <p className="text-sm mt-1 text-[#1A3A8F]/60">Pembiayaan Resmi</p>
+                    </div>
+
+                    {/* Stat 3 — White / Cream */}
+                    <div ref={(el) => (statRefs.current[3] = el)} className="bg-[#185FA5] border border-[#185FA5] p-8 rounded-xl">
+                        <h3 className="text-4xl font-bold text-[#FAC775]">1000+</h3>
+                        <p className="mt-2 font-semibold text-white">SKU</p>
+                        <p className="text-sm mt-1 text-[#B5D4F4]/80">Produk</p>
                     </div>
 
                 </div>

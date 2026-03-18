@@ -4,6 +4,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import HeroBackground from "../../../../../assets/interior_2.jpg";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { FaBullseye, FaHistory, FaMapMarkerAlt, FaCreditCard } from "react-icons/fa";
+import { FaBarcode } from "react-icons/fa";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -101,8 +102,9 @@ const Hero = () => {
 
                 {/* Subheading */}
                 <p ref={subheadRef} className="text-lg md:text-xl max-w-2xl mx-auto" style={{ color: "rgba(255,255,255,0.75)" }}>
-                    DS Link hadir untuk membantu Anda mewujudkan rumah yang lebih nyaman,
-                    modern, dan siap digunakan dengan paket upgrade yang transparan dan profesional.
+                    DS Link adalah konsep retail modern di bawah naungan PT. Pelita Satria Perkasa (Depo
+Pelita) perusahaan yang sudah 20 tahun melayani kebutuhan rumah masyarakat
+Indonesia.
                 </p>
 
                 <div className="flex flex-col justify-center items-center space-y-20 mt-14">
@@ -113,9 +115,10 @@ const Hero = () => {
     className="px-6 md:px-12 py-6 rounded-2xl flex flex-col sm:flex-row gap-6 sm:gap-0 shadow-lg w-full max-w-xl sm:max-w-none sm:w-auto bg-gradient-to-br from-[#0D1B6B]/45 to-[#000066]/30 border border-[#D4A03C]/30 backdrop-blur-md"
 >
     {[
-        { icon: FaHistory,      value: "25+",  label: "Tahun Ekosistem Depo Pelita" },
+        { icon: FaHistory,      value: "20",  label: "Tahun Depo Pelita" },
         { icon: FaMapMarkerAlt, value: "940+", label: "Desa Potensial di Jawa Tengah" },
-        { icon: FaCreditCard,   value: "8",    label: "Partner Pembiayaan Resmi" },
+        { icon: FaCreditCard,   value: "Multi",    label: "Partner Pembiayaan Resmi" },
+        { icon: FaBarcode,   value: "1000+",    label: "SKU Produk" },
     ].map((item, i) => {
         const Icon = item.icon;
         return (

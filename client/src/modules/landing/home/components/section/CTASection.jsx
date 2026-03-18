@@ -3,7 +3,7 @@ import { useListPackageStore } from '../../../package/list/stores/listPackage.st
 
 const trustItems = [
     'Supply Depo Pelita',
-    '8 Partner Cicilan',
+    'Multi Partner Cicilan',
     'Gratis Ongkir 15km',
     'Garansi 1 Bulan',
 ];
